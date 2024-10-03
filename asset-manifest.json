@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Digui/static/css/main.e6c13ad2.css",
+    "main.js": "/Digui/static/js/main.e7234044.js",
+    "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
+    "static/media/triangle.png": "/Digui/static/media/triangle.ec0875a49f57a789e43e.png",
+    "static/media/vision.jpg": "/Digui/static/media/vision.4eccfc465ee3a52003cf.jpg",
+    "static/media/informacion.jpg": "/Digui/static/media/informacion.a8e461e48c69619667fa.jpg",
+    "static/media/star.png": "/Digui/static/media/star.02f3c0045f510975f6a3.png",
+    "static/media/Logo DIGUI 2.1.png": "/Digui/static/media/Logo DIGUI 2.1.c304c937f7d638f4a0ee.png",
+    "static/media/circle.png": "/Digui/static/media/circle.49403941b8f0baf3e9de.png",
+    "static/media/logo digui.svg": "/Digui/static/media/logo digui.42338cf4a8537b119dcaf6c1dba621ef.svg",
+    "static/media/google-logo.svg": "/Digui/static/media/google-logo.9a7800d06783d80a1c12249a8ca58e9d.svg",
+    "index.html": "/Digui/index.html",
+    "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
+    "main.e7234044.js.map": "/Digui/static/js/main.e7234044.js.map",
+    "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.e7234044.js"
+  ]
+}
