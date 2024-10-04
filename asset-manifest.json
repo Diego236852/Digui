@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.e6c13ad2.css",
-    "main.js": "/Digui/static/js/main.a304ac62.js",
+    "main.js": "/Digui/static/js/main.a7959ef7.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -10,9 +10,13 @@
     "static/media/triangle.png": "/Digui/static/media/triangle.ec0875a49f57a789e43e.png",
     "static/media/star.png": "/Digui/static/media/star.02f3c0045f510975f6a3.png",
     "static/media/Logo DIGUI 2.1.png": "/Digui/static/media/Logo DIGUI 2.1.c304c937f7d638f4a0ee.png",
+    "static/media/mochila.png": "/Digui/static/media/mochila.a8f27a42f45332e75ddd.png",
+    "static/media/zapato.png": "/Digui/static/media/zapato.bb3ad4544d511ff12f79.png",
     "static/media/circle.png": "/Digui/static/media/circle.49403941b8f0baf3e9de.png",
     "static/media/logo digui.svg": "/Digui/static/media/logo digui.42338cf4a8537b119dcaf6c1dba621ef.svg",
+    "static/media/billete.png": "/Digui/static/media/billete.0f920a9329698461c167.png",
     "static/media/circle-logo.svg": "/Digui/static/media/circle-logo.1823f929394e252b5be931d6e02c261a.svg",
+    "static/media/estrella.png": "/Digui/static/media/estrella.fa2c46f548092bee5380.png",
     "static/media/letter-i.svg": "/Digui/static/media/letter-i.89ed8e3ee9f832f4237931c4d7a5ade3.svg",
     "static/media/letter-i2.svg": "/Digui/static/media/letter-i2.8984d328286055a130b88aed2198e3f7.svg",
     "static/media/letter-g.svg": "/Digui/static/media/letter-g.d681016b5c63fde68f1ab30cc8de0744.svg",
@@ -22,11 +26,11 @@
     "index.html": "/Digui/index.html",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.0ad725999604782c7d4c25e7c2a21239.svg",
     "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
-    "main.a304ac62.js.map": "/Digui/static/js/main.a304ac62.js.map",
+    "main.a7959ef7.js.map": "/Digui/static/js/main.a7959ef7.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a304ac62.js"
+    "static/js/main.a7959ef7.js"
   ]
 }
