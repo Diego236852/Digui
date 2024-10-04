@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
 import googleLogo from './google-logo.svg'; // Imagen del logo de Google
 import logo from './logo digui.svg'; // Logo de digui
+import LoginSuccessful from './LoginSuccessful'; // Importa el componente de éxito
 
 // Agregar las fuentes de Google Fonts
 const GlobalStyle = createGlobalStyle`
@@ -321,6 +322,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 const Login = () => {
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [animation, setAnimation] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -344,6 +346,15 @@ const Login = () => {
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
+
+  const handleLoginClick = () => {
+    setIsLoginSuccessful(true); // Cambia a la vista de "inicio de sesión exitoso"
+  };
+
+  // Si el login es exitoso, renderiza el componente de éxito
+  if (isLoginSuccessful) {
+    return <LoginSuccessful />;
+  }
 
   return (
     <>
@@ -369,7 +380,7 @@ const Login = () => {
               <>
                 <Input type="text" placeholder="Usuario" />
                 <Input type="password" placeholder="Contraseña" />
-                <Button>Iniciar Sesión</Button>
+                <Button onClick={handleLoginClick}>Iniciar Sesión</Button>
                 <Link>¿Olvidaste la contraseña?</Link>
                 <CreateAccountButton onClick={handleCreateAccount}>
                   Crear Cuenta

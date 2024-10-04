@@ -1,31 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import SplashScreen from './SplashScreen';
-import InfoDigui from './InfoDigui';  // Pantalla con las páginas de DIGUI
-import Login from './Login';  // Ventana de inicio de sesión
+import InfoDigui from './InfoDigui';
+import Login from './Login';
+import ABCdifficultyMenu from './ABCdifficultyMenu';
+import ABCPiensa from './ABCPiensa';
+import ABCwinnerMenu from './ABCwinnerMenu';
+import ABCloser from './ABCloser';  
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('splash');
+  const [currentScreen, setCurrentScreen] = useState('splash'); // Maneja pantallas intermedias con estado
+  const [difficulty, setDifficulty] = useState(null);  // Dificultad seleccionada
+  const [score, setScore] = useState(null);  // Puntuación final
+  const navigate = useNavigate();  // Hook para navegación de rutas
 
+  // Manejo de SplashScreen y InfoDigui
   useEffect(() => {
-    // Simulamos un tiempo de espera para la pantalla de splash
     const timer = setTimeout(() => {
-      setCurrentScreen('info');
-    }, 3000); // 3 segundos de splash, ajusta este tiempo si lo necesitas
+      setCurrentScreen('info');  // Cambia a InfoDigui después del SplashScreen
+    }, 3000);  // 3 segundos de splash
 
-    return () => clearTimeout(timer); // Limpiamos el timer cuando se desmonte el componente
+    return () => clearTimeout(timer);  // Limpiamos el temporizador
   }, []);
 
   const handleFinishInfoDigui = () => {
-    // Cuando el usuario ha pasado por todas las páginas de InfoDigui, se muestra la ventana de inicio de sesión
-    setCurrentScreen('login');
+    setCurrentScreen('login');  // Navega a la pantalla de login
   };
 
+  const handleLoginSuccess = () => {
+    navigate('/ABCdifficultyMenu');  // Cambia a selección de dificultad
+  };
+
+  const handleSelectDifficulty = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+    navigate('/game');  // Navega al juego
+  };
+
+  const handleGameEnd = (finalScore) => {
+    setScore(finalScore);
+    navigate('/winner');  // Navega al menú de ganador
+  };
+
+  const handleGameLost = () => {
+    navigate('/gameover');  // Navega a la pantalla de perdedor
+  };
+
+  // Manejo condicional para pantallas intermedias
+  if (currentScreen === 'splash') {
+    return <SplashScreen />;
+  }
+
+  if (currentScreen === 'info') {
+    return <InfoDigui onFinish={handleFinishInfoDigui} />;
+  }
+
+  if (currentScreen === 'login') {
+    return <Login onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  // Una vez que superamos pantallas intermedias, usamos rutas
   return (
     <div className="App">
-      {/* Condicional para mostrar la pantalla según el estado */}
-      {currentScreen === 'splash' && <SplashScreen />}
-      {currentScreen === 'info' && <InfoDigui onFinish={handleFinishInfoDigui} />}
-      {currentScreen === 'login' && <Login />}
+      <Routes>
+        <Route path="/ABCdifficultyMenu" element={<ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} />} />
+        <Route path="/game" element={<ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} />} />
+        <Route path="/winner" element={<ABCwinnerMenu score={score} />} />
+        <Route path="/gameover" element={<ABCloser />} />
+      </Routes>
     </div>
   );
 }
