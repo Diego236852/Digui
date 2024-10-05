@@ -8,6 +8,7 @@ import star from './star.png';           // Imagen de estrella
 import triangle from './triangle.png';   // Imagen de triángulo
 import circle from './circle.png';       // Imagen de círculo
 
+
 // Estilos generales con fuentes aplicadas
 const Container = styled.div`
   display: flex;
@@ -120,6 +121,7 @@ const NextButton = styled.button`
     background-color: #5a189a;
   }
 `;
+
 
 // Animaciones para imágenes y textos
 const imageVariants = {

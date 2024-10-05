@@ -5,7 +5,7 @@ import Login from './Login';
 import ABCdifficultyMenu from './ABCdifficultyMenu';
 import ABCPiensa from './ABCPiensa';
 import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloser from './ABCloser';  
+import ABCloserMenu from './ABCloserMenu';  
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
         <Route path="/ABCdifficultyMenu" element={<ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} />} />
         <Route path="/game" element={<ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} />} />
         <Route path="/winner" element={<ABCwinnerMenu score={score} />} />
-        <Route path="/gameover" element={<ABCloser />} />
+        <Route path="/gameover" element={<ABCloserMenu />} />
       </Routes>
     </div>
   );

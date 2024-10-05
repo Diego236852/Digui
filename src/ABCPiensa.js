@@ -1,38 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import billete from './billete.png';
-import estrella from './estrella.png';
-import mochila from './mochila.png';
-import zapato from './zapato.png';
 import ABCwinnerMenu from './ABCwinnerMenu'; // Importa el menú de ganador
-import ABCloser from './ABCloser'; // Importa el componente para cuando pierdes
+import ABCloserMenu from './ABCloserMenu'; // Importa el componente para cuando pierdes
+import imageDatabase from './ABCPiensaImageDatabase'; // Importar las imagenes a usar
 
-// Función para mezclar el array de letras
-const shuffleArray = (array) => {
-  return array.sort(() => Math.random() - 0.5);
-};
-
-const initialLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-const initialImages = [
-  { src: billete, letter: 'B' },
-  { src: estrella, letter: 'E' },
-  { src: mochila, letter: 'M' },
-  { src: zapato, letter: 'Z' }
-];
-
-// Animación de error
-const shake = keyframes`
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-`;
-
-const getRandomRotation = () => {
-  const randomDegree = Math.floor(Math.random() * 60) - 30;
-  return `rotate(${randomDegree}deg)`;
-};
 
 const GameContainer = styled.div`
   display: flex;
@@ -180,6 +151,41 @@ const CardBack = styled.img`
   border-radius: 10px;
 `;
 
+// Animación de error
+const shake = keyframes`
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+`;
+
+
+// Letras iniciales
+const initialLetters = [
+  'A', 'B', 'C', 'D', 'E',
+  'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'Ñ',
+  'O', 'P', 'Q', 'R', 'S',
+  'T', 'U', 'V', 'W', 'X',
+  'Y', 'Z'
+];
+
+// Cargar las imagenes
+const initialImages = imageDatabase;
+
+// Función para mezclar el array de letras
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
+// Rotar de forma aleatoria
+const getRandomRotation = () => {
+  const randomDegree = Math.floor(Math.random() * 60) - 30;
+  return `rotate(${randomDegree}deg)`;
+};
+
+
 const ABCPiensa = ({ difficulty }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [error, setError] = useState(null);
@@ -228,7 +234,9 @@ const ABCPiensa = ({ difficulty }) => {
   };
 
   const handleLetterClick = (letter) => {
-    if (!selectedImage) return;
+    if (!selectedImage)
+      return;
+    
     if (letter === selectedImage.letter) {
       setCompleted((prev) => ({ ...prev, [letter]: selectedImage.src }));
       setImages(images.filter((img) => img.letter !== selectedImage.letter));
@@ -249,9 +257,9 @@ const ABCPiensa = ({ difficulty }) => {
     return <ABCwinnerMenu score={score} />;
   }
 
-  // Si el tiempo se acaba, mostramos el componente de pérdida (ABCloser)
+  // Si el tiempo se acaba, mostramos el componente de pérdida (ABCloserMenu)
   if (gameOver && !winner) {
-    return <ABCloser />;
+    return <ABCloserMenu />;
   }
 
   return (
