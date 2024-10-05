@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.e6c13ad2.css",
-    "main.js": "/Digui/static/js/main.cc498755.js",
+    "main.js": "/Digui/static/js/main.c65753d0.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -24,13 +24,13 @@
     "static/media/letter-u.svg": "/Digui/static/media/letter-u.aaf0c1efb017d3da2fc9d905580dbdb5.svg",
     "static/media/google-logo.svg": "/Digui/static/media/google-logo.9a7800d06783d80a1c12249a8ca58e9d.svg",
     "index.html": "/Digui/index.html",
-    "static/media/check-icon.svg": "/Digui/static/media/check-icon.0ad725999604782c7d4c25e7c2a21239.svg",
+    "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
-    "main.cc498755.js.map": "/Digui/static/js/main.cc498755.js.map",
+    "main.c65753d0.js.map": "/Digui/static/js/main.c65753d0.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.cc498755.js"
+    "static/js/main.c65753d0.js"
   ]
 }
