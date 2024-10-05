@@ -321,7 +321,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [animation, setAnimation] = useState('');
@@ -348,6 +348,7 @@ const Login = () => {
   };
 
   const handleLoginClick = () => {
+    onLoginSuccess(); // Llama la función pasada desde App.js para cambiar de pantalla
     setIsLoginSuccessful(true); // Cambia a la vista de "inicio de sesión exitoso"
   };
 

@@ -5,14 +5,13 @@ import Login from './Login';
 import ABCdifficultyMenu from './ABCdifficultyMenu';
 import ABCPiensa from './ABCPiensa';
 import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloser from './ABCloser';  
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import ABCloser from './ABCloser';
+import LoginSuccessful from './LoginSuccessful'; // Agrega esta línea
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash'); // Maneja pantallas intermedias con estado
   const [difficulty, setDifficulty] = useState(null);  // Dificultad seleccionada
   const [score, setScore] = useState(null);  // Puntuación final
-  const navigate = useNavigate();  // Hook para navegación de rutas
 
   // Manejo de SplashScreen y InfoDigui
   useEffect(() => {
@@ -24,51 +23,54 @@ function App() {
   }, []);
 
   const handleFinishInfoDigui = () => {
-    setCurrentScreen('login');  // Navega a la pantalla de login
+    setCurrentScreen('login');  // Cambia a la pantalla de login
   };
 
   const handleLoginSuccess = () => {
-    navigate('/ABCdifficultyMenu');  // Cambia a selección de dificultad
+    setCurrentScreen('loginSuccessful');  // Cambia a la pantalla de éxito después del login
   };
 
   const handleSelectDifficulty = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
-    navigate('/game');  // Navega al juego
+    setCurrentScreen('game');  // Cambia a la pantalla del juego
   };
 
   const handleGameEnd = (finalScore) => {
     setScore(finalScore);
-    navigate('/winner');  // Navega al menú de ganador
+    setCurrentScreen('winner');  // Cambia al menú de ganador
   };
 
   const handleGameLost = () => {
-    navigate('/gameover');  // Navega a la pantalla de perdedor
+    setCurrentScreen('gameover');  // Cambia a la pantalla de perdedor
   };
 
-  // Manejo condicional para pantallas intermedias
-  if (currentScreen === 'splash') {
-    return <SplashScreen />;
-  }
+  const handleRestart = () => {
+    setDifficulty(null);
+    setScore(null);
+    setCurrentScreen('ABCdifficultyMenu');  // Vuelve al menú de selección de dificultad
+  };
 
-  if (currentScreen === 'info') {
-    return <InfoDigui onFinish={handleFinishInfoDigui} />;
+  // Renderizado de pantallas basado en el estado actual
+  switch (currentScreen) {
+    case 'splash':
+      return <SplashScreen />;
+    case 'info':
+      return <InfoDigui onFinish={handleFinishInfoDigui} />;
+    case 'login':
+      return <Login onLoginSuccess={handleLoginSuccess} />;
+    case 'loginSuccessful':
+      return <LoginSuccessful />;
+    case 'ABCdifficultyMenu':
+      return <ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} />;
+    case 'game':
+      return <ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} />;
+    case 'winner':
+      return <ABCwinnerMenu score={score} onRestart={handleRestart} />;
+    case 'gameover':
+      return <ABCloser onRetry={handleRestart} />;
+    default:
+      return null;
   }
-
-  if (currentScreen === 'login') {
-    return <Login onLoginSuccess={handleLoginSuccess} />;
-  }
-
-  // Una vez que superamos pantallas intermedias, usamos rutas
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/ABCdifficultyMenu" element={<ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} />} />
-        <Route path="/game" element={<ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} />} />
-        <Route path="/winner" element={<ABCwinnerMenu score={score} />} />
-        <Route path="/gameover" element={<ABCloser />} />
-      </Routes>
-    </div>
-  );
 }
 
 export default App;

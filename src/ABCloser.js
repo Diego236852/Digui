@@ -1,6 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const ABCloser = ({ onRetry }) => {
+  return (
+    <GameOverContainer>
+      <GameOverTitle>Game Over</GameOverTitle>
+      <GameOverText>¡Se acabó el tiempo! Intenta de nuevo.</GameOverText>
+      <RetryButton onClick={onRetry}>Intentar de nuevo</RetryButton>
+    </GameOverContainer>
+  );
+};
+
+export default ABCloser;
+
+// Componentes estilizados
 const GameOverContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,23 +51,3 @@ const RetryButton = styled.button`
     background-color: #5a189a;
   }
 `;
-
-const ABCloser = ({ onRetry }) => {
-  const handleRetry = () => {
-    if (typeof onRetry === 'function') {
-      onRetry(); // Llama a la función onRetry si se proporciona
-    } else {
-      window.location.reload(); // Alternativa para recargar la página si no hay un manejador
-    }
-  };
-
-  return (
-    <GameOverContainer>
-      <GameOverTitle>Game Over</GameOverTitle>
-      <GameOverText>¡Se acabó el tiempo! Intenta de nuevo.</GameOverText>
-      <RetryButton onClick={handleRetry}>Intentar de nuevo</RetryButton>
-    </GameOverContainer>
-  );
-};
-
-export default ABCloser;
