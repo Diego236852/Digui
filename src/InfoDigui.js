@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import image1 from './informacion.jpg';  // Imagen para la primera página
-import image2 from './mision.jpg';       // Imagen para la segunda página
-import image3 from './vision.jpg';       // Imagen para la tercera página
-import star from './star.png';           // Imagen de estrella
-import triangle from './triangle.png';   // Imagen de triángulo
-import circle from './circle.png';       // Imagen de círculo
+import image1 from './images/InfoDigui/informacion.jpg';  // Imagen para la primera página
+import image2 from './images/InfoDigui/mision.jpg';       // Imagen para la segunda página
+import image3 from './images/InfoDigui/vision.jpg';       // Imagen para la tercera página
+import star from './images/star.png';           // Imagen de estrella
+import triangle from './images/triangle.png';   // Imagen de triángulo
+import circle from './images/circle.png';       // Imagen de círculo
 
 
 // Estilos generales con fuentes aplicadas

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import logoCompleto from './Logo DIGUI 2.1.png';  // Asegúrate de que la ruta sea correcta
+import logoCompleto from './images/SplashScreen/Logo DIGUI 2.1.svg';  // Asegúrate de que la ruta sea correcta
 import InfoDigui from './InfoDigui';  // Componente para la siguiente pantalla
 
 // Definimos los componentes estilizados

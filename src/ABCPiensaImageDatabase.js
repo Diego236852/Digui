@@ -1,8 +1,8 @@
 // Importar las imagenes
-import billete from './images/ABCPiensa/billete.png';
-import estrella from './images/ABCPiensa/estrella.png';
-import mochila from './images/ABCPiensa/mochila.png';
-import zapato from './images/ABCPiensa/zapato.png';
+import billete from './images/ABCPiensa/billete.svg';
+import estrella from './images/ABCPiensa/estrella.svg';
+import mochila from './images/ABCPiensa/mochila.svg';
+import zapato from './images/ABCPiensa/zapato.svg';
 
 // Poner las imagenes en un arreglo de objetos
 const imageDatabase = [

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
-import googleLogo from './google-logo.svg'; // Imagen del logo de Google
-import logo from './logo digui.svg'; // Logo de digui
+import googleLogo from './images/Login/google-logo.svg'; // Imagen del logo de Google
+import logo from './images/Login/logo digui.svg'; // Logo de digui
 import LoginSuccessful from './LoginSuccessful'; // Importa el componente de éxito
 
 // Agregar las fuentes de Google Fonts

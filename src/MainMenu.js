@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from './TopBar'; // Importa la barra superior
 import BottomNavBar from './BottomNavBar'; // Importa la barra inferior
-import ABCPiensa_icon from './ABCicon.svg';
+import ABCPiensa_icon from './images/MainMenu/ABCicon.svg';
 import ABCdifficultyMenu from './ABCdifficultyMenu'; // Importa el menú de dificultad
 import ABCPiensa from './ABCPiensa'; // Importa el componente del juego ABC Piensa
 
