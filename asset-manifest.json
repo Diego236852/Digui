@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.8a1a8534.css",
-    "main.js": "/Digui/static/js/main.a8a5bb56.js",
+    "main.js": "/Digui/static/js/main.cb878d03.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -45,11 +45,11 @@
     "index.html": "/Digui/index.html",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.8a1a8534.css.map": "/Digui/static/css/main.8a1a8534.css.map",
-    "main.a8a5bb56.js.map": "/Digui/static/js/main.a8a5bb56.js.map",
+    "main.cb878d03.js.map": "/Digui/static/js/main.cb878d03.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a1a8534.css",
-    "static/js/main.a8a5bb56.js"
+    "static/js/main.cb878d03.js"
   ]
 }
