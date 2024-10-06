@@ -7,7 +7,7 @@ import MainMenu from './MainMenu';
 import ABCdifficultyMenu from './ABCdifficultyMenu';
 import ABCPiensa from './ABCPiensa';
 import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloser from './ABCloser';
+import ABCloserMenu from './ABCloserMenu';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
@@ -72,7 +72,7 @@ function App() {
       {currentScreen === 'difficultyMenu' && <ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} onBack={handleExitToMenu} />}
       {currentScreen === 'game' && <ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} onExitToMenu={handleExitToMenu} />}
       {currentScreen === 'winner' && <ABCwinnerMenu score={score} onRestart={handleRestartGame} onExitToMenu={handleExitToMenu} />}
-      {currentScreen === 'gameover' && <ABCloser onRetry={handleRestartGame} />} {/* Pasamos handleRestartGame aquí */}
+      {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />} {/* Pasamos handleRestartGame aquí */}
     </>
   );
 }

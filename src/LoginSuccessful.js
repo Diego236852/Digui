@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import checkIcon from './check-icon.svg'; // Ícono de check
-import image1 from './triangle.png'; // Imagen de triángulo
-import image2 from './circle.png'; // Imagen de círculo
-import image3 from './star.png'; // Imagen de estrella
-import circleImage from './circle-logo.svg'; // Imagen del círculo del logo
-import letterD from './letter-d.svg'; // Letra D separada
-import letterI from './letter-i.svg'; // Letra I separada
-import letterG from './letter-g.svg'; // Letra G separada
-import letterU from './letter-u.svg'; // Letra U separada
-import letterI2 from './letter-i2.svg'; // Segunda letra I separada
+import checkIcon from './images/LoginSuccessful/check-icon.svg'; // Ícono de check
+import image1 from './images/triangle.png'; // Imagen de triángulo
+import image2 from './images/circle.png'; // Imagen de círculo
+import image3 from './images/star.png'; // Imagen de estrella
+import circleImage from './images/LoginSuccessful/circle-logo.svg'; // Imagen del círculo del logo
+import letterD from './images/LoginSuccessful/letter-d.svg'; // Letra D separada
+import letterI from './images/LoginSuccessful/letter-i.svg'; // Letra I separada
+import letterG from './images/LoginSuccessful/letter-g.svg'; // Letra G separada
+import letterU from './images/LoginSuccessful/letter-u.svg'; // Letra U separada
+import letterI2 from './images/LoginSuccessful/letter-i2.svg'; // Segunda letra I separada
 
 // Animación de flotación para las imágenes
 const float = keyframes`
