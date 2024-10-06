@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 // Estilo para el fondo oscuro y transparente
 const Overlay = styled.div`
   position: fixed;

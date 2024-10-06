@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import backArrowIcon from './../images/ABCPiensa/back-arrow.png';
 
+
 // Animación de flotación para las formas geométricas
 const float = keyframes`
   0% {

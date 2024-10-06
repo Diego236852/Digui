@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+
 // Animación de entrada de los elementos
 const fadeIn = keyframes`
   0% {
