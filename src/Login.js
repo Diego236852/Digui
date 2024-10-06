@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
-import googleLogo from './images/Login/google-logo.svg'; // Imagen del logo de Google
-import logo from './images/Login/logo digui.svg'; // Logo de digui
-import LoginSuccessful from './LoginSuccessful'; // Importa el componente de éxito
+import googleLogo from './google-logo.svg'; // Imagen del logo de Google
+import logo from './logo digui.svg'; // Logo de digui
 
 // Agregar las fuentes de Google Fonts
 const GlobalStyle = createGlobalStyle`
@@ -321,8 +320,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `;
 
-const Login = () => {
-  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
+const Login = ({ onLoginSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [animation, setAnimation] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -348,13 +346,8 @@ const Login = () => {
   };
 
   const handleLoginClick = () => {
-    setIsLoginSuccessful(true); // Cambia a la vista de "inicio de sesión exitoso"
+    onLoginSuccess();  // Cambia la pantalla a LoginSuccess (controlado por App)
   };
-
-  // Si el login es exitoso, renderiza el componente de éxito
-  if (isLoginSuccessful) {
-    return <LoginSuccessful />;
-  }
 
   return (
     <>
