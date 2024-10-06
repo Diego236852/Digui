@@ -5,7 +5,7 @@ import Login from './Login';
 import ABCdifficultyMenu from './ABCdifficultyMenu';
 import ABCPiensa from './ABCPiensa';
 import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloserMenu from './ABCloserMenu';  
+import ABCloserMenu from './ABCloserMenu'; 
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
