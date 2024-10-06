@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import SplashScreen from './SplashScreen';
-import InfoDigui from './InfoDigui';
-import Login from './Login';
-import LoginSuccessful from './LoginSuccessful';  
-import MainMenu from './MainMenu';  
-import ABCdifficultyMenu from './ABCdifficultyMenu';
-import ABCPiensa from './ABCPiensa';
-import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloserMenu from './ABCloserMenu';
+import SplashScreen from './components/SplashScreen';
+import InfoDigui from './components/InfoDigui';
+import Login from './components/Login';
+import LoginSuccessful from './components/LoginSuccessful';  
+import MainMenu from './components/MainMenu';  
+import ABCdifficultyMenu from './components/ABCdifficultyMenu';
+import ABCPiensa from './components/ABCPiensa';
+import ABCwinnerMenu from './components/ABCwinnerMenu';
+import ABCloserMenu from './components/ABCloserMenu';
+
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  

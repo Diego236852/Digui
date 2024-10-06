@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from './TopBar'; // Importa la barra superior
-import BottomNavBar from './BottomNavBar'; // Importa la barra inferior
+import BottomNavBar from './components/BottomNavBar'; // Importa la barra inferior
 import ABCPiensa_icon from './images/MainMenu/ABCicon.svg';
 import '@fontsource/baloo-2';  // Fuente Baloo
 import '@fontsource/poppins/700.css';  // Fuente Poppins Bold

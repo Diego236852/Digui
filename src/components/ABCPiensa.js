@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import imageDatabase from './ABCPiensaImageDatabase'; // Importar las imágenes a usar
-import AreYouSure from './AreYouSure'; // Importar el componente AreYouSure
+import imageDatabase from '../ABCPiensaImageDatabase'; // Importar las imágenes a usar
+import AreYouSure from '../AreYouSure'; // Importar el componente AreYouSure
 
 // Definición de la animación shake
 const shake = keyframes`
