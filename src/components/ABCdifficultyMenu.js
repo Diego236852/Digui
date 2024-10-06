@@ -191,6 +191,7 @@ const ABCdifficultyMenu = ({ onSelectDifficulty, onBack }) => {
   const title = "Selecciona el nivel de dificultad";
   const words = title.split(' ');  // Dividimos la frase en palabras
 
+  
   return (
     <MenuContainer>
       <BackButton onClick={onBack}>

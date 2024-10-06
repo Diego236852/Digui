@@ -327,6 +327,7 @@ const Login = ({ onLoginSuccess }) => {
   const [animation, setAnimation] = useState('');
   const [isChecked, setIsChecked] = useState(false);
 
+  
   const handleCreateAccount = () => {
     setAnimation('slide-out-right');
     setTimeout(() => {
@@ -351,6 +352,7 @@ const Login = ({ onLoginSuccess }) => {
     onLoginSuccess();  // Cambia la pantalla a LoginSuccess (controlado por App)
   };
 
+  
   return (
     <>
       <GlobalStyle />

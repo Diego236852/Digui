@@ -105,6 +105,7 @@ const ABCloserMenu = ({ onRetry }) => {
     onRetry();
   };
 
+  
   return (
     <GameOverContainer>
       <FloatingShape size="150px" color="#ff6b6b" top="10%" left="20%" duration={4} />

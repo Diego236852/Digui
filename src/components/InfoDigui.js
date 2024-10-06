@@ -134,6 +134,7 @@ const textVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.5 } },
 };
 
+
 const InfoDigui = ({ onFinish }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -155,6 +156,7 @@ const InfoDigui = ({ onFinish }) => {
     },
   ];
 
+  
   // Función para avanzar a la siguiente página o llamar a onFinish
   const handleNext = () => {
     if (currentPage < pages.length - 1) {
@@ -168,6 +170,7 @@ const InfoDigui = ({ onFinish }) => {
     setCurrentPage(pageIndex);
   };
 
+  
   return (
     <Container>
       {/* Imágenes de fondo adicionales */}

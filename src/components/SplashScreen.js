@@ -85,6 +85,7 @@ const Logo = styled(motion.img)`
 const SplashScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
 
+  
   // Simulamos un tiempo de duración del SplashScreen
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -94,6 +95,7 @@ const SplashScreen = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  
   return (
     <>
       {isVisible ? (

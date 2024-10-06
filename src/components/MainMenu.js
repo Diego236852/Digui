@@ -45,54 +45,6 @@ const float = keyframes`
   }
 `;
 
-
-const MainMenu = ({ onGameSelect }) => {
-  // Función para manejar el clic en un juego específico
-  const handleGameClick = (game) => {
-    onGameSelect(game);  // Usa la función pasada desde App.js para seleccionar el juego
-  };
-
-  return (
-    <MainContainer>
-      <TopBar title="Juegos" />
-
-      {/* Formas geométricas animadas en el fondo */}
-      <FloatingShapes>
-        <Circle size="100px" top="10%" left="5%" color="#e0b3ff" />
-        <Triangle size="120px" top="20%" right="10%" color="#b3e0ff" />
-        <Square size="80px" bottom="15%" left="15%" color="#ffb3b3" />
-        <Star size="100px" top="35%" left="50%" color="#ffd1b3" />
-      </FloatingShapes>
-
-      <GameContent>
-        <GameGrid>
-          <GameCard onClick={() => handleGameClick('ABC Piensa')}>
-            <GameImage src={ABCPiensa_icon} alt="ABC Piensa!" />
-            <GameTitle>A B C Piensa!</GameTitle>
-          </GameCard>
-          <GameCard>
-            <GameImage src={ABCPiensa_icon} alt="Dominó" />
-            <GameTitle>Dominó</GameTitle>
-          </GameCard>
-          <GameCard>
-            <GameImage src={ABCPiensa_icon} alt="Lanza y Diviértete con las letras" />
-            <GameTitle>Lanza y Diviértete con las letras</GameTitle>
-          </GameCard>
-          <GameCard>
-            <GameImage src={ABCPiensa_icon} alt="Ruleta de la Suerte" />
-            <GameTitle>Ruleta de la Suerte</GameTitle>
-          </GameCard>
-        </GameGrid>
-      </GameContent>
-
-      <BottomNavBar />
-    </MainContainer>
-  );
-};
-
-
-export default MainMenu;
-
 // Contenedor principal restaurado al fondo original
 const MainContainer = styled.div`
   display: flex;
@@ -226,3 +178,52 @@ const Star = styled.div`
   bottom: ${(props) => props.bottom};
   animation: ${float} 5s ease-in-out infinite;
 `;
+
+
+const MainMenu = ({ onGameSelect }) => {
+  // Función para manejar el clic en un juego específico
+  const handleGameClick = (game) => {
+    onGameSelect(game);  // Usa la función pasada desde App.js para seleccionar el juego
+  };
+
+  
+  return (
+    <MainContainer>
+      <TopBar title="Juegos" />
+
+      {/* Formas geométricas animadas en el fondo */}
+      <FloatingShapes>
+        <Circle size="100px" top="10%" left="5%" color="#e0b3ff" />
+        <Triangle size="120px" top="20%" right="10%" color="#b3e0ff" />
+        <Square size="80px" bottom="15%" left="15%" color="#ffb3b3" />
+        <Star size="100px" top="35%" left="50%" color="#ffd1b3" />
+      </FloatingShapes>
+
+      <GameContent>
+        <GameGrid>
+          <GameCard onClick={() => handleGameClick('ABC Piensa')}>
+            <GameImage src={ABCPiensa_icon} alt="ABC Piensa!" />
+            <GameTitle>A B C Piensa!</GameTitle>
+          </GameCard>
+          <GameCard>
+            <GameImage src={ABCPiensa_icon} alt="Dominó" />
+            <GameTitle>Dominó</GameTitle>
+          </GameCard>
+          <GameCard>
+            <GameImage src={ABCPiensa_icon} alt="Lanza y Diviértete con las letras" />
+            <GameTitle>Lanza y Diviértete con las letras</GameTitle>
+          </GameCard>
+          <GameCard>
+            <GameImage src={ABCPiensa_icon} alt="Ruleta de la Suerte" />
+            <GameTitle>Ruleta de la Suerte</GameTitle>
+          </GameCard>
+        </GameGrid>
+      </GameContent>
+
+      <BottomNavBar />
+    </MainContainer>
+  );
+};
+
+
+export default MainMenu;

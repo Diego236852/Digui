@@ -25,27 +25,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Definición de la función shuffleArray
-const shuffleArray = (array) => {
-  return array.sort(() => Math.random() - 0.5);
-};
-
-// Definición de initialLetters
-const initialLetters = [
-  'A', 'B', 'C', 'D', 'E',
-  'F', 'G', 'H', 'I', 'J',
-  'K', 'L', 'M', 'N', 'Ñ',
-  'O', 'P', 'Q', 'R', 'S',
-  'T', 'U', 'V', 'W', 'X',
-  'Y', 'Z'
-];
-
-// Definición de getRandomRotation
-const getRandomRotation = () => {
-  const randomDegree = Math.floor(Math.random() * 60) - 30;
-  return `rotate(${randomDegree}deg)`;
-};
-
 // Definición de DroppedImage
 const DroppedImage = styled.img`
   width: 40px;
@@ -81,9 +60,6 @@ const CardBack = styled.img`
   border-radius: 10px;
   animation: ${fadeIn} 0.5s ease;
 `;
-
-// Definición de initialImages como el conjunto de imágenes importadas
-const initialImages = imageDatabase;
 
 // Contenedor del juego
 const GameContainer = styled.div`
@@ -274,6 +250,32 @@ const FlipCard = styled.div`
 `;
 
 
+// Definición de initialLetters
+const initialLetters = [
+  'A', 'B', 'C', 'D', 'E',
+  'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'Ñ',
+  'O', 'P', 'Q', 'R', 'S',
+  'T', 'U', 'V', 'W', 'X',
+  'Y', 'Z'
+];
+
+// Definición de initialImages como el conjunto de imágenes importadas
+const initialImages = imageDatabase;
+
+
+// Definición de la función shuffleArray
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
+// Definición de getRandomRotation
+const getRandomRotation = () => {
+  const randomDegree = Math.floor(Math.random() * 60) - 30;
+  return `rotate(${randomDegree}deg)`;
+};
+
+
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -288,6 +290,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const [score, setScore] = useState(0); // Estado para manejar la puntuación final
   const [showModal, setShowModal] = useState(false); // Estado para manejar el modal de salida
 
+  
   // Temporizador
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
@@ -358,6 +361,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     setShowModal(false); // Cierra el modal
   };
 
+  
   return (
     <GameContainer onClick={randomizeLetters}>
       <BackButton onClick={handleBackClick}>Regresar</BackButton>
@@ -395,5 +399,6 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     </GameContainer>
   );
 };
+
 
 export default ABCPiensa;

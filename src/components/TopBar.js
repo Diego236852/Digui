@@ -2,17 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const TopBar = ({ title }) => {
-  return (
-    <TopBarContainer>
-      <Title>{title}</Title>
-    </TopBarContainer>
-  );
-};
-
-
-export default TopBar;
-
 const TopBarContainer = styled.div`
   background-color: #6b21a8;
   padding: 20px;
@@ -29,3 +18,15 @@ const Title = styled.h1`
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
+
+
+const TopBar = ({ title }) => {
+  return (
+    <TopBarContainer>
+      <Title>{title}</Title>
+    </TopBarContainer>
+  );
+};
+
+
+export default TopBar;

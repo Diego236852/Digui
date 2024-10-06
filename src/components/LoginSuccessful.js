@@ -155,6 +155,7 @@ const Letter = styled.img`
 const LoginSuccessful = ({ onContinue }) => {
   const [showLogo, setShowLogo] = useState(false);
 
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLogo(true);
@@ -173,6 +174,7 @@ const LoginSuccessful = ({ onContinue }) => {
     }
   }, [showLogo, onContinue]);
 
+  
   return (
     <Background>
       {/* Imágenes flotantes en el fondo */}
