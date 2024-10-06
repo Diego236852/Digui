@@ -2,72 +2,78 @@ import React, { useState, useEffect } from 'react';
 import SplashScreen from './SplashScreen';
 import InfoDigui from './InfoDigui';
 import Login from './Login';
+import LoginSuccessful from './LoginSuccessful';  
+import MainMenu from './MainMenu';  
 import ABCdifficultyMenu from './ABCdifficultyMenu';
 import ABCPiensa from './ABCPiensa';
 import ABCwinnerMenu from './ABCwinnerMenu';
-import ABCloser from './ABCloser';  
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import ABCloser from './ABCloser';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('splash'); // Maneja pantallas intermedias con estado
-  const [difficulty, setDifficulty] = useState(null);  // Dificultad seleccionada
-  const [score, setScore] = useState(null);  // Puntuación final
-  const navigate = useNavigate();  // Hook para navegación de rutas
+  const [currentScreen, setCurrentScreen] = useState('splash');  
+  const [difficulty, setDifficulty] = useState(null);  
+  const [score, setScore] = useState(null);  
 
-  // Manejo de SplashScreen y InfoDigui
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen('info');  // Cambia a InfoDigui después del SplashScreen
-    }, 3000);  // 3 segundos de splash
+      setCurrentScreen('info');  
+    }, 3000);  
 
-    return () => clearTimeout(timer);  // Limpiamos el temporizador
+    return () => clearTimeout(timer);
   }, []);
 
   const handleFinishInfoDigui = () => {
-    setCurrentScreen('login');  // Navega a la pantalla de login
+    setCurrentScreen('login');  
   };
 
   const handleLoginSuccess = () => {
-    navigate('/ABCdifficultyMenu');  // Cambia a selección de dificultad
+    setCurrentScreen('loginSuccessful');  
+  };
+
+  const handleLoginAnimationEnd = () => {
+    setCurrentScreen('mainMenu');  
   };
 
   const handleSelectDifficulty = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
-    navigate('/game');  // Navega al juego
+    setCurrentScreen('game');  
+  };
+
+  const handleGameSelect = (game) => {
+    if (game === 'ABC Piensa') {
+      setCurrentScreen('difficultyMenu');  
+    }
   };
 
   const handleGameEnd = (finalScore) => {
     setScore(finalScore);
-    navigate('/winner');  // Navega al menú de ganador
+    setCurrentScreen('winner');  
   };
 
   const handleGameLost = () => {
-    navigate('/gameover');  // Navega a la pantalla de perdedor
+    setCurrentScreen('gameover');  
   };
 
-  // Manejo condicional para pantallas intermedias
-  if (currentScreen === 'splash') {
-    return <SplashScreen />;
-  }
+  const handleRestartGame = () => {
+    setCurrentScreen('difficultyMenu');  // Aquí redirigimos al menú de dificultad
+  };
 
-  if (currentScreen === 'info') {
-    return <InfoDigui onFinish={handleFinishInfoDigui} />;
-  }
+  const handleExitToMenu = () => {
+    setCurrentScreen('mainMenu');  
+  };
 
-  if (currentScreen === 'login') {
-    return <Login onLoginSuccess={handleLoginSuccess} />;
-  }
-
-  // Una vez que superamos pantallas intermedias, usamos rutas
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/ABCdifficultyMenu" element={<ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} />} />
-        <Route path="/game" element={<ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} />} />
-        <Route path="/winner" element={<ABCwinnerMenu score={score} />} />
-        <Route path="/gameover" element={<ABCloser />} />
-      </Routes>
-    </div>
+    <>
+      {currentScreen === 'splash' && <SplashScreen />}
+      {currentScreen === 'info' && <InfoDigui onFinish={handleFinishInfoDigui} />}
+      {currentScreen === 'login' && <Login onLoginSuccess={handleLoginSuccess} />}
+      {currentScreen === 'loginSuccessful' && <LoginSuccessful onContinue={handleLoginAnimationEnd} />}
+      {currentScreen === 'mainMenu' && <MainMenu onGameSelect={handleGameSelect} />}
+      {currentScreen === 'difficultyMenu' && <ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} onBack={handleExitToMenu} />}
+      {currentScreen === 'game' && <ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} onExitToMenu={handleExitToMenu} />}
+      {currentScreen === 'winner' && <ABCwinnerMenu score={score} onRestart={handleRestartGame} onExitToMenu={handleExitToMenu} />}
+      {currentScreen === 'gameover' && <ABCloser onRetry={handleRestartGame} />} {/* Pasamos handleRestartGame aquí */}
+    </>
   );
 }
 

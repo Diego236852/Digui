@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const WinnerContainer = styled.div`
   display: flex;
@@ -25,7 +24,7 @@ const Score = styled.div`
   margin-bottom: 20px;
 `;
 
-const RestartButton = styled.button`
+const Button = styled.button`
   background-color: #6b21a8;
   color: white;
   padding: 10px 20px;
@@ -33,24 +32,21 @@ const RestartButton = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin-top: 10px;
 
   &:hover {
     background-color: #5a189a;
   }
 `;
 
-const ABCwinnerMenu = ({ score }) => {
-  const navigate = useNavigate(); // Obtiene el hook de navegación
-
-  const handleRestart = () => {
-    navigate('/ABCdifficultyMenu'); // Navega al menú de selección de dificultad
-  };
-
+const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
   return (
     <WinnerContainer>
       <Title>¡Ganaste!</Title>
       <Score>Tu puntuación: {score} puntos</Score>
-      <RestartButton onClick={handleRestart}>Jugar de nuevo</RestartButton>
+      <Button onClick={onRestart}>Jugar de nuevo</Button>
+      {/* Nuevo botón para salir al menú */}
+      <Button onClick={onExitToMenu}>Salir al menú</Button>
     </WinnerContainer>
   );
 };

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from './TopBar'; // Importa la barra superior
 import BottomNavBar from './BottomNavBar'; // Importa la barra inferior
 import ABCPiensa_icon from './ABCicon.svg';
-import ABCdifficultyMenu from './ABCdifficultyMenu'; // Importa el menú de dificultad
-import ABCPiensa from './ABCPiensa'; // Importa el componente del juego ABC Piensa
+import '@fontsource/baloo-2';  // Fuente Baloo
+import '@fontsource/poppins/700.css';  // Fuente Poppins Bold
+import '@fontsource/quicksand';  // Fuente Quicksand
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
@@ -43,22 +44,11 @@ const float = keyframes`
   }
 `;
 
-const MainMenu = () => {
-  const [currentGame, setCurrentGame] = useState(null);
-
+const MainMenu = ({ onGameSelect }) => {
   // Función para manejar el clic en un juego específico
   const handleGameClick = (game) => {
-    setCurrentGame(game);
+    onGameSelect(game);  // Usa la función pasada desde App.js para seleccionar el juego
   };
-
-  // Si un juego está seleccionado, mostramos el juego en lugar del menú principal
-  if (currentGame === 'ABC Piensa') {
-    return <ABCdifficultyMenu onSelectDifficulty={(level) => setCurrentGame(level)} />; // Carga el menú de selección de dificultad
-  }
-
-  if (['facil', 'medio', 'dificil'].includes(currentGame)) {
-    return <ABCPiensa difficulty={currentGame} />; // Carga el juego con el nivel de dificultad seleccionado
-  }
 
   return (
     <MainContainer>
@@ -109,7 +99,8 @@ const MainContainer = styled.div`
   background-color: #f3e5f5; /* Fondo original sin gradiente */
   position: relative;
   overflow: hidden;
-  animation: ${slideIn} 1s ease-in-out; /* Animación para que el menú deslice desde abajo */
+  animation: ${slideIn} 1s ease-in-out;
+  font-family: 'Quicksand', sans-serif; /* Fuente Quicksand para la mayoría del texto */
 `;
 
 const GameContent = styled.div`
@@ -128,6 +119,7 @@ const GameGrid = styled.div`
 `;
 
 const GameCard = styled.div`
+  font-family: 'Poppins', sans-serif; /* Fuente Poppins Bold para títulos destacados */
   background-color: #fff;
   border-radius: 15px;
   padding: 15px;
@@ -157,6 +149,7 @@ const GameImage = styled.img`
 `;
 
 const GameTitle = styled.h3`
+  font-family: 'Baloo 2', cursive; /* Fuente Baloo para los títulos de los juegos */
   font-size: 16px;
   color: #6b21a8;
   font-weight: bold;
@@ -198,7 +191,7 @@ const Square = styled.div`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
-  animation: ${float} 5s ease-in-out infinite; /* Animación más rápida */
+  animation: ${float} 5s ease-in-out infinite;
 `;
 
 // Triángulo flotante
@@ -213,7 +206,7 @@ const Triangle = styled.div`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
-  animation: ${float} 6s ease-in-out infinite; /* Animación más rápida */
+  animation: ${float} 6s ease-in-out infinite;
 `;
 
 // Estrella flotante
@@ -228,5 +221,5 @@ const Star = styled.div`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
-  animation: ${float} 5s ease-in-out infinite; /* Animación más rápida */
+  animation: ${float} 5s ease-in-out infinite;
 `;

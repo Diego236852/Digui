@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import MainMenu from './MainMenu'; // Importa el componente MainMenu
 import checkIcon from './check-icon.svg'; // Ícono de check
-import image1 from './triangle.png'; // Imágenes de fondo animadas
-import image2 from './circle.png'; // Imágenes de fondo animadas
-import image3 from './star.png'; // Imágenes de fondo animadas
+import image1 from './triangle.png'; // Imagen de triángulo
+import image2 from './circle.png'; // Imagen de círculo
+import image3 from './star.png'; // Imagen de estrella
 import circleImage from './circle-logo.svg'; // Imagen del círculo del logo
 import letterD from './letter-d.svg'; // Letra D separada
 import letterI from './letter-i.svg'; // Letra I separada
@@ -151,12 +150,10 @@ const Letter = styled.img`
   }
 `;
 
-const LoginSuccessful = () => {
+const LoginSuccessful = ({ onContinue }) => {
   const [showLogo, setShowLogo] = useState(false);
-  const [showMainMenu, setShowMainMenu] = useState(false); // Estado para MainMenu
 
   useEffect(() => {
-    // Mostrar el logo después de 2 segundos
     const timer = setTimeout(() => {
       setShowLogo(true);
     }, 2000);
@@ -164,52 +161,43 @@ const LoginSuccessful = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Mostrar el MainMenu 2 segundos después de que la última letra del logo se haya cargado completamente
   useEffect(() => {
     if (showLogo) {
       const timer = setTimeout(() => {
-        setShowMainMenu(true); // Mostrar MainMenu
+        onContinue(); // Cambiar a MainMenu cuando la animación termina
       }, 6500); // 5.5 segundos en total para esperar que la última letra termine y luego 2 segundos más
 
       return () => clearTimeout(timer);
     }
-  }, [showLogo]);
+  }, [showLogo, onContinue]);
 
   return (
-    <>
-      {!showMainMenu ? (
-        <Background>
-          {/* Imágenes flotantes en el fondo */}
-          <FloatingImage src={image1} size="150px" duration="4s" top="10%" left="10%" />
-          <FloatingImage src={image2} size="120px" duration="5s" bottom="15%" right="10%" />
-          <FloatingImage src={image3} size="180px" duration="6s" top="20%" right="15%" />
+    <Background>
+      {/* Imágenes flotantes en el fondo */}
+      <FloatingImage src={image1} alt="Triangle" size="120px" top="10%" left="15%" duration="6s" />
+      <FloatingImage src={image2} alt="Circle" size="100px" top="70%" right="10%" duration="4.5s" />
+      <FloatingImage src={image3} alt="Star" size="80px" bottom="20%" left="20%" duration="5s" />
 
-          {/* Ícono de check animado y texto */}
-          {!showLogo && (
-            <div style={{ textAlign: 'center' }}>
-              <CheckIcon src={checkIcon} alt="Check" />
-              <SuccessText>¡Inicio de sesión exitoso!</SuccessText>
-            </div>
-          )}
-
-          {/* Logo de Digui que aparece después */}
-          {showLogo && (
-            <LogoContainer>
-              <CircleLogo src={circleImage} alt="Círculo del Logo" />
-              <LettersContainer>
-                <Letter src={letterD} alt="D" delay={3} />
-                <Letter src={letterI} alt="I" delay={3.5} />
-                <Letter src={letterG} alt="G" delay={4} />
-                <Letter src={letterU} alt="U" delay={4.5} />
-                <Letter src={letterI2} alt="I" delay={5} />
-              </LettersContainer>
-            </LogoContainer>
-          )}
-        </Background>
-      ) : (
-        <MainMenu /> // Muestra el MainMenu después de la animación
+      {!showLogo && (
+        <div style={{ textAlign: 'center' }}>
+          <CheckIcon src={checkIcon} alt="Check" />
+          <SuccessText>¡Inicio de sesión exitoso!</SuccessText>
+        </div>
       )}
-    </>
+
+      {showLogo && (
+        <LogoContainer>
+          <CircleLogo src={circleImage} alt="Círculo del Logo" />
+          <LettersContainer>
+            <Letter src={letterD} alt="D" delay={3} />
+            <Letter src={letterI} alt="I" delay={3.5} />
+            <Letter src={letterG} alt="G" delay={4} />
+            <Letter src={letterU} alt="U" delay={4.5} />
+            <Letter src={letterI2} alt="I" delay={5} />
+          </LettersContainer>
+        </LogoContainer>
+      )}
+    </Background>
   );
 };
 
