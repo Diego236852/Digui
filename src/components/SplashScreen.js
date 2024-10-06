@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import logoCompleto from './../images/SplashScreen/Logo DIGUI 2.1.svg';  // Asegúrate de que la ruta sea correcta
 import InfoDigui from './InfoDigui';  // Componente para la siguiente pantalla
 
+
 // Definimos los componentes estilizados
 const Container = styled.div`
   display: flex;
@@ -80,6 +81,7 @@ const Logo = styled(motion.img)`
   }
 `;
 
+
 const SplashScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -120,5 +122,6 @@ const SplashScreen = () => {
     </>
   );
 };
+
 
 export default SplashScreen;

@@ -30,6 +30,7 @@ const BottomNavBar = () => {
   );
 };
 
+
 export default BottomNavBar;
 
 const NavBarContainer = styled.div`

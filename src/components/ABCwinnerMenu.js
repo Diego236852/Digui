@@ -40,6 +40,7 @@ const Button = styled.button`
   }
 `;
 
+
 const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
   return (
     <WinnerContainer>
@@ -51,5 +52,6 @@ const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
     </WinnerContainer>
   );
 };
+
 
 export default ABCwinnerMenu;

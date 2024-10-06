@@ -99,6 +99,7 @@ const FloatingShape = styled.div`
   opacity: 0.4;
 `;
 
+
 const ABCloserMenu = ({ onRetry }) => {
   const handleRetry = () => {
     onRetry();
@@ -117,5 +118,6 @@ const ABCloserMenu = ({ onRetry }) => {
     </GameOverContainer>
   );
 };
+
 
 export default ABCloserMenu;

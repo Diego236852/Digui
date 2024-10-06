@@ -273,6 +273,7 @@ const FlipCard = styled.div`
   }
 `;
 
+
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const [selectedImage, setSelectedImage] = useState(null);

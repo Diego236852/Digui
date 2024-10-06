@@ -101,6 +101,7 @@ const Button = styled.button`
   }
 `;
 
+
 const AreYouSure = ({ onConfirm, onCancel }) => {
   return (
     <Overlay>
@@ -114,5 +115,6 @@ const AreYouSure = ({ onConfirm, onCancel }) => {
     </Overlay>
   );
 };
+
 
 export default AreYouSure;

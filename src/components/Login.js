@@ -321,6 +321,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `;
 
+
 const Login = ({ onLoginSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [animation, setAnimation] = useState('');
@@ -413,5 +414,6 @@ const Login = ({ onLoginSuccess }) => {
     </>
   );
 };
+
 
 export default Login;

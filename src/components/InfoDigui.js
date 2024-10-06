@@ -216,4 +216,5 @@ const InfoDigui = ({ onFinish }) => {
   );
 };
 
+
 export default InfoDigui;

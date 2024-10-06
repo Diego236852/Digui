@@ -7,6 +7,7 @@ import '@fontsource/baloo-2';  // Fuente Baloo
 import '@fontsource/poppins/700.css';  // Fuente Poppins Bold
 import '@fontsource/quicksand';  // Fuente Quicksand
 
+
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
   0% {
@@ -43,6 +44,7 @@ const float = keyframes`
     transform: translateY(0);
   }
 `;
+
 
 const MainMenu = ({ onGameSelect }) => {
   // Función para manejar el clic en un juego específico
@@ -87,6 +89,7 @@ const MainMenu = ({ onGameSelect }) => {
     </MainContainer>
   );
 };
+
 
 export default MainMenu;
 

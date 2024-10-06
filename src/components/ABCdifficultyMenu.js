@@ -186,6 +186,7 @@ const FloatingShape = styled.div`
   }
 `;
 
+
 const ABCdifficultyMenu = ({ onSelectDifficulty, onBack }) => {
   const title = "Selecciona el nivel de dificultad";
   const words = title.split(' ');  // Dividimos la frase en palabras
@@ -222,5 +223,6 @@ const ABCdifficultyMenu = ({ onSelectDifficulty, onBack }) => {
     </MenuContainer>
   );
 };
+
 
 export default ABCdifficultyMenu;

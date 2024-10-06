@@ -11,6 +11,7 @@ import letterG from './../images/LoginSuccessful/letter-g.svg'; // Letra G separ
 import letterU from './../images/LoginSuccessful/letter-u.svg'; // Letra U separada
 import letterI2 from './../images/LoginSuccessful/letter-i2.svg'; // Segunda letra I separada
 
+
 // Animación de flotación para las imágenes
 const float = keyframes`
   0% {
@@ -150,6 +151,7 @@ const Letter = styled.img`
   }
 `;
 
+
 const LoginSuccessful = ({ onContinue }) => {
   const [showLogo, setShowLogo] = useState(false);
 
@@ -200,5 +202,6 @@ const LoginSuccessful = ({ onContinue }) => {
     </Background>
   );
 };
+
 
 export default LoginSuccessful;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const TopBar = ({ title }) => {
   return (
     <TopBarContainer>
@@ -8,6 +9,7 @@ const TopBar = ({ title }) => {
     </TopBarContainer>
   );
 };
+
 
 export default TopBar;
 
