@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.8a1a8534.css",
-    "main.js": "/Digui/static/js/main.cb878d03.js",
+    "main.js": "/Digui/static/js/main.aa244413.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
     "static/media/informacion.jpg": "/Digui/static/media/informacion.61069cfd4810e80a5755.jpg",
     "static/media/ABCicon.svg": "/Digui/static/media/ABCicon.f9cc78fe6f20ca746f81ea7d9d3a090e.svg",
+    "static/media/welcome.mp3": "/Digui/static/media/welcome.0d0e29bda9f19183b2b8.mp3",
     "static/media/baloo-2-devanagari-400-normal.woff": "/Digui/static/media/baloo-2-devanagari-400-normal.3c7087934c6ac03e9c38.woff",
     "static/media/triangle.png": "/Digui/static/media/triangle.ec0875a49f57a789e43e.png",
     "static/media/star.png": "/Digui/static/media/star.02f3c0045f510975f6a3.png",
     "static/media/baloo-2-devanagari-400-normal.woff2": "/Digui/static/media/baloo-2-devanagari-400-normal.9c17fa6dd9f5d36e7c6f.woff2",
-    "static/media/Logo DIGUI 2.1.png": "/Digui/static/media/Logo DIGUI 2.1.c304c937f7d638f4a0ee.png",
     "static/media/mochila.png": "/Digui/static/media/mochila.a8f27a42f45332e75ddd.png",
     "static/media/zapato.png": "/Digui/static/media/zapato.bb3ad4544d511ff12f79.png",
     "static/media/circle.png": "/Digui/static/media/circle.49403941b8f0baf3e9de.png",
@@ -27,6 +27,7 @@
     "static/media/quicksand-latin-400-normal.woff2": "/Digui/static/media/quicksand-latin-400-normal.c528d5140938c55dd062.woff2",
     "static/media/baloo-2-latin-ext-400-normal.woff2": "/Digui/static/media/baloo-2-latin-ext-400-normal.b106fcaa45e9a54e81f7.woff2",
     "static/media/quicksand-latin-ext-400-normal.woff2": "/Digui/static/media/quicksand-latin-ext-400-normal.10c9dd8b40fe86eec922.woff2",
+    "static/media/Logo DIGUI 2.1.svg": "/Digui/static/media/Logo DIGUI 2.1.fa3c67dc9da98f2af167c28b7479c976.svg",
     "static/media/estrella.png": "/Digui/static/media/estrella.fa2c46f548092bee5380.png",
     "static/media/poppins-latin-700-normal.woff": "/Digui/static/media/poppins-latin-700-normal.cd04c2ad00870c9ceebf.woff",
     "static/media/poppins-latin-700-normal.woff2": "/Digui/static/media/poppins-latin-700-normal.d86662fe776dae29ea78.woff2",
@@ -45,11 +46,11 @@
     "index.html": "/Digui/index.html",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.8a1a8534.css.map": "/Digui/static/css/main.8a1a8534.css.map",
-    "main.cb878d03.js.map": "/Digui/static/js/main.cb878d03.js.map",
+    "main.aa244413.js.map": "/Digui/static/js/main.aa244413.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a1a8534.css",
-    "static/js/main.cb878d03.js"
+    "static/js/main.aa244413.js"
   ]
 }
