@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TopBar from './TopBar'; // Importa la barra superior
 import BottomNavBar from './BottomNavBar'; // Importa la barra inferior
@@ -6,7 +6,7 @@ import ABCPiensa_icon from './../images/MainMenu/ABCicon.svg';
 import '@fontsource/baloo-2';  // Fuente Baloo
 import '@fontsource/poppins/700.css';  // Fuente Poppins Bold
 import '@fontsource/quicksand';  // Fuente Quicksand
-
+import welcomeAudio from './../audios/MainMenu/welcome.mp3'; // Asegúrate de poner el audio en assets
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
@@ -133,7 +133,7 @@ const Circle = styled.div`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
-  animation: ${float} 4s ease-in-out infinite; /* Animación más rápida */
+  animation: ${float} 4s ease-in-out infinite;
 `;
 
 // Cuadrado flotante
@@ -179,14 +179,18 @@ const Star = styled.div`
   animation: ${float} 5s ease-in-out infinite;
 `;
 
-
 const MainMenu = ({ onGameSelect }) => {
+  useEffect(() => {
+    // Crear un nuevo objeto de audio
+    const audio = new Audio(welcomeAudio);
+    audio.play(); // Reproducir el audio al montar el componente
+  }, []);
+
   // Función para manejar el clic en un juego específico
   const handleGameClick = (game) => {
-    onGameSelect(game);  // Usa la función pasada desde App.js para seleccionar el juego
+    onGameSelect(game); // Usa la función pasada desde App.js para seleccionar el juego
   };
 
-  
   return (
     <MainContainer>
       <TopBar title="Juegos" />
@@ -224,6 +228,5 @@ const MainMenu = ({ onGameSelect }) => {
     </MainContainer>
   );
 };
-
 
 export default MainMenu;
