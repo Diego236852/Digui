@@ -10,11 +10,13 @@ import ABCwinnerMenu from './components/ABCwinnerMenu';
 import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; // Importa el componente Settings
 
+
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
 
+  
   // Controlar el tiempo de espera en SplashScreen
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -79,6 +81,7 @@ function App() {
     setCurrentScreen('login');  // Redirigimos a la pantalla de inicio de sesión
   };
 
+  
   return (
     <>
       {currentScreen === 'splash' && <SplashScreen />}
@@ -123,5 +126,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
