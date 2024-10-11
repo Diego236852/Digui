@@ -4,6 +4,7 @@ import BottomNavBar from './BottomNavBar'; // Importar BottomNavBar
 import TopBar from './TopBar'; // Importar TopBar
 import profile_temp_image from './../images/Settings/profile.jpeg';
 
+
 // Contenedor principal con un ligero sombreado
 const SettingsContainer = styled.div`
   display: flex;
@@ -161,5 +162,6 @@ const Settings = ({ onBack, onGameSelect, onLogout }) => {
     </>
   );
 };
+
 
 export default Settings;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaHome, FaBook, FaGamepad, FaBell, FaCog } from 'react-icons/fa';
 
+
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -32,6 +33,7 @@ const ButtonLabel = styled.span`
   letter-spacing: 0.5px;
 `;
 
+
 const BottomNavBar = ({ onGameSelect, onSettingsSelect, onHomeSelect, onEducationSelect, onNotificationsSelect }) => {
   return (
     <NavBarContainer>
@@ -58,5 +60,6 @@ const BottomNavBar = ({ onGameSelect, onSettingsSelect, onHomeSelect, onEducatio
     </NavBarContainer>
   );
 };
+
 
 export default BottomNavBar;

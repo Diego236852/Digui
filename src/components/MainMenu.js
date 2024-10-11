@@ -9,6 +9,7 @@ import LanzayDiviertete_icon from './../images/MainMenu/ABCicon.svg';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
 import welcomeAudio from './../audios/MainMenu/welcome.mp3';
 
+
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
   0% {
@@ -117,6 +118,7 @@ const GameTitle = styled.h3`
   margin: 0;
 `;
 
+
 const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
   useEffect(() => {
     const hasPlayedAudio = Cookies.get('hasPlayedAudio');
@@ -134,6 +136,7 @@ const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
     }
   };
 
+  
   return (
     <MainContainer>
       <FixedTopBar title="Juegos" />
@@ -161,5 +164,6 @@ const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
     </MainContainer>
   );
 };
+
 
 export default MainMenu;

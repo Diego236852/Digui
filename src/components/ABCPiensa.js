@@ -268,6 +268,7 @@ const FlipCard = styled.div`
   }
 `;
 
+
 // Definición de initialLetters
 const initialLetters = [
   'A', 'B', 'C', 'D', 'E',
@@ -281,10 +282,11 @@ const initialLetters = [
 // Definición de initialImages como el conjunto de imágenes importadas
 const initialImages = imageDatabase;
 
-// Definición de la función shuffleArray
+// Definición de la función shuffleArray (revolver las letras)
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
+
 
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
@@ -422,5 +424,6 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     </GameContainer>
   );
 };
+
 
 export default ABCPiensa;

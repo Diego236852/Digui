@@ -68,6 +68,7 @@ const Confetti = styled.div`
   }
 `;
 
+
 const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
   const confettiColors = ['#ff5252', '#ffb74d', '#4caf50', '#40c4ff', '#ab47bc']; // Colores para el confeti
 
@@ -92,5 +93,6 @@ const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
     </WinnerContainer>
   );
 };
+
 
 export default ABCwinnerMenu;
