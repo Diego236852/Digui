@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import checkIcon from './../images/LoginSuccessful/check-icon.svg'; // Ícono de check
-import image1 from './../images/triangle.png'; // Imagen de triángulo
-import image2 from './../images/circle.png'; // Imagen de círculo
-import image3 from './../images/star.png'; // Imagen de estrella
+import image1 from './../images/triangle.svg'; // Imagen de triángulo
+import image2 from './../images/circle.svg'; // Imagen de círculo
+import image3 from './../images/star.svg'; // Imagen de estrella
 import circleImage from './../images/LoginSuccessful/circle-logo.svg'; // Imagen del círculo del logo
 import letterD from './../images/LoginSuccessful/letter-d.svg'; // Letra D separada
 import letterI from './../images/LoginSuccessful/letter-i.svg'; // Letra I separada

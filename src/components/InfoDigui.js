@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import image1 from './../images/InfoDigui/informacion.jpg';  // Imagen para la primera página
 import image2 from './../images/InfoDigui/mision.jpg';       // Imagen para la segunda página
 import image3 from './../images/InfoDigui/vision.jpg';       // Imagen para la tercera página
-import star from './../images/star.png';           // Imagen de estrella
-import triangle from './../images/triangle.png';   // Imagen de triángulo
-import circle from './../images/circle.png';       // Imagen de círculo
+import star from './../images/star.svg';           // Imagen de estrella
+import triangle from './../images/triangle.svg';   // Imagen de triángulo
+import circle from './../images/circle.svg';       // Imagen de círculo
 
 
 // Estilos generales con fuentes aplicadas

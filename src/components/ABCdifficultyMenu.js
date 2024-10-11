@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import backArrowIcon from './../images/ABCPiensa/back-arrow.png';
+import backArrowIcon from './../images/ABCPiensa/turn-back.svg';
 
 
 // Animación de flotación para las formas geométricas
