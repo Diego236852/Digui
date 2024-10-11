@@ -8,13 +8,14 @@ import ABCdifficultyMenu from './components/ABCdifficultyMenu';
 import ABCPiensa from './components/ABCPiensa';
 import ABCwinnerMenu from './components/ABCwinnerMenu';
 import ABCloserMenu from './components/ABCloserMenu';
-
+import Settings from './components/Settings'; // Importa el componente Settings
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
 
+  // Controlar el tiempo de espera en SplashScreen
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentScreen('info');  
@@ -23,6 +24,7 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Manejadores de flujo de pantallas
   const handleFinishInfoDigui = () => {
     setCurrentScreen('login');  
   };
@@ -63,17 +65,61 @@ function App() {
     setCurrentScreen('mainMenu');  
   };
 
+  // Manejador para la pantalla de ajustes
+  const handleSettingsSelect = () => {
+    setCurrentScreen('settings');  // Cambia a la pantalla de ajustes
+  };
+
+  const handleBackFromSettings = () => {
+    setCurrentScreen('mainMenu');  // Volvemos al menú principal desde ajustes
+  };
+
+  // Manejador para cerrar sesión
+  const handleLogout = () => {
+    setCurrentScreen('login');  // Redirigimos a la pantalla de inicio de sesión
+  };
+
   return (
     <>
       {currentScreen === 'splash' && <SplashScreen />}
       {currentScreen === 'info' && <InfoDigui onFinish={handleFinishInfoDigui} />}
       {currentScreen === 'login' && <Login onLoginSuccess={handleLoginSuccess} />}
       {currentScreen === 'loginSuccessful' && <LoginSuccessful onContinue={handleLoginAnimationEnd} />}
-      {currentScreen === 'mainMenu' && <MainMenu onGameSelect={handleGameSelect} />}
-      {currentScreen === 'difficultyMenu' && <ABCdifficultyMenu onSelectDifficulty={handleSelectDifficulty} onBack={handleExitToMenu} />}
-      {currentScreen === 'game' && <ABCPiensa difficulty={difficulty} onGameEnd={handleGameEnd} onGameLost={handleGameLost} onExitToMenu={handleExitToMenu} />}
-      {currentScreen === 'winner' && <ABCwinnerMenu score={score} onRestart={handleRestartGame} onExitToMenu={handleExitToMenu} />}
-      {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />} {/* Pasamos handleRestartGame aquí */}
+      {currentScreen === 'mainMenu' && (
+        <MainMenu
+          onGameSelect={handleGameSelect}
+          onSettingsSelect={handleSettingsSelect}  // Pasamos handleSettingsSelect al MainMenu
+        />
+      )}
+      {currentScreen === 'settings' && (
+        <Settings
+          onBack={handleBackFromSettings}
+          onGameSelect={handleExitToMenu}  // Pasamos handleExitToMenu para volver a juegos
+          onLogout={handleLogout}  // Añadimos la función de logout
+        />
+      )}
+      {currentScreen === 'difficultyMenu' && (
+        <ABCdifficultyMenu
+          onSelectDifficulty={handleSelectDifficulty}
+          onBack={handleExitToMenu}
+        />
+      )}
+      {currentScreen === 'game' && (
+        <ABCPiensa
+          difficulty={difficulty}
+          onGameEnd={handleGameEnd}
+          onGameLost={handleGameLost}
+          onExitToMenu={handleExitToMenu}
+        />
+      )}
+      {currentScreen === 'winner' && (
+        <ABCwinnerMenu
+          score={score}
+          onRestart={handleRestartGame}
+          onExitToMenu={handleExitToMenu}
+        />
+      )}
+      {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
     </>
   );
 }

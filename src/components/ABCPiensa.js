@@ -3,8 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 import imageDatabase from './ABCPiensaImageDatabase'; // Importar las imágenes a usar
 import AreYouSure from './AreYouSure'; // Importar el componente AreYouSure
 
-
-// Definición de la animación shake
+// Definición de la animación shake (error)
 const shake = keyframes`
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -47,8 +46,9 @@ const CardFront = styled.div`
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  background-color: #f9c7ff;
+  background-color: #f9c7ff; /* Fondo rosado claro */
   border-radius: 10px;
+  border: 3px solid #e57373; /* Borde de color rosa más oscuro */
 `;
 
 const CardBack = styled.img`
@@ -71,6 +71,7 @@ const GameContainer = styled.div`
   background-color: #f3e5f5;
   padding: 10px;
   position: relative;
+  overflow: hidden; // Evita el scroll
 
   @media (orientation: portrait) {
     padding: 5px;
@@ -111,7 +112,12 @@ const LettersGrid = styled.div`
   background-color: #d1c4e9;
   padding: 20px;
   border-radius: 15px;
-  animation: ${fadeIn} 0.5s ease;
+  ${(props) =>
+    props.initialRender
+      ? css`
+          animation: ${fadeIn} 0.5s ease;
+        `
+      : ''}
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(4, 60px);
@@ -145,9 +151,13 @@ const LetterBox = styled.div`
   font-size: 24px;
   font-weight: bold;
   color: #000;
-  animation: ${(props) => (props.error ? shake : fadeIn)} 0.5s ease-in-out;
+  ${(props) =>
+    props.error
+      ? css`
+          animation: ${shake} 0.5s ease-in-out;
+        `
+      : ''};
   position: relative;
-  transform: ${(props) => props.rotation};
   cursor: pointer;
 
   @media (max-width: 768px) {
@@ -169,16 +179,19 @@ const LetterBox = styled.div`
   }
 `;
 
-// Contenedor de las imágenes
+// Contenedor de las imágenes ajustado para 5 columnas
 const ImagesContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 80%;
-  margin-top: 20px;
-  background-color: #fff6b7; /* Color amarillo pastel */
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas distribuidas equitativamente */
+  grid-auto-rows: min-content; /* Ajuste de altura automática según el contenido */
+  gap: 20px; /* Espacio entre las columnas */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  margin-top: 10px;
+  background-color: #fff6b7;
+  padding: 10px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  justify-items: center; /* Asegura que las imágenes estén centradas */
   animation: ${fadeIn} 0.8s ease;
 
   @media (max-width: 768px) {
@@ -191,8 +204,8 @@ const ImagesContainer = styled.div`
 
   @media (orientation: portrait) {
     width: 95%;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 5px;
+    margin-top: 10px;
   }
 `;
 
@@ -214,41 +227,46 @@ const Timer = styled.div`
   }
 `;
 
-// Contenedor de cartas con animación
+// Contenedor de cartas con margen ajustado para apilarlas
 const CardContainer = styled.div`
   perspective: 1000px;
+  margin: -20px;
+  z-index: ${(props) => props.index}; /* Asegura que las imágenes se apilen en orden */
 `;
 
-// Componente de las cartas con animación
+// Componente de las cartas ajustadas
 const FlipCard = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 55px; /* Reducido para que ocupen menos espacio */
+  height: 55px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
-  ${(props) => props.isFlipped && css`
-    transform: rotateY(180deg);
-  `}
-  ${(props) => props.error && css`
-    animation: ${shake} 0.5s ease-in-out;
-  `}
+  ${(props) =>
+    props.isFlipped &&
+    css`
+      transform: rotateY(180deg);
+    `}
+  ${(props) =>
+    props.error &&
+    css`
+      animation: ${shake} 0.5s ease-in-out;
+    `}
 
   @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
   }
 
   @media (max-width: 480px) {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 
   @media (orientation: portrait) {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
   }
 `;
-
 
 // Definición de initialLetters
 const initialLetters = [
@@ -263,18 +281,10 @@ const initialLetters = [
 // Definición de initialImages como el conjunto de imágenes importadas
 const initialImages = imageDatabase;
 
-
 // Definición de la función shuffleArray
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
-
-// Definición de getRandomRotation
-const getRandomRotation = () => {
-  const randomDegree = Math.floor(Math.random() * 60) - 30;
-  return `rotate(${randomDegree}deg)`;
-};
-
 
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
@@ -289,8 +299,8 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const [winner, setWinner] = useState(false); // Estado para indicar si el jugador ha ganado
   const [score, setScore] = useState(0); // Estado para manejar la puntuación final
   const [showModal, setShowModal] = useState(false); // Estado para manejar el modal de salida
+  const [initialRender, setInitialRender] = useState(true); // Estado para controlar la animación inicial
 
-  
   // Temporizador
   useEffect(() => {
     if (timeLeft > 0 && !gameOver) {
@@ -330,7 +340,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
 
   const handleLetterClick = (letter) => {
     if (!selectedImage) return;
-    
+
     if (letter === selectedImage.letter) {
       setCompleted((prev) => ({ ...prev, [letter]: selectedImage.src }));
       setImages(images.filter((img) => img.letter !== selectedImage.letter));
@@ -344,6 +354,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const randomizeLetters = () => {
     setLetters(shuffleArray([...letters]));
     setError(null);
+    setInitialRender(false); // Desactiva la animación después del primer clic
   };
 
   // Función para abrir el modal al intentar salir
@@ -361,7 +372,9 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     setShowModal(false); // Cierra el modal
   };
 
-  
+  const firstFourColumns = images.slice(0, 20); // 4 columnas de 5 imágenes cada una
+  const lastColumn = images.slice(20); // Última columna con 7 imágenes
+
   return (
     <GameContainer onClick={randomizeLetters}>
       <BackButton onClick={handleBackClick}>Regresar</BackButton>
@@ -371,14 +384,14 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       )}
 
       <Timer>Tiempo: {Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Timer>
-      <LettersGrid>
+
+      <LettersGrid initialRender={initialRender}>
         {letters.map((letter, index) => (
           <LetterBox
             key={letter}
             error={error === letter}
-            rotation={getRandomRotation()}
             onClick={() => handleLetterClick(letter)}
-            style={{ animationDelay: `${index * 0.1}s` }} // Agrega el delay para la animación de entrada
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             {!completed[letter] && letter}
             {completed[letter] && <DroppedImage src={completed[letter]} alt={letter} />}
@@ -387,8 +400,18 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       </LettersGrid>
 
       <ImagesContainer>
-        {images.map((image, index) => (
-          <CardContainer key={image.letter} style={{ animationDelay: `${index * 0.1}s` }}>
+        {/* Distribución en las primeras 4 columnas */}
+        {firstFourColumns.map((image, index) => (
+          <CardContainer key={image.letter} index={index}>
+            <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
+              <CardFront onClick={() => handleSelectImage(image)} />
+              <CardBack src={image.src} />
+            </FlipCard>
+          </CardContainer>
+        ))}
+        {/* Última columna con 7 imágenes */}
+        {lastColumn.map((image, index) => (
+          <CardContainer key={image.letter} index={index + 20}>
             <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
               <CardFront onClick={() => handleSelectImage(image)} />
               <CardBack src={image.src} />
@@ -399,6 +422,5 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     </GameContainer>
   );
 };
-
 
 export default ABCPiensa;

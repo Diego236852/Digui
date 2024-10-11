@@ -113,7 +113,8 @@ const Content = styled.div`
   max-width: 1400px;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 1; /* El texto debe estar detrás del cajón del login */
+  position: relative;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -127,6 +128,7 @@ const TextContainer = styled.div`
   padding-right: 50px;
   padding-left: 100px;
   animation: ${slideInRight} 1s ease-out;
+  z-index: 1; /* Aseguramos que el texto esté detrás del cajón de login */
 
   @media (max-width: 768px) {
     padding-right: 0;
@@ -170,6 +172,7 @@ const LoginBox = styled.div`
   width: 100%;
   margin-right: 50px;
   max-width: 400px;
+  z-index: 2; /* Aseguramos que el cajón del login esté sobre el texto */
 
   @media (max-width: 768px) {
     width: 90%;
@@ -402,7 +405,7 @@ const Login = ({ onLoginSuccess }) => {
                     onChange={handleCheckboxChange}
                   />
                   <CheckboxLabel htmlFor="terms">
-                    Acepto los <a href='#'>términos y condiciones</a>
+                    Acepto los <a href='https://e621.net/'>términos y condiciones</a>
                   </CheckboxLabel>
                 </CheckboxContainer>
 
