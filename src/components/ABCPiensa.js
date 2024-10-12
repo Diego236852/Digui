@@ -7,6 +7,18 @@ import correctSoundFile from './../audios/ABCPiensa/correct.mp3'; // Importar so
 import errorSoundFile from './../audios/ABCPiensa/error.mp3'; // Importar sonido de error
 import selectSoundFile from './../audios/ABCPiensa/select.mp3'; // Importar sonido de selección
 
+// Animación de entrada general
+const fadeInGeneral = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 // Definición de la animación shake (error)
 const shake = keyframes`
   0% { transform: translateX(0); }
@@ -35,43 +47,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Definición de DroppedImage
-const DroppedImage = styled.img`
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  object-fit: contain;
-  animation: ${fadeIn} 0.5s ease;
-
-  @media (orientation: portrait) {
-    width: 35px;
-    height: 35px;
-  }
-`;
-
-// Definición de CardFront y CardBack con animación
-const CardFront = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  background-color: #f9c7ff; /* Fondo rosado claro */
-  border-radius: 10px;
-  border: 3px solid #e57373; /* Borde de color rosa más oscuro */
-`;
-
-const CardBack = styled.img`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  border-radius: 10px;
-  animation: ${fadeIn} 0.5s ease;
-`;
-
 // Contenedor del juego
 const GameContainer = styled.div`
   display: flex;
@@ -83,6 +58,7 @@ const GameContainer = styled.div`
   padding: 10px;
   position: relative;
   overflow: hidden;
+  animation: ${fadeInGeneral} 1s ease forwards;
 
   @media (orientation: portrait) {
     padding: 5px;
@@ -91,6 +67,7 @@ const GameContainer = styled.div`
 
 // Botón de regreso
 const BackButton = styled.button`
+  font-family: 'Poppins', sans-serif; /* Fuente Poppins */
   position: absolute;
   top: 20px;
   left: 20px;
@@ -152,6 +129,7 @@ const LettersGrid = styled.div`
 
 // Cuadro de letras con animación de entrada y éxito
 const LetterBox = styled.div`
+  font-family: 'Quicksand', sans-serif; /* Fuente Quicksand */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,19 +174,56 @@ const LetterBox = styled.div`
   }
 `;
 
+// Definición de DroppedImage
+const DroppedImage = styled.img`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  object-fit: contain;
+  animation: ${fadeIn} 0.5s ease;
+
+  @media (orientation: portrait) {
+    width: 35px;
+    height: 35px;
+  }
+`;
+
+// Definición de CardFront y CardBack con animación
+const CardFront = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  background-color: #f9c7ff; /* Fondo rosado claro */
+  border-radius: 10px;
+  border: 3px solid #e57373; /* Borde de color rosa más oscuro */
+`;
+
+const CardBack = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+  animation: ${fadeIn} 0.5s ease;
+`;
+
 // Contenedor de las imágenes ajustado para 5 columnas
 const ImagesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 columnas distribuidas equitativamente */
   grid-auto-rows: min-content; /* Ajuste de altura automática según el contenido */
-  gap: 20px; /* Espacio entre las columnas */
-  width: 100%; /* Ocupa todo el ancho disponible */
+  gap: 20px;
+  width: 100%;
   margin-top: 10px;
   background-color: #fff6b7;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  justify-items: center; /* Asegura que las imágenes estén centradas */
+  justify-items: center;
   animation: ${fadeIn} 0.8s ease;
 
   @media (max-width: 768px) {
@@ -228,6 +243,7 @@ const ImagesContainer = styled.div`
 
 // Temporizador
 const Timer = styled.div`
+  font-family: 'Baloo 2', cursive; /* Fuente Baloo */
   position: absolute;
   top: 20px;
   right: 20px;
@@ -248,12 +264,12 @@ const Timer = styled.div`
 const CardContainer = styled.div`
   perspective: 1000px;
   margin: -20px;
-  z-index: ${(props) => props.index}; /* Asegura que las imágenes se apilen en orden */
+  z-index: ${(props) => props.index};
 `;
 
 // Componente de las cartas ajustadas
 const FlipCard = styled.div`
-  width: 55px; /* Reducido para que ocupen menos espacio */
+  width: 55px;
   height: 55px;
   position: relative;
   transform-style: preserve-3d;
@@ -286,10 +302,17 @@ const FlipCard = styled.div`
 `;
 
 // Definición de initialLetters
-const initialLetters = ['A'];
+const initialLetters = [
+  'A', 'B', 'C', 'D', 'E',
+  'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'Ñ',
+  'O', 'P', 'Q', 'R', 'S',
+  'T', 'U', 'V', 'W', 'X',
+  'Y', 'Z'
+];
 
 // Definición de initialImages como el conjunto de imágenes importadas
-const initialImages = imageDatabase.slice(0, 1); // Solo 1 imagen para pruebas
+const initialImages = imageDatabase;
 
 // Definición de la función shuffleArray (revolver las letras)
 const shuffleArray = (array) => {
@@ -341,19 +364,6 @@ const SuccessParticles = () => (
   />
 );
 
-// Función para calcular las estrellas basadas en el tiempo restante
-const calculateStars = (timeLeft, totalTime) => {
-  const percentageLeft = (timeLeft / totalTime) * 100;
-
-  if (percentageLeft >= 80) {
-    return 3; // 3 estrellas si queda más del 80% del tiempo
-  } else if (percentageLeft >= 50) {
-    return 2; // 2 estrellas si queda más del 50%
-  } else {
-    return 1; // 1 estrella si queda menos del 50%
-  }
-};
-
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const { correctSound, errorSound, selectSound } = useSounds();
@@ -363,19 +373,18 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const [images, setImages] = useState(initialImages);
   const [flippedImages, setFlippedImages] = useState({});
   const [letters, setLetters] = useState(shuffleArray([...initialLetters]));
-  const totalTime = difficulty === 'facil' ? 180 : difficulty === 'medio' ? 120 : 60;
-  const [timeLeft, setTimeLeft] = useState(totalTime);
+  const [timeLeft, setTimeLeft] = useState(difficulty === 'facil' ? 180 : difficulty === 'medio' ? 120 : 1);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
   const [score, setScore] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [initialRender, setInitialRender] = useState(true);
-  const [stars, setStars] = useState(0);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
 
-  // Temporizador
+  // Temporizador que comienza después de la animación de entrada
   useEffect(() => {
-    if (timeLeft > 0 && !gameOver) {
+    if (animationComplete && timeLeft > 0 && !gameOver) {
       const timer = setInterval(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
@@ -384,9 +393,9 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       setGameOver(true);
       onGameLost();
     }
-  }, [timeLeft, gameOver, winner, onGameLost]);
+  }, [timeLeft, gameOver, winner, animationComplete, onGameLost]);
 
-  // Finaliza el juego cuando todas las letras se completan
+  // Lógica para finalizar el juego
   useEffect(() => {
     if (Object.keys(completed).length === initialImages.length) {
       setGameOver(true);
@@ -394,12 +403,18 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       setShowParticles(true);
       const finalScore = Math.floor((timeLeft / 60) * 100);
       setScore(finalScore);
-
-      const earnedStars = calculateStars(timeLeft, totalTime);
-      setStars(earnedStars); // Asigna las estrellas obtenidas
       onGameEnd(finalScore);
     }
-  }, [completed, timeLeft, initialImages.length, onGameEnd, totalTime]);
+  }, [completed, timeLeft, initialImages.length, onGameEnd]);
+
+  // Función para detectar el fin de la animación
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true); // Marca la animación como completa
+    }, 1000); // La duración de la animación de entrada
+
+    return () => clearTimeout(timer); // Limpia el temporizador al desmontar
+  }, []);
 
   const handleSelectImage = (image) => {
     if (selectedImage) {
@@ -437,34 +452,32 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     setInitialRender(false);
   };
 
-  // Función para abrir el modal al intentar salir
   const handleBackClick = () => {
     setShowModal(true);
   };
 
-  // Función para manejar la confirmación de salida
   const handleConfirmExit = () => {
     onExitToMenu();
   };
 
-  // Función para cancelar la salida y cerrar el modal
   const handleCancelExit = () => {
     setShowModal(false);
   };
+
+  const firstFourColumns = images.slice(0, 20);
+  const lastColumn = images.slice(20);
 
   return (
     <GameContainer onClick={randomizeLetters}>
       <BackButton onClick={handleBackClick}>Regresar</BackButton>
 
-      {showModal && <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />}
+      {showModal && (
+        <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
+      )}
 
       {showParticles && <SuccessParticles />}
 
       <Timer>Tiempo: {Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Timer>
-
-      <div style={{ position: 'absolute', top: '10px', left: '20px', fontSize: '24px', color: 'gold' }}>
-        🌟 Estrellas: {stars}
-      </div>
 
       <LettersGrid initialRender={initialRender}>
         {letters.map((letter, index) => (
@@ -482,8 +495,16 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       </LettersGrid>
 
       <ImagesContainer>
-        {images.map((image, index) => (
+        {firstFourColumns.map((image, index) => (
           <CardContainer key={image.letter} index={index}>
+            <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
+              <CardFront onClick={() => handleSelectImage(image)} />
+              <CardBack src={image.src} />
+            </FlipCard>
+          </CardContainer>
+        ))}
+        {lastColumn.map((image, index) => (
+          <CardContainer key={image.letter} index={index + 20}>
             <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
               <CardFront onClick={() => handleSelectImage(image)} />
               <CardBack src={image.src} />

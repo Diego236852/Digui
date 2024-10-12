@@ -4,14 +4,14 @@ import FullStar from './../images/ABCPiensa/FullStar.svg';
 import EmptyStar from './../images/ABCPiensa/EmptyStar.svg'; // Reemplázalo por la imagen de estrella vacía
 
 // Animaciones
-const fadeIn = keyframes`
+const fadeInFromCenter = keyframes`
   0% {
+    transform: translate(-50%, -50%);
     opacity: 0;
-    transform: translateY(-20px);
   }
   100% {
+    transform: translate(0, 0);
     opacity: 1;
-    transform: translateY(0);
   }
 `;
 
@@ -69,14 +69,18 @@ const ConfettiFall = keyframes`
 // Contenedores y estilos
 const WinnerContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #d292bc, #ffffff); /* Fondo claro con gradiente */
   overflow: hidden;
   color: #1d1d1b;
   position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ContentBox = styled.div`
@@ -89,18 +93,45 @@ const ContentBox = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 90%;
-  width: 500px;
+  width: 400px;
   text-align: center;
   position: relative;
   z-index: 1;
+  animation: ${fadeInFromCenter} 1s ease forwards;
+  opacity: 0;
+  transform: translate(50%, 50%);
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+`;
+
+const MotivationalBox = styled.div`
+  width: 300px;
+  padding: 20px;
+  margin-right: 20px;
+  text-align: left;
+  font-family: 'Baloo 2', cursive; /* Fuente Baloo 2 */
+  font-size: 28px; /* Tamaño más grande */
+  color: #6b21a8;
+  animation: ${fadeInFromCenter} 1s ease forwards;
+  opacity: 0;
+  transform: translate(-50%, 50%);
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+  }
 `;
 
 const Title = styled.h2`
-  font-family: 'Baloo 2', cursive;
+  font-family: 'Baloo 2', cursive; /* Aplicamos la fuente Baloo 2 */
   font-size: 50px;
   color: #36276b; /* Color del título en morado oscuro */
   margin-bottom: 20px;
-  animation: ${fadeIn} 0.8s ease, ${bounce} 2s ease infinite;
+  animation: ${pop} 0.8s ease, ${bounce} 2s ease infinite;
 
   @media (orientation: portrait) {
     font-size: 40px;
@@ -108,11 +139,11 @@ const Title = styled.h2`
 `;
 
 const Score = styled.div`
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Baloo 2', cursive; /* Aplicamos la fuente Baloo 2 */
   font-size: 40px;
   color: #6b21a8;
   margin-bottom: 20px;
-  animation: ${fadeIn} 1s ease;
+  animation: ${pop} 1s ease;
 
   @media (orientation: portrait) {
     font-size: 28px;
@@ -146,7 +177,7 @@ const Button = styled.button`
   cursor: pointer;
   margin-top: 15px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  animation: ${fadeIn} 1.2s ease;
+  animation: ${pop} 1.2s ease;
 
   &:hover {
     background-color: #36276b; /* Pantone 273C */
@@ -209,14 +240,21 @@ const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
 
   return (
     <WinnerContainer>
+      <MotivationalBox>
+        <p>¡Eres increíble!</p>
+        <p>No te rindas, sigue esforzándote cada día.</p>
+        <p>¡Cada intento te acerca más a la meta!</p>
+        <p>¡La práctica te hará un maestro!</p>
+      </MotivationalBox>
+
       <ContentBox>
         <Title>¡Ganaste!</Title>
         <Score>Puntos: {score}</Score>
 
         <StarsContainer>
-          <Star src={stars >= 1 ? FullStar : EmptyStar} alt="Star 1" delay={0.5} />
-          <Star src={stars >= 2 ? FullStar : EmptyStar} alt="Star 2" delay={1.3} />
-          <Star src={stars >= 3 ? FullStar : EmptyStar} alt="Star 3" delay={2.1} />
+          <Star src={stars >= 1 ? FullStar : EmptyStar} alt="Star 1" delay={1.0} />
+          <Star src={stars >= 2 ? FullStar : EmptyStar} alt="Star 2" delay={1.8} />
+          <Star src={stars >= 3 ? FullStar : EmptyStar} alt="Star 3" delay={2.6} />
         </StarsContainer>
 
         <Button onClick={onRestart}>Jugar de nuevo</Button>

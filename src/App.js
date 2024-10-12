@@ -9,14 +9,14 @@ import ABCPiensa from './components/ABCPiensa';
 import ABCwinnerMenu from './components/ABCwinnerMenu';
 import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; // Importa el componente Settings
-
+import Domino from './components/Domino'; // Importa el componente Domino
+import DominoGameModeSelector from './components/DominoGameModeSelector'; // Importa el selector de modo de juego de Domino
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
 
-  
   // Controlar el tiempo de espera en SplashScreen
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,6 +47,8 @@ function App() {
   const handleGameSelect = (game) => {
     if (game === 'ABC Piensa') {
       setCurrentScreen('difficultyMenu');  
+    } else if (game === 'Domino') {
+      setCurrentScreen('dominoModeSelector');  // Abre la selección de modo de juego de Dominó
     }
   };
 
@@ -60,7 +62,7 @@ function App() {
   };
 
   const handleRestartGame = () => {
-    setCurrentScreen('difficultyMenu');  // Aquí redirigimos al menú de dificultad
+    setCurrentScreen('difficultyMenu');  // Redirigimos al menú de dificultad
   };
 
   const handleExitToMenu = () => {
@@ -81,7 +83,6 @@ function App() {
     setCurrentScreen('login');  // Redirigimos a la pantalla de inicio de sesión
   };
 
-  
   return (
     <>
       {currentScreen === 'splash' && <SplashScreen />}
@@ -123,9 +124,12 @@ function App() {
         />
       )}
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
+      {currentScreen === 'dominoModeSelector' && (
+        <DominoGameModeSelector onBack={handleExitToMenu} />  // Selector de modo de juego de Dominó
+      )}
+      {currentScreen === 'domino' && <Domino />}  {/* Renderiza el juego de Dominó */}
     </>
   );
 }
-
 
 export default App;
