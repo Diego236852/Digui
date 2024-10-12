@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import imageDatabase from './ABCPiensaImageDatabase'; // Importar las imágenes a usar
 import AreYouSure from './AreYouSure'; // Importar el componente AreYouSure
+import Particles from 'react-tsparticles'; // Para partículas de celebración
+import correctSoundFile from './../audios/ABCPiensa/correct.mp3'; // Importar sonido de acierto
+import errorSoundFile from './../audios/ABCPiensa/error.mp3'; // Importar sonido de error
+import selectSoundFile from './../audios/ABCPiensa/select.mp3'; // Importar sonido de selección
 
 // Definición de la animación shake (error)
 const shake = keyframes`
@@ -10,6 +14,13 @@ const shake = keyframes`
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
+`;
+
+// Definición de la animación bounce (correcto)
+const bounce = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 `;
 
 // Definición de la animación fadeIn para la entrada suave
@@ -71,7 +82,7 @@ const GameContainer = styled.div`
   background-color: #f3e5f5;
   padding: 10px;
   position: relative;
-  overflow: hidden; // Evita el scroll
+  overflow: hidden;
 
   @media (orientation: portrait) {
     padding: 5px;
@@ -139,7 +150,7 @@ const LettersGrid = styled.div`
   }
 `;
 
-// Cuadro de letras con animación de entrada
+// Cuadro de letras con animación de entrada y éxito
 const LetterBox = styled.div`
   display: flex;
   justify-content: center;
@@ -155,6 +166,12 @@ const LetterBox = styled.div`
     props.error
       ? css`
           animation: ${shake} 0.5s ease-in-out;
+        `
+      : ''};
+  ${(props) =>
+    props.correct
+      ? css`
+          animation: ${bounce} 0.5s ease-in-out;
         `
       : ''};
   position: relative;
@@ -268,40 +285,93 @@ const FlipCard = styled.div`
   }
 `;
 
-
 // Definición de initialLetters
-const initialLetters = [
-  'A', 'B', 'C', 'D', 'E',
-  'F', 'G', 'H', 'I', 'J',
-  'K', 'L', 'M', 'N', 'Ñ',
-  'O', 'P', 'Q', 'R', 'S',
-  'T', 'U', 'V', 'W', 'X',
-  'Y', 'Z'
-];
+const initialLetters = ['A'];
 
 // Definición de initialImages como el conjunto de imágenes importadas
-const initialImages = imageDatabase;
+const initialImages = imageDatabase.slice(0, 1); // Solo 1 imagen para pruebas
 
 // Definición de la función shuffleArray (revolver las letras)
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
+// Cargar sonidos
+const loadAudio = (src) => {
+  const audio = new Audio(src);
+  return new Promise((resolve) => {
+    audio.addEventListener('canplaythrough', () => resolve(audio), { once: true });
+  });
+};
+
+const useSounds = () => {
+  const [correctSound, setCorrectSound] = useState(null);
+  const [errorSound, setErrorSound] = useState(null);
+  const [selectSound, setSelectSound] = useState(null);
+
+  useEffect(() => {
+    const loadSounds = async () => {
+      const correct = await loadAudio(correctSoundFile);
+      const error = await loadAudio(errorSoundFile);
+      const select = await loadAudio(selectSoundFile);
+
+      setCorrectSound(correct);
+      setErrorSound(error);
+      setSelectSound(select);
+    };
+
+    loadSounds();
+  }, []);
+
+  return { correctSound, errorSound, selectSound };
+};
+
+// Componente de partículas de éxito
+const SuccessParticles = () => (
+  <Particles
+    params={{
+      particles: {
+        number: { value: 50 },
+        color: { value: '#FFD700' },
+        shape: { type: 'star' },
+        size: { value: 5 },
+        move: { speed: 2 },
+      },
+    }}
+  />
+);
+
+// Función para calcular las estrellas basadas en el tiempo restante
+const calculateStars = (timeLeft, totalTime) => {
+  const percentageLeft = (timeLeft / totalTime) * 100;
+
+  if (percentageLeft >= 80) {
+    return 3; // 3 estrellas si queda más del 80% del tiempo
+  } else if (percentageLeft >= 50) {
+    return 2; // 2 estrellas si queda más del 50%
+  } else {
+    return 1; // 1 estrella si queda menos del 50%
+  }
+};
 
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
+  const { correctSound, errorSound, selectSound } = useSounds();
   const [selectedImage, setSelectedImage] = useState(null);
   const [error, setError] = useState(null);
   const [completed, setCompleted] = useState({});
   const [images, setImages] = useState(initialImages);
   const [flippedImages, setFlippedImages] = useState({});
   const [letters, setLetters] = useState(shuffleArray([...initialLetters]));
-  const [timeLeft, setTimeLeft] = useState(difficulty === 'facil' ? 180 : difficulty === 'medio' ? 120 : 1);
+  const totalTime = difficulty === 'facil' ? 180 : difficulty === 'medio' ? 120 : 60;
+  const [timeLeft, setTimeLeft] = useState(totalTime);
   const [gameOver, setGameOver] = useState(false);
-  const [winner, setWinner] = useState(false); // Estado para indicar si el jugador ha ganado
-  const [score, setScore] = useState(0); // Estado para manejar la puntuación final
-  const [showModal, setShowModal] = useState(false); // Estado para manejar el modal de salida
-  const [initialRender, setInitialRender] = useState(true); // Estado para controlar la animación inicial
+  const [winner, setWinner] = useState(false);
+  const [score, setScore] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
+  const [stars, setStars] = useState(0);
+  const [showParticles, setShowParticles] = useState(false);
 
   // Temporizador
   useEffect(() => {
@@ -312,23 +382,28 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       return () => clearInterval(timer);
     } else if (timeLeft === 0 && !winner) {
       setGameOver(true);
-      onGameLost(); // Llama a la función para indicar que el jugador perdió
+      onGameLost();
     }
-  }, [timeLeft, gameOver, winner]);
+  }, [timeLeft, gameOver, winner, onGameLost]);
 
   // Finaliza el juego cuando todas las letras se completan
   useEffect(() => {
     if (Object.keys(completed).length === initialImages.length) {
       setGameOver(true);
       setWinner(true);
-      const finalScore = Math.floor((timeLeft / 60) * 100); // Calcula la puntuación en base al tiempo restante
+      setShowParticles(true);
+      const finalScore = Math.floor((timeLeft / 60) * 100);
       setScore(finalScore);
-      onGameEnd(finalScore); // Llama a la función para indicar que el jugador ganó
+
+      const earnedStars = calculateStars(timeLeft, totalTime);
+      setStars(earnedStars); // Asigna las estrellas obtenidas
+      onGameEnd(finalScore);
     }
-  }, [completed, timeLeft]);
+  }, [completed, timeLeft, initialImages.length, onGameEnd, totalTime]);
 
   const handleSelectImage = (image) => {
     if (selectedImage) {
+      if (errorSound) errorSound.play();
       setFlippedImages((prev) => ({ ...prev, [image.letter]: 'error' }));
       setTimeout(() => {
         setFlippedImages((prev) => ({ ...prev, [image.letter]: false }));
@@ -336,6 +411,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       return;
     }
 
+    if (selectSound) selectSound.play();
     setFlippedImages((prev) => ({ ...prev, [image.letter]: true }));
     setSelectedImage(image);
   };
@@ -344,11 +420,13 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     if (!selectedImage) return;
 
     if (letter === selectedImage.letter) {
+      if (correctSound) correctSound.play();
       setCompleted((prev) => ({ ...prev, [letter]: selectedImage.src }));
       setImages(images.filter((img) => img.letter !== selectedImage.letter));
       setSelectedImage(null);
       setError(null);
     } else {
+      if (errorSound) errorSound.play();
       setError(letter);
     }
   };
@@ -356,7 +434,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
   const randomizeLetters = () => {
     setLetters(shuffleArray([...letters]));
     setError(null);
-    setInitialRender(false); // Desactiva la animación después del primer clic
+    setInitialRender(false);
   };
 
   // Función para abrir el modal al intentar salir
@@ -366,32 +444,34 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
 
   // Función para manejar la confirmación de salida
   const handleConfirmExit = () => {
-    onExitToMenu(); // Llama a la función para regresar al menú principal
+    onExitToMenu();
   };
 
   // Función para cancelar la salida y cerrar el modal
   const handleCancelExit = () => {
-    setShowModal(false); // Cierra el modal
+    setShowModal(false);
   };
-
-  const firstFourColumns = images.slice(0, 20); // 4 columnas de 5 imágenes cada una
-  const lastColumn = images.slice(20); // Última columna con 7 imágenes
 
   return (
     <GameContainer onClick={randomizeLetters}>
       <BackButton onClick={handleBackClick}>Regresar</BackButton>
 
-      {showModal && (
-        <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
-      )}
+      {showModal && <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />}
+
+      {showParticles && <SuccessParticles />}
 
       <Timer>Tiempo: {Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Timer>
+
+      <div style={{ position: 'absolute', top: '10px', left: '20px', fontSize: '24px', color: 'gold' }}>
+        🌟 Estrellas: {stars}
+      </div>
 
       <LettersGrid initialRender={initialRender}>
         {letters.map((letter, index) => (
           <LetterBox
             key={letter}
             error={error === letter}
+            correct={completed[letter]}
             onClick={() => handleLetterClick(letter)}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
@@ -402,18 +482,8 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
       </LettersGrid>
 
       <ImagesContainer>
-        {/* Distribución en las primeras 4 columnas */}
-        {firstFourColumns.map((image, index) => (
+        {images.map((image, index) => (
           <CardContainer key={image.letter} index={index}>
-            <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
-              <CardFront onClick={() => handleSelectImage(image)} />
-              <CardBack src={image.src} />
-            </FlipCard>
-          </CardContainer>
-        ))}
-        {/* Última columna con 7 imágenes */}
-        {lastColumn.map((image, index) => (
-          <CardContainer key={image.letter} index={index + 20}>
             <FlipCard isFlipped={flippedImages[image.letter] === true} error={flippedImages[image.letter] === 'error'}>
               <CardFront onClick={() => handleSelectImage(image)} />
               <CardBack src={image.src} />
@@ -424,6 +494,5 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     </GameContainer>
   );
 };
-
 
 export default ABCPiensa;
