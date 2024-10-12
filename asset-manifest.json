@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.e6c13ad2.css",
-    "main.js": "/Digui/static/js/main.352be7fb.js",
+    "main.js": "/Digui/static/js/main.6a7e7b44.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -9,14 +9,14 @@
     "static/media/ABCicon.svg": "/Digui/static/media/ABCicon.f9cc78fe6f20ca746f81ea7d9d3a090e.svg",
     "static/media/profile.jpeg": "/Digui/static/media/profile.e1d772385a11c40cb807.jpeg",
     "static/media/welcome.mp3": "/Digui/static/media/welcome.0d0e29bda9f19183b2b8.mp3",
-    "static/media/triangle.png": "/Digui/static/media/triangle.ec0875a49f57a789e43e.png",
+    "static/media/error.mp3": "/Digui/static/media/error.9aa7b34c6af8489a2b05.mp3",
+    "static/media/correct.mp3": "/Digui/static/media/correct.beab1f1a4a0474ee971b.mp3",
     "static/media/flor.svg": "/Digui/static/media/flor.075d50452f6dfcaa6c6ed809a9454e39.svg",
-    "static/media/star.png": "/Digui/static/media/star.02f3c0045f510975f6a3.png",
+    "static/media/select.mp3": "/Digui/static/media/select.87403bafe004579d7802.mp3",
     "static/media/ñame.svg": "/Digui/static/media/ñame.03e3198e52e09b8b3cf9aac8a9302999.svg",
     "static/media/arbol.svg": "/Digui/static/media/arbol.09b52724b8c55a9e1e6145133532b2ed.svg",
     "static/media/zapato.svg": "/Digui/static/media/zapato.f9a009e4f31900bd5c7d588d5b4bee91.svg",
-    "static/media/circle.png": "/Digui/static/media/circle.49403941b8f0baf3e9de.png",
-    "static/media/back-arrow.png": "/Digui/static/media/back-arrow.965dcbec0429e28134a4.png",
+    "static/media/triangle.svg": "/Digui/static/media/triangle.538b66eac3a6b8b6b723637f7e610164.svg",
     "static/media/xilofono.svg": "/Digui/static/media/xilofono.ba3972aabf5d65e50de18dfb1a0d7aa4.svg",
     "static/media/logo digui.svg": "/Digui/static/media/logo digui.42338cf4a8537b119dcaf6c1dba621ef.svg",
     "static/media/mochila.svg": "/Digui/static/media/mochila.8f49de9747e929b42dd4bbc4aad41a70.svg",
@@ -47,16 +47,19 @@
     "static/media/letter-d.svg": "/Digui/static/media/letter-d.0430d0eebe647350add157c9efb6e192.svg",
     "static/media/estrella.svg": "/Digui/static/media/estrella.bd5b871d849470cf853980a8f0148914.svg",
     "static/media/letter-u.svg": "/Digui/static/media/letter-u.aaf0c1efb017d3da2fc9d905580dbdb5.svg",
+    "static/media/turn-back.svg": "/Digui/static/media/turn-back.467194f6b0ada7a85d968679b495879c.svg",
+    "static/media/star.svg": "/Digui/static/media/star.0f0fc2e3c6c0e37f87f2bba6da8e9f7c.svg",
     "static/media/google-logo.svg": "/Digui/static/media/google-logo.9a7800d06783d80a1c12249a8ca58e9d.svg",
+    "static/media/circle.svg": "/Digui/static/media/circle.0b5559ba378faff021fda4a381a15e2d.svg",
     "index.html": "/Digui/index.html",
     "static/media/luna.svg": "/Digui/static/media/luna.96ff1911c1827d5f325a4f7bdeb099b4.svg",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
-    "main.352be7fb.js.map": "/Digui/static/js/main.352be7fb.js.map",
+    "main.6a7e7b44.js.map": "/Digui/static/js/main.6a7e7b44.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.352be7fb.js"
+    "static/js/main.6a7e7b44.js"
   ]
 }
