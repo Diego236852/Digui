@@ -1,135 +1,201 @@
 import React, { useState, useEffect } from 'react';
-import SplashScreen from './components/SplashScreen';
-import InfoDigui from './components/InfoDigui';
-import Login from './components/Login';
-import LoginSuccessful from './components/LoginSuccessful';  
-import MainMenu from './components/MainMenu';  
-import ABCdifficultyMenu from './components/ABCdifficultyMenu';
-import ABCPiensa from './components/ABCPiensa';
-import ABCwinnerMenu from './components/ABCwinnerMenu';
-import ABCloserMenu from './components/ABCloserMenu';
-import Settings from './components/Settings'; // Importa el componente Settings
-import Domino from './components/Domino'; // Importa el componente Domino
-import DominoGameModeSelector from './components/DominoGameModeSelector'; // Importa el selector de modo de juego de Domino
+import Board from './Board';
+import Hand from './Hand';
 
-function App() {
-  const [currentScreen, setCurrentScreen] = useState('splash');  
-  const [difficulty, setDifficulty] = useState(null);  
-  const [score, setScore] = useState(null);  
+const dominoTiles = [
+  { left: 6, right: 6 }, { left: 6, right: 5 }, { left: 6, right: 4 }, { left: 6, right: 3 }, { left: 6, right: 2 },
+  { left: 5, right: 5 }, { left: 5, right: 4 }, { left: 5, right: 3 }, { left: 5, right: 2 }, { left: 5, right: 1 },
+  { left: 4, right: 4 }, { left: 4, right: 3 }, { left: 4, right: 2 }, { left: 4, right: 1 }, { left: 4, right: 0 },
+  { left: 3, right: 3 }, { left: 3, right: 2 }, { left: 3, right: 1 }, { left: 3, right: 0 },
+  { left: 2, right: 2 }, { left: 2, right: 1 }, { left: 2, right: 0 },
+  { left: 1, right: 1 }, { left: 1, right: 0 },
+  { left: 0, right: 0 },
+];
 
-  // Controlar el tiempo de espera en SplashScreen
+const shuffleTiles = (tiles) => tiles.sort(() => Math.random() - 0.5);
+
+const App = () => {
+  const [handPlayer1, setHandPlayer1] = useState([]);
+  const [handPlayer2, setHandPlayer2] = useState([]);
+  const [board, setBoard] = useState([]);
+  const [remainingTiles, setRemainingTiles] = useState([]); // Fichas restantes en el monte
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+  const [winner, setWinner] = useState(null);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentScreen('info');  
-    }, 3000);  
-
-    return () => clearTimeout(timer);
+    const shuffledTiles = shuffleTiles(dominoTiles);
+    setHandPlayer1(shuffledTiles.slice(0, 7));  // 7 fichas para el jugador 1
+    setHandPlayer2(shuffledTiles.slice(7, 14)); // 7 fichas para el jugador 2
+    setRemainingTiles(shuffledTiles.slice(14)); // Resto de fichas en el monte
   }, []);
 
-  // Manejadores de flujo de pantallas
-  const handleFinishInfoDigui = () => {
-    setCurrentScreen('login');  
+  const rotateTile = (tile) => {
+    return { left: tile.right, right: tile.left };
   };
 
-  const handleLoginSuccess = () => {
-    setCurrentScreen('loginSuccessful');  
-  };
+  const placeTile = (tile, playerHand, setPlayerHand) => {
+    if (board.length === 0) {
+      setBoard([...board, tile]);
+    } else {
+      const firstTile = board[0];
+      const lastTile = board[board.length - 1];
 
-  const handleLoginAnimationEnd = () => {
-    setCurrentScreen('mainMenu');  
-  };
+      const canPlaceLeft = tile.left === firstTile.left || tile.right === firstTile.left;
+      const canPlaceRight = tile.left === lastTile.right || tile.right === lastTile.right;
 
-  const handleSelectDifficulty = (selectedDifficulty) => {
-    setDifficulty(selectedDifficulty);
-    setCurrentScreen('game');  
-  };
-
-  const handleGameSelect = (game) => {
-    if (game === 'ABC Piensa') {
-      setCurrentScreen('difficultyMenu');  
-    } else if (game === 'Domino') {
-      setCurrentScreen('dominoModeSelector');  // Abre la selección de modo de juego de Dominó
+      if (canPlaceLeft) {
+        if (tile.right === firstTile.left) {
+          setBoard([tile, ...board]);
+        } else {
+          setBoard([rotateTile(tile), ...board]);
+        }
+        setPlayerHand(playerHand.filter(t => t !== tile));
+        checkWinner(playerHand); // Verifica si alguien ganó
+      } else if (canPlaceRight) {
+        if (tile.left === lastTile.right) {
+          setBoard([...board, tile]);
+        } else {
+          setBoard([...board, rotateTile(tile)]);
+        }
+        setPlayerHand(playerHand.filter(t => t !== tile));
+        checkWinner(playerHand); // Verifica si alguien ganó
+      } else {
+        alert('La ficha no coincide con los extremos del tablero.');
+      }
     }
   };
 
-  const handleGameEnd = (finalScore) => {
-    setScore(finalScore);
-    setCurrentScreen('winner');  
+  // Verifica si el jugador ganó
+  const checkWinner = (playerHand) => {
+    if (playerHand.length === 1) { // Cuando el jugador coloca la última ficha, se queda sin fichas
+      setWinner(currentPlayer); // Declara al jugador actual como ganador
+    } else {
+      setCurrentPlayer(currentPlayer === 1 ? 2 : 1); // Cambia de turno si no hay ganador
+    }
   };
 
-  const handleGameLost = () => {
-    setCurrentScreen('gameover');  
+  // Función para que el jugador pida una ficha del monte
+  const drawTile = (playerHand, setPlayerHand) => {
+    if (remainingTiles.length === 0) {
+      alert('No hay más fichas disponibles en el monte.');
+    } else {
+      const newTile = remainingTiles[0]; // La primera ficha del monte
+      setPlayerHand([...playerHand, newTile]); // Añade la nueva ficha a la mano del jugador
+      setRemainingTiles(remainingTiles.slice(1)); // Elimina la ficha del monte
+    }
   };
 
-  const handleRestartGame = () => {
-    setCurrentScreen('difficultyMenu');  // Redirigimos al menú de dificultad
+  // Función para pasar turno
+  const passTurn = () => {
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1); // Cambia de turno
   };
 
-  const handleExitToMenu = () => {
-    setCurrentScreen('mainMenu');  
-  };
-
-  // Manejador para la pantalla de ajustes
-  const handleSettingsSelect = () => {
-    setCurrentScreen('settings');  // Cambia a la pantalla de ajustes
-  };
-
-  const handleBackFromSettings = () => {
-    setCurrentScreen('mainMenu');  // Volvemos al menú principal desde ajustes
-  };
-
-  // Manejador para cerrar sesión
-  const handleLogout = () => {
-    setCurrentScreen('login');  // Redirigimos a la pantalla de inicio de sesión
+  // Función para reiniciar el juego
+  const resetGame = () => {
+    const shuffledTiles = shuffleTiles(dominoTiles);
+    setHandPlayer1(shuffledTiles.slice(0, 7));  // 7 fichas para el jugador 1
+    setHandPlayer2(shuffledTiles.slice(7, 14)); // 7 fichas para el jugador 2
+    setRemainingTiles(shuffledTiles.slice(14)); // Resto de fichas en el monte
+    setBoard([]);
+    setCurrentPlayer(1);
+    setWinner(null);
   };
 
   return (
-    <>
-      {currentScreen === 'splash' && <SplashScreen />}
-      {currentScreen === 'info' && <InfoDigui onFinish={handleFinishInfoDigui} />}
-      {currentScreen === 'login' && <Login onLoginSuccess={handleLoginSuccess} />}
-      {currentScreen === 'loginSuccessful' && <LoginSuccessful onContinue={handleLoginAnimationEnd} />}
-      {currentScreen === 'mainMenu' && (
-        <MainMenu
-          onGameSelect={handleGameSelect}
-          onSettingsSelect={handleSettingsSelect}  // Pasamos handleSettingsSelect al MainMenu
-        />
+    <div style={styles.appContainer}>
+      <h1 style={styles.title}>Juego de Dominó</h1>
+      <Board board={board} />
+
+      {winner && (
+        <div style={styles.modal}>
+          <div style={styles.modalContent}>
+            <h2 style={styles.winnerText}>¡El jugador {winner} ha ganado!</h2>
+            <button style={styles.button} onClick={resetGame}>Jugar de nuevo</button>
+          </div>
+        </div>
       )}
-      {currentScreen === 'settings' && (
-        <Settings
-          onBack={handleBackFromSettings}
-          onGameSelect={handleExitToMenu}  // Pasamos handleExitToMenu para volver a juegos
-          onLogout={handleLogout}  // Añadimos la función de logout
-        />
+      
+      {!winner && (
+        <div style={styles.handContainer}>
+          <h2 style={styles.turnTitle(currentPlayer === 1)}>Jugador 1: Tu turno</h2>
+          {currentPlayer === 1 ? (
+            <>
+              <Hand tiles={handPlayer1} onPlaceTile={(tile) => placeTile(tile, handPlayer1, setHandPlayer1)} />
+              <div style={styles.buttonsContainer}>
+                <button style={styles.button} onClick={() => drawTile(handPlayer1, setHandPlayer1)}>Pedir ficha</button>
+                <button style={styles.button} onClick={passTurn}>Pasar turno</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Hand tiles={handPlayer2} onPlaceTile={(tile) => placeTile(tile, handPlayer2, setHandPlayer2)} />
+              <div style={styles.buttonsContainer}>
+                <button style={styles.button} onClick={() => drawTile(handPlayer2, setHandPlayer2)}>Pedir ficha</button>
+                <button style={styles.button} onClick={passTurn}>Pasar turno</button>
+              </div>
+            </>
+          )}
+          <h2 style={styles.turnTitle(currentPlayer === 2)}>Jugador 2: Tu turno</h2>
+        </div>
       )}
-      {currentScreen === 'difficultyMenu' && (
-        <ABCdifficultyMenu
-          onSelectDifficulty={handleSelectDifficulty}
-          onBack={handleExitToMenu}
-        />
-      )}
-      {currentScreen === 'game' && (
-        <ABCPiensa
-          difficulty={difficulty}
-          onGameEnd={handleGameEnd}
-          onGameLost={handleGameLost}
-          onExitToMenu={handleExitToMenu}
-        />
-      )}
-      {currentScreen === 'winner' && (
-        <ABCwinnerMenu
-          score={score}
-          onRestart={handleRestartGame}
-          onExitToMenu={handleExitToMenu}
-        />
-      )}
-      {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
-      {currentScreen === 'dominoModeSelector' && (
-        <DominoGameModeSelector onBack={handleExitToMenu} />  // Selector de modo de juego de Dominó
-      )}
-      {currentScreen === 'domino' && <Domino />}  {/* Renderiza el juego de Dominó */}
-    </>
+    </div>
   );
-}
+};
+
+const styles = {
+  appContainer: {
+    textAlign: 'center',
+    padding: '20px',
+    backgroundColor: '#f0f0f0',
+    minHeight: '100vh',
+    position: 'relative',
+  },
+  title: {
+    fontSize: '36px',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+  },
+  handContainer: {
+    marginTop: '20px',
+  },
+  turnTitle: (isActive) => ({
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: isActive ? '#4CAF50' : '#888',
+    textShadow: isActive ? '0 0 10px rgba(0, 200, 0, 0.5)' : 'none',
+  }),
+  buttonsContainer: {
+    marginTop: '10px',
+  },
+  button: {
+    padding: '10px 20px',
+    fontSize: '16px',
+    margin: '5px',
+    backgroundColor: '#4CAF50',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+  modal: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'white',
+    padding: '30px',
+    boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
+    zIndex: 1000,
+  },
+  modalContent: {
+    textAlign: 'center',
+  },
+  winnerText: {
+    fontSize: '28px',
+    fontWeight: 'bold',
+    color: '#4CAF50',
+    marginBottom: '20px',
+  },
+};
 
 export default App;
