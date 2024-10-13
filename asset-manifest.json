@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.e6c13ad2.css",
-    "main.js": "/Digui/static/js/main.6a7e7b44.js",
+    "main.js": "/Digui/static/js/main.7eb690fd.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -41,6 +41,7 @@
     "static/media/nube.svg": "/Digui/static/media/nube.5b1cc3eb0210524d7148fa8f565ea8dc.svg",
     "static/media/ojo.svg": "/Digui/static/media/ojo.57a2163baa236e79e094daceb16d73e6.svg",
     "static/media/hoja.svg": "/Digui/static/media/hoja.5d11961957c219e1deba00f2cf76e998.svg",
+    "static/media/FullStar.svg": "/Digui/static/media/FullStar.2a7c3d1bb3a22a00c111609e80725e49.svg",
     "static/media/letter-i.svg": "/Digui/static/media/letter-i.89ed8e3ee9f832f4237931c4d7a5ade3.svg",
     "static/media/letter-i2.svg": "/Digui/static/media/letter-i2.8984d328286055a130b88aed2198e3f7.svg",
     "static/media/letter-g.svg": "/Digui/static/media/letter-g.d681016b5c63fde68f1ab30cc8de0744.svg",
@@ -48,6 +49,7 @@
     "static/media/estrella.svg": "/Digui/static/media/estrella.bd5b871d849470cf853980a8f0148914.svg",
     "static/media/letter-u.svg": "/Digui/static/media/letter-u.aaf0c1efb017d3da2fc9d905580dbdb5.svg",
     "static/media/turn-back.svg": "/Digui/static/media/turn-back.467194f6b0ada7a85d968679b495879c.svg",
+    "static/media/EmptyStar.svg": "/Digui/static/media/EmptyStar.1f070d23707741aaea17ad4481d4ba25.svg",
     "static/media/star.svg": "/Digui/static/media/star.0f0fc2e3c6c0e37f87f2bba6da8e9f7c.svg",
     "static/media/google-logo.svg": "/Digui/static/media/google-logo.9a7800d06783d80a1c12249a8ca58e9d.svg",
     "static/media/circle.svg": "/Digui/static/media/circle.0b5559ba378faff021fda4a381a15e2d.svg",
@@ -55,11 +57,11 @@
     "static/media/luna.svg": "/Digui/static/media/luna.96ff1911c1827d5f325a4f7bdeb099b4.svg",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
-    "main.6a7e7b44.js.map": "/Digui/static/js/main.6a7e7b44.js.map",
+    "main.7eb690fd.js.map": "/Digui/static/js/main.7eb690fd.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.6a7e7b44.js"
+    "static/js/main.7eb690fd.js"
   ]
 }
