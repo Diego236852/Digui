@@ -8,14 +8,14 @@ import ABCdifficultyMenu from './components/ABCdifficultyMenu';
 import ABCPiensa from './components/ABCPiensa';
 import ABCwinnerMenu from './components/ABCwinnerMenu';
 import ABCloserMenu from './components/ABCloserMenu';
-import Settings from './components/Settings'; // Importa el componente Settings
-import Domino from './components/Domino'; // Importa el componente Domino
-import DominoGameModeSelector from './components/DominoGameModeSelector'; // Importa el selector de modo de juego de Domino
+import Settings from './components/Settings'; 
+import Domino from './components/Domino'; // Importa tu juego de dominó
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
+  const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
 
   // Controlar el tiempo de espera en SplashScreen
   useEffect(() => {
@@ -48,7 +48,7 @@ function App() {
     if (game === 'ABC Piensa') {
       setCurrentScreen('difficultyMenu');  
     } else if (game === 'Domino') {
-      setCurrentScreen('dominoModeSelector');  // Abre la selección de modo de juego de Dominó
+      setCurrentScreen('domino');  // Cambia a la pantalla del juego de Dominó
     }
   };
 
@@ -62,25 +62,23 @@ function App() {
   };
 
   const handleRestartGame = () => {
-    setCurrentScreen('difficultyMenu');  // Redirigimos al menú de dificultad
+    setCurrentScreen('difficultyMenu');  // Aquí redirigimos al menú de dificultad
   };
 
   const handleExitToMenu = () => {
     setCurrentScreen('mainMenu');  
   };
 
-  // Manejador para la pantalla de ajustes
   const handleSettingsSelect = () => {
-    setCurrentScreen('settings');  // Cambia a la pantalla de ajustes
+    setCurrentScreen('settings');  
   };
 
   const handleBackFromSettings = () => {
-    setCurrentScreen('mainMenu');  // Volvemos al menú principal desde ajustes
+    setCurrentScreen('mainMenu');  
   };
 
-  // Manejador para cerrar sesión
   const handleLogout = () => {
-    setCurrentScreen('login');  // Redirigimos a la pantalla de inicio de sesión
+    setCurrentScreen('login');  
   };
 
   return (
@@ -92,14 +90,14 @@ function App() {
       {currentScreen === 'mainMenu' && (
         <MainMenu
           onGameSelect={handleGameSelect}
-          onSettingsSelect={handleSettingsSelect}  // Pasamos handleSettingsSelect al MainMenu
+          onSettingsSelect={handleSettingsSelect}
         />
       )}
       {currentScreen === 'settings' && (
         <Settings
           onBack={handleBackFromSettings}
-          onGameSelect={handleExitToMenu}  // Pasamos handleExitToMenu para volver a juegos
-          onLogout={handleLogout}  // Añadimos la función de logout
+          onGameSelect={handleExitToMenu}
+          onLogout={handleLogout}
         />
       )}
       {currentScreen === 'difficultyMenu' && (
@@ -124,10 +122,9 @@ function App() {
         />
       )}
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
-      {currentScreen === 'dominoModeSelector' && (
-        <DominoGameModeSelector onBack={handleExitToMenu} />  // Selector de modo de juego de Dominó
-      )}
-      {currentScreen === 'domino' && <Domino />}  {/* Renderiza el juego de Dominó */}
+      
+      {/* Pantalla del juego de Dominó */}
+      {currentScreen === 'domino' && <Domino onExitToMenu={handleExitToMenu} />} {/* Renderizamos el componente del juego de dominó */}
     </>
   );
 }

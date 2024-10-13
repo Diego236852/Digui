@@ -196,7 +196,7 @@ const DominoGameModeSelector = ({ onBack, onStartGame }) => {
 
         {/* Botón de "Iniciar Juego" */}
         {canStartGame && (
-          <StartButton onClick={onStartGame}>
+          <StartButton onClick={() => onStartGame(selectedPlayers)}>
             Iniciar Juego
           </StartButton>
         )}
