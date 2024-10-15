@@ -9,15 +9,18 @@ import ABCPiensa from './components/ABCPiensa';
 import ABCwinnerMenu from './components/ABCwinnerMenu';
 import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; 
-import Domino from './components/Domino'; // Importa tu juego de dominó
+import Domino from './components/Domino';
+import ChildSelector from './components/ChildSelector'; 
+import CreateChildForm from './components/CreateChildForm'; // Importamos el nuevo componente
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
   const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
+  const [selectedChild, setSelectedChild] = useState(null); // Estado para el niño seleccionado
+  const [isCreatingChild, setIsCreatingChild] = useState(false); // Nuevo estado para crear un niño
 
-  // Controlar el tiempo de espera en SplashScreen
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentScreen('info');  
@@ -36,20 +39,40 @@ function App() {
   };
 
   const handleLoginAnimationEnd = () => {
+    setCurrentScreen('childSelector');  
+  };
+
+  const handleChildSelected = (child) => {
+    setSelectedChild(child);
     setCurrentScreen('mainMenu');  
   };
 
-  const handleSelectDifficulty = (selectedDifficulty) => {
-    setDifficulty(selectedDifficulty);
-    setCurrentScreen('game');  
+  const handleCreateChildClick = () => {
+    setIsCreatingChild(true); // Cambiamos a la pantalla de creación de niño
+  };
+
+  const handleChildCreated = (child) => {
+    setSelectedChild(child);
+    setIsCreatingChild(false); // Después de crear el niño, volvemos al menú principal
+    setCurrentScreen('mainMenu');
+  };
+
+  const handleCancelCreateChild = () => {
+    setIsCreatingChild(false); // Cancelar la creación de niño y regresar al selector
+    setCurrentScreen('childSelector');
   };
 
   const handleGameSelect = (game) => {
     if (game === 'ABC Piensa') {
       setCurrentScreen('difficultyMenu');  
     } else if (game === 'Domino') {
-      setCurrentScreen('domino');  // Cambia a la pantalla del juego de Dominó
+      setCurrentScreen('domino');  
     }
+  };
+
+  const handleSelectDifficulty = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+    setCurrentScreen('game');  
   };
 
   const handleGameEnd = (finalScore) => {
@@ -62,7 +85,7 @@ function App() {
   };
 
   const handleRestartGame = () => {
-    setCurrentScreen('difficultyMenu');  // Aquí redirigimos al menú de dificultad
+    setCurrentScreen('difficultyMenu');  
   };
 
   const handleExitToMenu = () => {
@@ -87,12 +110,22 @@ function App() {
       {currentScreen === 'info' && <InfoDigui onFinish={handleFinishInfoDigui} />}
       {currentScreen === 'login' && <Login onLoginSuccess={handleLoginSuccess} />}
       {currentScreen === 'loginSuccessful' && <LoginSuccessful onContinue={handleLoginAnimationEnd} />}
+      
+      {currentScreen === 'childSelector' && !isCreatingChild && (
+        <ChildSelector onChildSelected={handleChildSelected} onCreateChild={handleCreateChildClick} />
+      )}
+      
+      {isCreatingChild && (
+        <CreateChildForm onChildCreated={handleChildCreated} onCancel={handleCancelCreateChild} />
+      )}
+      
       {currentScreen === 'mainMenu' && (
         <MainMenu
           onGameSelect={handleGameSelect}
           onSettingsSelect={handleSettingsSelect}
         />
       )}
+      
       {currentScreen === 'settings' && (
         <Settings
           onBack={handleBackFromSettings}
@@ -100,12 +133,14 @@ function App() {
           onLogout={handleLogout}
         />
       )}
+      
       {currentScreen === 'difficultyMenu' && (
         <ABCdifficultyMenu
           onSelectDifficulty={handleSelectDifficulty}
           onBack={handleExitToMenu}
         />
       )}
+      
       {currentScreen === 'game' && (
         <ABCPiensa
           difficulty={difficulty}
@@ -114,6 +149,7 @@ function App() {
           onExitToMenu={handleExitToMenu}
         />
       )}
+      
       {currentScreen === 'winner' && (
         <ABCwinnerMenu
           score={score}
@@ -121,6 +157,7 @@ function App() {
           onExitToMenu={handleExitToMenu}
         />
       )}
+      
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
       
       {/* Pantalla del juego de Dominó */}
