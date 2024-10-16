@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+        font-family: Poppins-Regular, Poppins;
+        font-size: 27.4px;
+      }
+
+      .cls-1, .cls-2 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        fill: #d77896;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        fill: #837c6e;
+      }
+
+      .cls-5 {
+        fill: #29cfd7;
+      }
+
+      .cls-7 {
+        stroke: #a24949;
+        stroke-width: 3px;
+      }
+
+      .cls-7, .cls-8 {
+        stroke-linecap: round;
+      }
+
+      .cls-7, .cls-8, .cls-9 {
+        fill: none;
+      }
+
+      .cls-8, .cls-9 {
+        stroke: #000;
+      }
+
+      .cls-6 {
+        fill: #f1e4cc;
+      }
+    </style>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <g id="Grupo_70" data-name="Grupo 70">
+        <g id="Grupo_42" data-name="Grupo 42">
+          <g id="Grupo_38-4" data-name="Grupo 38-4">
+            <g id="Rectángulo_70-4" data-name="Rectángulo 70-4">
+              <rect class="cls-4" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
+              <rect class="cls-9" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            </g>
+            <g id="Rectángulo_68-4" data-name="Rectángulo 68-4">
+              <rect class="cls-6" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
+              <rect class="cls-8" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            </g>
+            <line id="Línea_1-4" data-name="Línea 1-4" class="cls-7" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+          </g>
+        </g>
+        <g id="Estrella">
+          <path id="Polígono_3" data-name="Polígono 3" class="cls-3" d="M63.4,116.89l-12.3,14.22,12.26,14.19-18.42-3.53-6.17,17.77-6.12-17.75-18.43,3.58,12.3-14.22-12.26-14.19,18.42,3.52,6.16-17.77,6.12,17.75,18.43-3.58Z"/>
+        </g>
+        <g id="_6" data-name=" 6" class="cls-2">
+          <text class="cls-1" transform="translate(29.36 140.92)"><tspan x="0" y="0">6</tspan></text>
+        </g>
+      </g>
+      <g id="Grupo_65" data-name="Grupo 65">
+        <circle id="Elipse_24" data-name="Elipse 24" class="cls-5" cx="39.32" cy="42.75" r="24.47"/>
+        <g id="_1" data-name=" 1" class="cls-2">
+          <text class="cls-1" transform="translate(34.42 53.51)"><tspan x="0" y="0">1</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

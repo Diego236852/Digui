@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+        font-family: Poppins-Regular, Poppins;
+        font-size: 27.4px;
+      }
+
+      .cls-1, .cls-2 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        fill: #837c6e;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        fill: #29cfd7;
+      }
+
+      .cls-6 {
+        stroke: #a24949;
+        stroke-width: 3px;
+      }
+
+      .cls-6, .cls-7 {
+        stroke-linecap: round;
+      }
+
+      .cls-6, .cls-7, .cls-8 {
+        fill: none;
+      }
+
+      .cls-7, .cls-8 {
+        stroke: #000;
+      }
+
+      .cls-5 {
+        fill: #f1e4cc;
+      }
+    </style>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g id="Grupo_69" data-name="Grupo 69">
+      <g id="Grupo_37-2" data-name="Grupo 37-2">
+        <g id="Rectángulo_71-2" data-name="Rectángulo 71-2">
+          <rect class="cls-3" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
+          <rect class="cls-8" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+        </g>
+        <g id="Rectángulo_69-2" data-name="Rectángulo 69-2">
+          <rect class="cls-5" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
+          <rect class="cls-7" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+        </g>
+        <line id="Línea_2-2" data-name="Línea 2-2" class="cls-6" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+      </g>
+      <g id="Corazón">
+        <path id="Unión_1" data-name="Unión 1" class="cls-4" d="M17.74,136.01l-2.52-2.52c-5.83-5.99-5.69-15.58.31-21.4,5.87-5.71,15.22-5.71,21.1,0l2.52,2.52,2.52-2.52c5.91-5.91,15.49-5.91,21.41,0,5.91,5.91,5.91,15.49,0,21.41h0l-23.93,23.93-21.41-21.41Z"/>
+      </g>
+      <g id="_2" data-name=" 2" class="cls-2">
+        <text class="cls-1" transform="translate(31.32 141.34)"><tspan x="0" y="0">2</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
