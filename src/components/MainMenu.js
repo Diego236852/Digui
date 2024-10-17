@@ -4,11 +4,10 @@ import Cookies from 'js-cookie';
 import TopBar from './TopBar';
 import BottomNavBar from './BottomNavBar';
 import ABCPiensa_icon from './../images/MainMenu/ABCicon.svg';
-import Domino_icon from './../images/MainMenu/ABCicon.svg';
+import Domino_icon from './../images/MainMenu/ABCicon.svg';  // Actualizado con el ícono correcto
 import LanzayDiviertete_icon from './../images/MainMenu/ABCicon.svg';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
 import welcomeAudio from './../audios/MainMenu/welcome.mp3';
-
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
@@ -40,11 +39,11 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background-color: #f3e5f5; /* Fondo original sin gradiente */
+  background-color: #f3e5f5;
   position: relative;
   overflow: hidden;
   animation: ${slideIn} 1s ease-in-out;
-  font-family: 'Quicksand', sans-serif; /* Fuente Quicksand para la mayoría del texto */
+  font-family: 'Quicksand', sans-serif; 
 `;
 
 // Aseguramos que TopBar esté siempre visible con position fixed
@@ -52,7 +51,7 @@ const FixedTopBar = styled(TopBar)`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10; /* Por encima del contenido */
+  z-index: 10; 
 `;
 
 // Aseguramos que BottomNavBar esté siempre visible con position fixed
@@ -60,20 +59,20 @@ const FixedBottomNavBar = styled(BottomNavBar)`
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 10; /* Por encima del contenido */
+  z-index: 10; 
 `;
 
 // Contenido del juego con espacio para las barras superior e inferior
 const GameContent = styled.div`
   flex: 1;
-  padding: 80px 20px 90px; /* Ajustamos el padding para no superponer las barras */
-  overflow-y: auto; /* Agrega scroll solo al área de juegos si es necesario */
+  padding: 80px 20px 90px;
+  overflow-y: auto; 
 `;
 
-// Estilos para GameGrid, GameCard, etc. permanecen igual
+// Estilos para GameGrid, GameCard, etc.
 const GameGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta las columnas según el espacio disponible */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
   grid-gap: 20px;
   justify-items: center;
   align-items: center;
@@ -118,7 +117,6 @@ const GameTitle = styled.h3`
   margin: 0;
 `;
 
-
 const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
   useEffect(() => {
     const hasPlayedAudio = Cookies.get('hasPlayedAudio');
@@ -136,7 +134,6 @@ const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
     }
   };
 
-  
   return (
     <MainContainer>
       <FixedTopBar title="Juegos" />
@@ -164,6 +161,5 @@ const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
     </MainContainer>
   );
 };
-
 
 export default MainMenu;
