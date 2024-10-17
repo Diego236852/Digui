@@ -11,15 +11,14 @@ import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; 
 import Domino from './components/Domino';
 import ChildSelector from './components/ChildSelector'; 
-import CreateChildForm from './components/CreateChildForm'; // Importamos el nuevo componente
+import CreateChildForm from './components/CreateChildForm'; 
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
-  const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
-  const [selectedChild, setSelectedChild] = useState(null); // Estado para el niño seleccionado
-  const [isCreatingChild, setIsCreatingChild] = useState(false); // Nuevo estado para crear un niño
+  const [selectedChild, setSelectedChild] = useState(null); 
+  const [isCreatingChild, setIsCreatingChild] = useState(false); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,17 +47,17 @@ function App() {
   };
 
   const handleCreateChildClick = () => {
-    setIsCreatingChild(true); // Cambiamos a la pantalla de creación de niño
+    setIsCreatingChild(true); 
   };
 
   const handleChildCreated = (child) => {
     setSelectedChild(child);
-    setIsCreatingChild(false); // Después de crear el niño, volvemos al menú principal
+    setIsCreatingChild(false); 
     setCurrentScreen('mainMenu');
   };
 
   const handleCancelCreateChild = () => {
-    setIsCreatingChild(false); // Cancelar la creación de niño y regresar al selector
+    setIsCreatingChild(false); 
     setCurrentScreen('childSelector');
   };
 
