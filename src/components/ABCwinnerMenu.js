@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import FullStar from './../images/ABCPiensa/FullStar.svg';
 import EmptyStar from './../images/ABCPiensa/EmptyStar.svg'; // Reemplázalo por la imagen de estrella vacía
 
+
 // Animaciones
 const fadeInFromCenter = keyframes`
   0% {
@@ -222,6 +223,7 @@ const Shape = styled.div`
   animation: ${floatAnimation} ${(props) => props.duration}s ease-in-out infinite;
 `;
 
+
 // Componente principal
 const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
   const confettiColors = ['#ff5252', '#ffb74d', '#4caf50', '#40c4ff', '#ab47bc', '#ffd700'];
@@ -280,5 +282,6 @@ const ABCwinnerMenu = ({ score, onRestart, onExitToMenu }) => {
     </WinnerContainer>
   );
 };
+
 
 export default ABCwinnerMenu;

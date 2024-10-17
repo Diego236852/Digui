@@ -5,6 +5,7 @@ import AreYouSure from "./AreYouSure";
 import imageDatabase from "./DominoImageDatabase"; // Importamos la base de datos de imágenes
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 
+
 // GlobalStyle para resetear márgenes, importar fuentes y mejorar el diseño
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
@@ -123,6 +124,116 @@ const Title = styled.h2`
   color: ${({ active }) => (active ? "#fff" : "#6b21a8")};
   text-align: center;
 `;
+
+const Container = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f4f8;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  animation: ${fadeIn} 0.7s ease-in-out;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #6b21a8;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Baloo 2', cursive;
+`;
+
+const ExitButton = styled.button`
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #ff6f61;
+  }
+`;
+
+const StyledBoard = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #36276b;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  flex-grow: 1;
+  max-height: 40%;
+  margin: 15px 0;
+`;
+
+const PlayerArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const PlayerRow = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px;
+  background-color: ${({ active }) => (active ? "#6b21a8" : "#dce6f2")};
+  color: ${({ active }) => (active ? "white" : "#6b21a8")};
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+`;
+
+const PlayerTiles = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+`;
+
+const StyledButton = styled.button`
+  padding: 8px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: white;
+  background-color: #d292bc;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #6b21a8;
+  }
+
+  margin-bottom: 10px;
+`;
+
+const RotateScreenMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  color: #6b21a8;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+`;
+
 
 function Domino({ onExitToMenu }) {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -387,113 +498,5 @@ function Domino({ onExitToMenu }) {
   );
 }
 
-const Container = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f0f4f8;
-  height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-  animation: ${fadeIn} 0.7s ease-in-out;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: #6b21a8;
-  padding: 5px 10px;
-  border-radius: 8px;
-  color: white;
-  font-family: 'Baloo 2', cursive;
-`;
-
-const ExitButton = styled.button`
-  font-size: 18px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: #ff6f61;
-  }
-`;
-
-const StyledBoard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: #36276b;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 70%;
-  flex-grow: 1;
-  max-height: 40%;
-  margin: 15px 0;
-`;
-
-const PlayerArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-const PlayerRow = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 10px;
-  background-color: ${({ active }) => (active ? "#6b21a8" : "#dce6f2")};
-  color: ${({ active }) => (active ? "white" : "#6b21a8")};
-  border-radius: 8px;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
-`;
-
-const PlayerTiles = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  width: 100%;
-`;
-
-const StyledButton = styled.button`
-  padding: 8px 16px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  color: white;
-  background-color: #d292bc;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #6b21a8;
-  }
-
-  margin-bottom: 10px;
-`;
-
-const RotateScreenMessage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-family: 'Poppins', sans-serif;
-  color: #6b21a8;
-  height: 100vh;
-  width: 100vw;
-  text-align: center;
-`;
 
 export default Domino;

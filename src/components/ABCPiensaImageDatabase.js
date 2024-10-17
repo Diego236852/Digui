@@ -26,6 +26,7 @@ import xilofono from './../images/ABCPiensa/xilofono.svg';
 import yoyo     from './../images/ABCPiensa/yoyo.svg';
 import zapato   from './../images/ABCPiensa/zapato.svg';
 
+
 // Poner las imágenes en un arreglo de objetos con su respectiva letra
 const imageDatabase = [
   { src: arbol,     letter: 'A' },
@@ -56,6 +57,7 @@ const imageDatabase = [
   { src: yoyo,      letter: 'Y' },
   { src: zapato,    letter: 'Z' }
 ];
+
 
 // Exportar la base de datos de imágenes
 export default imageDatabase;

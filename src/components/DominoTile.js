@@ -1,17 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-function DominoTile({ tile, onClick, flipped }) {
-  return (
-    <TileContainer onClick={onClick}>
-      {flipped ? (
-        <FlippedTile>?</FlippedTile>
-      ) : (
-        <TileImage src={tile.src} alt="Ficha de dominó" />
-      )}
-    </TileContainer>
-  );
-}
 
 // Styled Components
 const TileContainer = styled.div`
@@ -37,5 +26,19 @@ const FlippedTile = styled.div`
   color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 `;
+
+
+function DominoTile({ tile, onClick, flipped }) {
+  return (
+    <TileContainer onClick={onClick}>
+      {flipped ? (
+        <FlippedTile>?</FlippedTile>
+      ) : (
+        <TileImage src={tile.src} alt="Ficha de dominó" />
+      )}
+    </TileContainer>
+  );
+}
+
 
 export default DominoTile;

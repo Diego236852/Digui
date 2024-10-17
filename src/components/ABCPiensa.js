@@ -7,6 +7,7 @@ import correctSoundFile from './../audios/ABCPiensa/correct.mp3'; // Importar so
 import errorSoundFile from './../audios/ABCPiensa/error.mp3'; // Importar sonido de error
 import selectSoundFile from './../audios/ABCPiensa/select.mp3'; // Importar sonido de selección
 
+
 // Animación de entrada general
 const fadeInGeneral = keyframes`
   0% {
@@ -301,6 +302,7 @@ const FlipCard = styled.div`
   }
 `;
 
+
 // Definición de initialLetters
 const initialLetters = [
   'A', 'B', 'C', 'D', 'E',
@@ -363,6 +365,7 @@ const SuccessParticles = () => (
     }}
   />
 );
+
 
 // Componente principal
 const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
@@ -515,5 +518,6 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
     </GameContainer>
   );
 };
+
 
 export default ABCPiensa;

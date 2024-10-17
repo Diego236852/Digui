@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+
 // Contenedor principal
 const FormContainer = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ const CancelButton = styled(Button)`
   }
 `;
 
+
 const CreateChildForm = ({ onChildCreated, onCancel }) => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -96,5 +98,6 @@ const CreateChildForm = ({ onChildCreated, onCancel }) => {
     </FormContainer>
   );
 };
+
 
 export default CreateChildForm;

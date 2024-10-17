@@ -2,41 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AreYouSure from "./AreYouSure"; // Importamos el componente AreYouSure
 
-// Componente para mostrar la pantalla de ganador
-const DominoWinnerPage = ({ winner, onPlayAgain, onExitToMenu }) => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  const handleExitClick = () => {
-    setShowConfirmation(true);
-  };
-
-  const handleCancelExit = () => {
-    setShowConfirmation(false);
-  };
-
-  const handleConfirmExit = () => {
-    setShowConfirmation(false);
-    onExitToMenu(); // Llamamos a la función para salir al menú principal
-  };
-
-  return (
-    <WinnerContainer>
-      <WinnerMessage>
-        {winner === "empate"
-          ? "¡El juego ha terminado en empate!"
-          : `¡Jugador ${winner} ganó el juego!`}
-      </WinnerMessage>
-      <ButtonContainer>
-        <StyledButton onClick={onPlayAgain}>Jugar de nuevo</StyledButton>
-        <StyledButton onClick={handleExitClick}>Volver al menú principal</StyledButton>
-      </ButtonContainer>
-
-      {showConfirmation && (
-        <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
-      )}
-    </WinnerContainer>
-  );
-};
 
 // Styled Components
 const WinnerContainer = styled.div`
@@ -101,5 +66,43 @@ const StyledButton = styled.button`
     padding: 12px 20px;
   }
 `;
+
+
+// Componente para mostrar la pantalla de ganador
+const DominoWinnerPage = ({ winner, onPlayAgain, onExitToMenu }) => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleExitClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelExit = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmExit = () => {
+    setShowConfirmation(false);
+    onExitToMenu(); // Llamamos a la función para salir al menú principal
+  };
+
+  return (
+    <WinnerContainer>
+      <WinnerMessage>
+        {winner === "empate"
+          ? "¡El juego ha terminado en empate!"
+          : `¡Jugador ${winner} ganó el juego!`}
+      </WinnerMessage>
+      <ButtonContainer>
+        <StyledButton onClick={onPlayAgain}>Jugar de nuevo</StyledButton>
+        <StyledButton onClick={handleExitClick}>Volver al menú principal</StyledButton>
+      </ButtonContainer>
+
+      {showConfirmation && (
+        <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
+      )}
+    </WinnerContainer>
+  );
+};
+
 
 export default DominoWinnerPage;

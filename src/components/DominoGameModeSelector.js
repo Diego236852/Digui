@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaArrowLeft, FaChevronDown } from 'react-icons/fa';
 
+
 // Animaciones para hacer que el componente aparezca suavemente
 const fadeIn = keyframes`
   0% {
@@ -133,6 +134,7 @@ const StartButton = styled.button`
   }
 `;
 
+
 const DominoGameModeSelector = ({ onBack, onStartGame }) => {
   const [playersDropdownOpen, setPlayersDropdownOpen] = useState(false);
   const [gameModeDropdownOpen, setGameModeDropdownOpen] = useState(false);
@@ -204,5 +206,6 @@ const DominoGameModeSelector = ({ onBack, onStartGame }) => {
     </GameModeContainer>
   );
 };
+
 
 export default DominoGameModeSelector;
