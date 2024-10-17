@@ -1,70 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #000;
-        font-family: Poppins-Regular, Poppins;
-        font-size: 27.4px;
-      }
-
-      .cls-1, .cls-2 {
-        isolation: isolate;
-      }
-
-      .cls-3 {
-        fill: #d77896;
-      }
-
-      .cls-3, .cls-4, .cls-5 {
-        stroke-width: 0px;
-      }
-
-      .cls-4 {
-        fill: #837c6e;
-      }
-
-      .cls-6 {
-        stroke: #a24949;
-        stroke-width: 3px;
-      }
-
-      .cls-6, .cls-7 {
-        stroke-linecap: round;
-      }
-
-      .cls-6, .cls-7, .cls-8 {
-        fill: none;
-      }
-
-      .cls-7, .cls-8 {
-        stroke: #000;
-      }
-
-      .cls-5 {
-        fill: #f1e4cc;
-      }
-    </style>
-  </defs>
-  <g id="Capa_1-2" data-name="Capa 1">
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168.3 78.3">
+  <g id="Capa_1-2" data-name="Capa 1-2">
     <g id="Grupo_71" data-name="Grupo 71">
       <g id="Grupo_38-3" data-name="Grupo 38-3">
         <g id="Rectángulo_70-3" data-name="Rectángulo 70-3">
-          <rect class="cls-4" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-          <rect class="cls-8" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+          <rect x="0" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#837c6e" stroke-width="0"/>
+          <rect x="1" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000"/>
         </g>
         <g id="Rectángulo_68-3" data-name="Rectángulo 68-3">
-          <rect class="cls-5" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-          <rect class="cls-7" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+          <rect x="5.9" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#f1e4cc" stroke-width="0"/>
+          <rect x="6.9" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000" stroke-linecap="round"/>
         </g>
-        <line id="Línea_1-3" data-name="Línea 1-3" class="cls-6" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+        <line id="Línea_1-3" data-name="Línea 1-3" x1="89.1" y1="70.5" x2="89.1" y2="7.8" fill="none" stroke="#a24949" stroke-linecap="round" stroke-width="3"/>
       </g>
       <g>
-        <path id="Polígono_2" data-name="Polígono 2" class="cls-3" d="M39.14,107.65l27.4,46.97H11.74l27.4-46.97Z"/>
-        <g id="_5" data-name=" 5" class="cls-2">
-          <text class="cls-1" transform="translate(31.32 146.79)"><tspan x="0" y="0">5</tspan></text>
+        <path id="Polígono_2" data-name="Polígono 2" d="M107.7,39.1l47-27.4v54.8s-47-27.4-47-27.4Z" fill="#d77896" stroke-width="0"/>
+        <g id="_5" data-name=" 5" isolation="isolate">
+          <g isolation="isolate">
+            <text transform="translate(146.8 47) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">5</tspan></text>
+          </g>
         </g>
       </g>
     </g>
   </g>
+  <metadata>
+    <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+      <slices/>
+      <sliceSourceBounds x="-45.01" y="45.02" width="168.32" height="78.29" bottomLeftOrigin="true"/>
+    </sfw>
+  </metadata>
 </svg>

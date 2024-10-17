@@ -1,80 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #000;
-        font-family: Poppins-Regular, Poppins;
-        font-size: 27.4px;
-      }
-
-      .cls-1, .cls-2 {
-        isolation: isolate;
-      }
-
-      .cls-3 {
-        fill: #837c6e;
-      }
-
-      .cls-3, .cls-4, .cls-5, .cls-6 {
-        stroke-width: 0px;
-      }
-
-      .cls-4 {
-        fill: #fcb12b;
-      }
-
-      .cls-5 {
-        fill: #29cfd7;
-      }
-
-      .cls-7 {
-        stroke: #a24949;
-        stroke-width: 3px;
-      }
-
-      .cls-7, .cls-8 {
-        stroke-linecap: round;
-      }
-
-      .cls-7, .cls-8, .cls-9 {
-        fill: none;
-      }
-
-      .cls-8, .cls-9 {
-        stroke: #000;
-      }
-
-      .cls-6 {
-        fill: #f1e4cc;
-      }
-    </style>
-  </defs>
-  <g id="Capa_1-2" data-name="Capa 1">
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168.3 78.3">
+  <g id="Capa_1-2" data-name="Capa 1-2">
     <g id="Grupo_68" data-name="Grupo 68">
       <g id="Grupo_37-3" data-name="Grupo 37-3">
         <g id="Rectángulo_71-3" data-name="Rectángulo 71-3">
-          <rect class="cls-3" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-          <rect class="cls-9" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+          <rect x="0" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#837c6e" stroke-width="0"/>
+          <rect x="1" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000"/>
         </g>
         <g id="Rectángulo_69-3" data-name="Rectángulo 69-3">
-          <rect class="cls-6" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-          <rect class="cls-8" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+          <rect x="5.9" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#f1e4cc" stroke-width="0"/>
+          <rect x="6.9" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000" stroke-linecap="round"/>
         </g>
-        <line id="Línea_2-3" data-name="Línea 2-3" class="cls-7" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+        <line id="Línea_2-3" data-name="Línea 2-3" x1="89.1" y1="70.5" x2="89.1" y2="7.8" fill="none" stroke="#a24949" stroke-linecap="round" stroke-width="3"/>
       </g>
       <g id="Luna-2">
-        <path id="Sustracción_1-2" data-name="Sustracción 1-2" class="cls-4" d="M49.27,76.33c-3.76,0-7.48-.72-10.96-2.15-3.33-1.37-6.37-3.36-8.94-5.87-2.56-2.48-4.61-5.44-6.03-8.71-2.95-6.81-2.95-14.53,0-21.33,1.42-3.27,3.48-6.23,6.04-8.71,2.58-2.51,5.61-4.51,8.94-5.87,5.98-2.44,12.61-2.82,18.83-1.06-14.53,10.77-17.58,31.28-6.8,45.81,1.92,2.59,4.21,4.88,6.8,6.8-2.56.73-5.21,1.09-7.88,1.09Z"/>
+        <path id="Sustracción_1-2" data-name="Sustracción 1-2" d="M76.3,29c0,3.8-.7,7.5-2.2,11-1.4,3.3-3.4,6.4-5.9,8.9-2.5,2.6-5.4,4.6-8.7,6-6.8,3-14.5,3-21.3,0-3.3-1.4-6.2-3.5-8.7-6-2.5-2.6-4.5-5.6-5.9-8.9-2.4-6-2.8-12.6-1.1-18.8,10.8,14.5,31.3,17.6,45.8,6.8,2.6-1.9,4.9-4.2,6.8-6.8.7,2.6,1.1,5.2,1.1,7.9Z" fill="#fcb12b" stroke-width="0"/>
       </g>
-      <g id="_3-2" data-name=" 3-2" class="cls-2">
-        <text class="cls-1" transform="translate(27.4 63.61)"><tspan x="0" y="0">3</tspan></text>
+      <g id="_3-2" data-name=" 3-2" isolation="isolate">
+        <g isolation="isolate">
+          <text transform="translate(63.6 50.9) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">3</tspan></text>
+        </g>
       </g>
     </g>
     <g id="Estrella">
-      <path id="Polígono_3" data-name="Polígono 3" class="cls-5" d="M62.47,122.68l-12.3,14.22,12.26,14.19-18.42-3.53-6.17,17.77-6.12-17.75-18.43,3.58,12.3-14.22-12.26-14.19,18.42,3.52,6.16-17.77,6.12,17.75,18.43-3.58Z"/>
+      <path id="Polígono_3" data-name="Polígono 3" d="M122.7,15.8l14.2,12.3,14.2-12.3-3.5,18.4,17.8,6.2-17.8,6.1,3.6,18.4-14.2-12.3-14.2,12.3,3.5-18.4-17.8-6.2,17.8-6.1-3.6-18.4h0Z" fill="#29cfd7" stroke-width="0"/>
     </g>
-    <g id="_6" data-name=" 6" class="cls-2">
-      <text class="cls-1" transform="translate(28.74 143.11)"><tspan x="0" y="0">6</tspan></text>
+    <g id="_6" data-name=" 6" isolation="isolate">
+      <g isolation="isolate">
+        <text transform="translate(143.1 49.6) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">6</tspan></text>
+      </g>
     </g>
   </g>
+  <metadata>
+    <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+      <slices/>
+      <sliceSourceBounds x="-45.01" y="45.02" width="168.32" height="78.29" bottomLeftOrigin="true"/>
+    </sfw>
+  </metadata>
 </svg>

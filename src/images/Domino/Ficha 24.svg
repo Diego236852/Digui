@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168.3 78.3">
   <defs>
     <style>
-      .cls-1 {
-        fill: #000;
-        font-family: Poppins-Regular, Poppins;
-        font-size: 27.4px;
-      }
-
       .cls-1, .cls-2 {
         isolation: isolate;
       }
@@ -18,6 +12,12 @@
 
       .cls-3, .cls-4, .cls-5 {
         stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #000;
+        font-family: Poppins-Regular, Poppins;
+        font-size: 27.4px;
       }
 
       .cls-6 {
@@ -46,25 +46,33 @@
       }
     </style>
   </defs>
-  <g id="Capa_1-2" data-name="Capa 1">
+  <g id="Capa_1-2" data-name="Capa 1-2">
     <g id="Grupo_66" data-name="Grupo 66">
       <g id="Grupo_65" data-name="Grupo 65">
         <g id="Grupo_38-2" data-name="Grupo 38-2">
           <g id="Rectángulo_70-2" data-name="Rectángulo 70-2">
-            <rect class="cls-3" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-            <rect class="cls-8" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            <rect class="cls-3" x="0" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8"/>
+            <rect class="cls-8" x="1" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8"/>
           </g>
           <g id="Rectángulo_68-2" data-name="Rectángulo 68-2">
-            <rect class="cls-5" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-            <rect class="cls-7" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            <rect class="cls-5" x="5.9" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8"/>
+            <rect class="cls-7" x="6.9" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8"/>
           </g>
-          <line id="Línea_1-2" data-name="Línea 1-2" class="cls-6" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+          <line id="Línea_1-2" data-name="Línea 1-2" class="cls-6" x1="89.1" y1="70.5" x2="89.1" y2="7.8"/>
         </g>
-        <circle id="Elipse_24" data-name="Elipse 24" class="cls-4" cx="40.12" cy="129.17" r="24.47"/>
-        <g id="_1" data-name=" 1" class="cls-2">
-          <text class="cls-1" transform="translate(35.23 139.94)"><tspan x="0" y="0">1</tspan></text>
+        <circle id="Elipse_24" data-name="Elipse 24" class="cls-4" cx="129.2" cy="38.2" r="24.5"/>
+        <g id="_1" data-name=" 1" class="cls-1">
+          <g class="cls-1">
+            <text class="cls-2" transform="translate(139.9 43.1) rotate(-90)"><tspan x="0" y="0">1</tspan></text>
+          </g>
         </g>
       </g>
     </g>
   </g>
+  <metadata>
+    <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+      <slices/>
+      <sliceSourceBounds x="-45.01" y="45.02" width="168.32" height="78.29" bottomLeftOrigin="true"/>
+    </sfw>
+  </metadata>
 </svg>

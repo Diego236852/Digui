@@ -1,82 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.29 168.32">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #000;
-        font-family: Poppins-Regular, Poppins;
-        font-size: 27.4px;
-      }
-
-      .cls-1, .cls-2 {
-        isolation: isolate;
-      }
-
-      .cls-3 {
-        fill: #837c6e;
-      }
-
-      .cls-3, .cls-4, .cls-5, .cls-6 {
-        stroke-width: 0px;
-      }
-
-      .cls-4 {
-        fill: #fcb12b;
-      }
-
-      .cls-7 {
-        stroke: #a24949;
-        stroke-width: 3px;
-      }
-
-      .cls-7, .cls-8 {
-        stroke-linecap: round;
-      }
-
-      .cls-7, .cls-8, .cls-9 {
-        fill: none;
-      }
-
-      .cls-8, .cls-9 {
-        stroke: #000;
-      }
-
-      .cls-5 {
-        fill: #34d79d;
-      }
-
-      .cls-6 {
-        fill: #f1e4cc;
-      }
-    </style>
-  </defs>
-  <g id="Capa_1-2" data-name="Capa 1">
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168.3 78.3">
+  <g id="Capa_1-2" data-name="Capa 1-2">
     <g id="Grupo_70" data-name="Grupo 70">
       <g id="Grupo_42" data-name="Grupo 42">
         <g id="Grupo_38-4" data-name="Grupo 38-4">
           <g id="Rectángulo_70-4" data-name="Rectángulo 70-4">
-            <rect class="cls-3" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-            <rect class="cls-9" x=".98" y=".98" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            <rect x="0" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#837c6e" stroke-width="0"/>
+            <rect x="1" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000"/>
           </g>
           <g id="Rectángulo_68-4" data-name="Rectángulo 68-4">
-            <rect class="cls-6" y="5.87" width="78.29" height="162.45" rx="9.79" ry="9.79"/>
-            <rect class="cls-8" x=".98" y="6.85" width="76.33" height="160.49" rx="8.81" ry="8.81"/>
+            <rect x="5.9" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#f1e4cc" stroke-width="0"/>
+            <rect x="6.9" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000" stroke-linecap="round"/>
           </g>
-          <line id="Línea_1-4" data-name="Línea 1-4" class="cls-7" x1="7.83" y1="89.05" x2="70.46" y2="89.05"/>
+          <line id="Línea_1-4" data-name="Línea 1-4" x1="89.1" y1="70.5" x2="89.1" y2="7.8" fill="none" stroke="#a24949" stroke-linecap="round" stroke-width="3"/>
         </g>
       </g>
       <g id="Estrella">
-        <path id="Polígono_3" data-name="Polígono 3" class="cls-4" d="M63.4,116.89l-12.3,14.22,12.26,14.19-18.42-3.53-6.17,17.77-6.12-17.75-18.43,3.58,12.3-14.22-12.26-14.19,18.42,3.52,6.16-17.77,6.12,17.75,18.43-3.58Z"/>
+        <path id="Polígono_3" data-name="Polígono 3" d="M116.9,14.9l14.2,12.3,14.2-12.3-3.5,18.4,17.8,6.2-17.8,6.1,3.6,18.4-14.2-12.3-14.2,12.3,3.5-18.4-17.8-6.2,17.8-6.1-3.6-18.4h0Z" fill="#fcb12b" stroke-width="0"/>
       </g>
-      <g id="_6" data-name=" 6" class="cls-2">
-        <text class="cls-1" transform="translate(29.36 140.92)"><tspan x="0" y="0">6</tspan></text>
+      <g id="_6" data-name=" 6" isolation="isolate">
+        <g isolation="isolate">
+          <text transform="translate(140.9 48.9) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">6</tspan></text>
+        </g>
       </g>
-      <g id="Estrella-2" data-name="Estrella">
-        <path id="Polígono_3-2" data-name="Polígono 3" class="cls-5" d="M63.4,37.63l-12.3,14.22,12.26,14.19-18.42-3.53-6.17,17.77-6.12-17.75-18.43,3.58,12.3-14.22-12.26-14.19,18.42,3.52,6.16-17.77,6.12,17.75,18.43-3.58Z"/>
+      <g id="Estrella-2">
+        <path id="Polígono_3-2" data-name="Polígono 3-2" d="M37.6,14.9l14.2,12.3,14.2-12.3-3.5,18.4,17.8,6.2-17.8,6.1,3.6,18.4-14.2-12.3-14.2,12.3,3.5-18.4-17.8-6.2,17.8-6.1-3.6-18.4h0Z" fill="#34d79d" stroke-width="0"/>
       </g>
-      <g id="_6-2" data-name=" 6" class="cls-2">
-        <text class="cls-1" transform="translate(29.36 61.65)"><tspan x="0" y="0">6</tspan></text>
+      <g id="_6-2" data-name=" 6-2" isolation="isolate">
+        <g isolation="isolate">
+          <text transform="translate(61.7 48.9) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">6</tspan></text>
+        </g>
       </g>
     </g>
   </g>
+  <metadata>
+    <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+      <slices/>
+      <sliceSourceBounds x="-45.01" y="45.02" width="168.32" height="78.29" bottomLeftOrigin="true"/>
+    </sfw>
+  </metadata>
 </svg>
