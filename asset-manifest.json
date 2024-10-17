@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Digui/static/css/main.e6c13ad2.css",
-    "main.js": "/Digui/static/js/main.7eb690fd.js",
+    "main.js": "/Digui/static/js/main.dfb93f32.js",
     "static/js/453.022c7903.chunk.js": "/Digui/static/js/453.022c7903.chunk.js",
     "static/media/vision.jpg": "/Digui/static/media/vision.a145cd75ddeed4e849c8.jpg",
     "static/media/mision.jpg": "/Digui/static/media/mision.ee3d4806a51a610b6f25.jpg",
@@ -57,11 +57,11 @@
     "static/media/luna.svg": "/Digui/static/media/luna.96ff1911c1827d5f325a4f7bdeb099b4.svg",
     "static/media/check-icon.svg": "/Digui/static/media/check-icon.390fbf8773c3f3526cba963547380e5e.svg",
     "main.e6c13ad2.css.map": "/Digui/static/css/main.e6c13ad2.css.map",
-    "main.7eb690fd.js.map": "/Digui/static/js/main.7eb690fd.js.map",
+    "main.dfb93f32.js.map": "/Digui/static/js/main.dfb93f32.js.map",
     "453.022c7903.chunk.js.map": "/Digui/static/js/453.022c7903.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.7eb690fd.js"
+    "static/js/main.dfb93f32.js"
   ]
 }
