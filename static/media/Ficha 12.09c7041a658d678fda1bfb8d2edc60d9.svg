@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168.3 78.3">
+  <g id="Capa_1-2" data-name="Capa 1-2">
+    <g id="Grupo_66" data-name="Grupo 66">
+      <g id="Grupo_65" data-name="Grupo 65">
+        <g id="Grupo_38-2" data-name="Grupo 38-2">
+          <g id="Rectángulo_70-2" data-name="Rectángulo 70-2">
+            <rect x="0" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#837c6e" stroke-width="0"/>
+            <rect x="1" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000"/>
+          </g>
+          <g id="Rectángulo_68-2" data-name="Rectángulo 68-2">
+            <rect x="5.9" y="0" width="162.4" height="78.3" rx="9.8" ry="9.8" fill="#f1e4cc" stroke-width="0"/>
+            <rect x="6.9" y="1" width="160.5" height="76.3" rx="8.8" ry="8.8" fill="none" stroke="#000" stroke-linecap="round"/>
+          </g>
+          <line id="Línea_1-2" data-name="Línea 1-2" x1="89.1" y1="70.5" x2="89.1" y2="7.8" fill="none" stroke="#a24949" stroke-linecap="round" stroke-width="3"/>
+        </g>
+        <circle id="Elipse_24" data-name="Elipse 24" cx="51.9" cy="38.2" r="24.5" fill="#34d79d" stroke-width="0"/>
+        <circle id="Elipse_24-2" data-name="Elipse 24-2" cx="127" cy="38.2" r="24.5" fill="#34d79d" stroke-width="0"/>
+        <g id="_1" data-name=" 1" isolation="isolate">
+          <g isolation="isolate">
+            <text transform="translate(62.6 43.1) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">1</tspan></text>
+          </g>
+        </g>
+        <g id="_1-2" data-name=" 1-2" isolation="isolate">
+          <g isolation="isolate">
+            <text transform="translate(138.1 43.1) rotate(-90)" fill="#000" font-family="Poppins-Regular, Poppins" font-size="27.4" isolation="isolate"><tspan x="0" y="0">1</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <metadata>
+    <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+      <slices/>
+      <sliceSourceBounds x="-45.01" y="45.02" width="168.32" height="78.29" bottomLeftOrigin="true"/>
+    </sfw>
+  </metadata>
+</svg>
