@@ -7,6 +7,7 @@ import ABCPiensa_icon from './../images/MainMenu/ABCRealIcon.svg';
 import Domino_icon from './../images/MainMenu/ABCicon.svg';
 import LanzayDiviertete_icon from './../images/MainMenu/ABCicon.svg';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
+import WordDecoder_icon from './../images/MainMenu/ABCicon.svg'; // Ícono para Word Decoder
 import welcomeAudio from './../audios/MainMenu/welcome.mp3';
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
@@ -204,6 +205,10 @@ const MainMenu = ({ onGameSelect, onSettingsSelect, onHomeSelect }) => {
           <GameCard onClick={() => handleGameClick('RuletaSuerte')}>
             <GameImage src={RuletaSuerte_icon} alt="Ruleta de la Suerte" />
             <GameTitle>Ruleta de la Suerte</GameTitle>
+          </GameCard>
+          <GameCard onClick={() => handleGameClick('WordDecoder')}>
+            <GameImage src={WordDecoder_icon} alt="Word Decoder" />
+            <GameTitle>Word Decoder</GameTitle>
           </GameCard>
         </GameGrid>
       </GameContent>

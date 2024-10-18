@@ -13,7 +13,8 @@ import Domino from './components/Domino';
 import ChildSelector from './components/ChildSelector'; 
 import CreateChildForm from './components/CreateChildForm';
 import RuletaSuerte from './components/RuletaSuerte'; 
-import Home from './components/Home'; // Importamos el nuevo componente Home
+import Home from './components/Home'; 
+import WordDecoder from './components/WordDecoder'; // Importamos el nuevo componente WordDecoder
 
 //Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado de sesión del usuario
 import { useAuth0 } from '@auth0/auth0-react';
@@ -82,6 +83,8 @@ function App() {
       setCurrentScreen('domino');  
     } else if (game === 'RuletaSuerte') {
       setCurrentScreen('ruletaSuerte');  // Añadimos la nueva pantalla del juego de la ruleta
+    } else if (game === 'WordDecoder') {
+      setCurrentScreen('wordDecoder');  // Cambiamos la pantalla a WordDecoder
     }
   };
 
@@ -193,10 +196,13 @@ function App() {
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
 
       {/* Pantalla del juego de Dominó */}
-      {currentScreen === 'domino' && <Domino onExitToMenu={handleExitToMenu} />} {/* Renderizamos el componente del juego de dominó */}
+      {currentScreen === 'domino' && <Domino onExitToMenu={handleExitToMenu} />}
 
       {/* Pantalla del juego de la Ruleta de la Suerte */}
-      {currentScreen === 'ruletaSuerte' && <RuletaSuerte onExitToMenu={handleExitToMenu} />} {/* Renderizamos el componente del juego de la ruleta */}
+      {currentScreen === 'ruletaSuerte' && <RuletaSuerte onExitToMenu={handleExitToMenu} />}
+
+      {/* Pantalla de Word Decoder */}
+      {currentScreen === 'wordDecoder' && <WordDecoder onExitToMenu={handleExitToMenu} />}
 
       {/* Pantalla de Inicio */}
       {currentScreen === 'home' && (
