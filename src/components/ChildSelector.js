@@ -3,7 +3,6 @@ import styled, { createGlobalStyle } from 'styled-components';
 import avatar1 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
 import avatar2 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
 
-
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
 
@@ -99,7 +98,6 @@ const CreateButton = styled.button`
   }
 `;
 
-
 const ChildSelector = ({ onChildSelected, onCreateChild }) => {
   const handleChildClick = (child) => {
     onChildSelected(child); // Redirecciona a MainMenu pasando el niño seleccionado
@@ -129,6 +127,5 @@ const ChildSelector = ({ onChildSelected, onCreateChild }) => {
     </>
   );
 };
-
 
 export default ChildSelector;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
 import googleLogo from './../images/Login/google-logo.svg'; // Imagen del logo de Google
 import logo from './../images/Login/logo digui.svg'; // Logo de digui
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 
 // Agregar las fuentes de Google Fonts
@@ -378,18 +380,7 @@ const Login = ({ onLoginSuccess }) => {
 
             {isLogin ? (
               <>
-                <Input type="text" placeholder="Usuario" />
-                <Input type="password" placeholder="Contraseña" />
-                <Button onClick={handleLoginClick}>Iniciar Sesión</Button>
-                <Link>¿Olvidaste la contraseña?</Link>
-                <CreateAccountButton onClick={handleCreateAccount}>
-                  Crear Cuenta
-                </CreateAccountButton>
-                <p>O iniciar sesión con</p>
-                <GoogleButton>
-                  <img src={googleLogo} alt="Google" width="20" />
-                  Google
-                </GoogleButton>
+                <LoginButton />
               </>
             ) : (
               <>

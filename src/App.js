@@ -11,14 +11,23 @@ import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; 
 import Domino from './components/Domino';
 import ChildSelector from './components/ChildSelector'; 
-import CreateChildForm from './components/CreateChildForm'; 
+import CreateChildForm from './components/CreateChildForm'; // Importamos el nuevo componente
+
+//Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado
+//de secion del usuario
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
-  const [selectedChild, setSelectedChild] = useState(null); 
-  const [isCreatingChild, setIsCreatingChild] = useState(false); 
+  const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
+  const [selectedChild, setSelectedChild] = useState(null); // Estado para el niño seleccionado
+  const [isCreatingChild, setIsCreatingChild] = useState(false); // Nuevo estado para crear un niño
+
+  const { isAuthenticated, logout, user } = useAuth0();
+
+  if (isAuthenticated) console.log(user.email);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,7 +39,8 @@ function App() {
 
   // Manejadores de flujo de pantallas
   const handleFinishInfoDigui = () => {
-    setCurrentScreen('login');  
+    if (!isAuthenticated) setCurrentScreen('login');
+    else setCurrentScreen('loginSuccessful')
   };
 
   const handleLoginSuccess = () => {
@@ -47,17 +57,17 @@ function App() {
   };
 
   const handleCreateChildClick = () => {
-    setIsCreatingChild(true); 
+    setIsCreatingChild(true); // Cambiamos a la pantalla de creación de niño
   };
 
   const handleChildCreated = (child) => {
     setSelectedChild(child);
-    setIsCreatingChild(false); 
+    setIsCreatingChild(false); // Después de crear el niño, volvemos al menú principal
     setCurrentScreen('mainMenu');
   };
 
   const handleCancelCreateChild = () => {
-    setIsCreatingChild(false); 
+    setIsCreatingChild(false); // Cancelar la creación de niño y regresar al selector
     setCurrentScreen('childSelector');
   };
 
@@ -100,7 +110,7 @@ function App() {
   };
 
   const handleLogout = () => {
-    setCurrentScreen('login');  
+    logout({logoutParams: {returnTo: window.location.origin + '/Digui'}});
   };
 
   return (
