@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import Cookies from 'js-cookie';
 import TopBar from './TopBar';
 import BottomNavBar from './BottomNavBar';
-import ABCPiensa_icon from './../images/MainMenu/ABCicon.svg';
+import ABCPiensa_icon from './../images/MainMenu/ABCRealIcon.svg';
 import Domino_icon from './../images/MainMenu/ABCicon.svg';
 import LanzayDiviertete_icon from './../images/MainMenu/ABCicon.svg';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
@@ -77,6 +77,20 @@ const GameGrid = styled.div`
   justify-items: center;
   align-items: center;
   height: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Para pantallas medianas */
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr 1fr; /* Para pantallas pequeñas pero no móviles */
+    grid-gap: 10px; /* Reducir el espacio entre los elementos */
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr; /* Para pantallas pequeñas (teléfonos) */
+    grid-gap: 15px;
+  }
 `;
 
 const GameCard = styled.div`
@@ -99,6 +113,18 @@ const GameCard = styled.div`
   &:active {
     transform: scale(0.98);
   }
+
+  @media (max-width: 768px) {
+    max-width: 200px; /* Ajusta el tamaño máximo para pantallas medianas */
+  }
+
+  @media (max-width: 576px) {
+    max-width: 180px; /* Ajusta el tamaño máximo para pantallas entre 576px y 768px */
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%; /* Tarjetas ocuparán todo el ancho en pantallas pequeñas */
+  }
 `;
 
 const GameImage = styled.img`
@@ -107,6 +133,18 @@ const GameImage = styled.img`
   border-radius: 10px;
   object-fit: cover;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    height: 120px; /* Ajusta la altura de las imágenes para pantallas medianas */
+  }
+
+  @media (max-width: 576px) {
+    height: 100px; /* Imágenes más pequeñas para pantallas entre 576px y 768px */
+  }
+
+  @media (max-width: 480px) {
+    height: 100px; /* Imágenes más pequeñas en pantallas pequeñas */
+  }
 `;
 
 const GameTitle = styled.h3`
@@ -115,6 +153,18 @@ const GameTitle = styled.h3`
   color: #6b21a8;
   font-weight: bold;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px; /* Ajusta el tamaño de la fuente para pantallas medianas */
+  }
+
+  @media (max-width: 576px) {
+    font-size: 13px; /* Ajusta el tamaño de la fuente para pantallas entre 576px y 768px */
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px; /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+  }
 `;
 
 const MainMenu = ({ onGameSelect, onSettingsSelect, onHomeSelect }) => {

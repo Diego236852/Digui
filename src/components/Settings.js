@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BottomNavBar from './BottomNavBar'; // Importar BottomNavBar
 import TopBar from './TopBar'; // Importar TopBar
-import profile_temp_image from './../images/Settings/profile.jpeg';
+import profile_temp_image from './../images/Settings/Profile.png';
 
 const SettingsContainer = styled.div`
   display: flex;
