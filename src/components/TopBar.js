@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const TopBarContainer = styled.div`
   background-color: #6b21a8;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;

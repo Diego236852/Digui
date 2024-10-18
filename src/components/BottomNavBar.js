@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaHome, FaBook, FaGamepad, FaBell, FaCog } from 'react-icons/fa';
 
-
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -18,7 +17,7 @@ const NavButton = styled.div`
   flex-direction: column;
   align-items: center;
   color: #ffffff;
-  cursor: pointer; /* Añadido cursor pointer para indicar que es interactivo */
+  cursor: pointer;
   transition: transform 0.2s;
 
   &:hover {
@@ -33,33 +32,31 @@ const ButtonLabel = styled.span`
   letter-spacing: 0.5px;
 `;
 
-
 const BottomNavBar = ({ onGameSelect, onSettingsSelect, onHomeSelect, onEducationSelect, onNotificationsSelect }) => {
   return (
     <NavBarContainer>
-      <NavButton onClick={onHomeSelect}> {/* Añadir evento onClick */}
+      <NavButton onClick={onHomeSelect}> {/* Evento para "Inicio" */}
         <FaHome size={24} />
         <ButtonLabel>Inicio</ButtonLabel>
       </NavButton>
-      <NavButton onClick={onEducationSelect}> {/* Añadir evento onClick */}
+      <NavButton onClick={onEducationSelect}>
         <FaBook size={24} />
         <ButtonLabel>Educación</ButtonLabel>
       </NavButton>
-      <NavButton onClick={onGameSelect}> {/* Aquí activamos onGameSelect */}
+      <NavButton onClick={onGameSelect}>
         <FaGamepad size={24} />
         <ButtonLabel>Juegos</ButtonLabel>
       </NavButton>
-      <NavButton onClick={onNotificationsSelect}> {/* Añadir evento onClick */}
+      <NavButton onClick={onNotificationsSelect}>
         <FaBell size={24} />
         <ButtonLabel>Notificaciones</ButtonLabel>
       </NavButton>
-      <NavButton onClick={onSettingsSelect}> {/* Añadir evento onClick */}
+      <NavButton onClick={onSettingsSelect}>
         <FaCog size={24} />
         <ButtonLabel>Ajustes</ButtonLabel>
       </NavButton>
     </NavBarContainer>
   );
 };
-
 
 export default BottomNavBar;

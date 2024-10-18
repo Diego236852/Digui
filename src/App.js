@@ -11,10 +11,11 @@ import ABCloserMenu from './components/ABCloserMenu';
 import Settings from './components/Settings'; 
 import Domino from './components/Domino';
 import ChildSelector from './components/ChildSelector'; 
-import CreateChildForm from './components/CreateChildForm'; // Importamos el nuevo componente
+import CreateChildForm from './components/CreateChildForm';
+import RuletaSuerte from './components/RuletaSuerte'; 
+import Home from './components/Home'; // Importamos el nuevo componente Home
 
-//Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado
-//de secion del usuario
+//Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado de sesión del usuario
 import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
@@ -27,15 +28,17 @@ function App() {
 
   const { isAuthenticated, logout, user } = useAuth0();
 
-  if (isAuthenticated) console.log(user.email);
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentScreen('info');  
-    }, 3000);  
-
-    return () => clearTimeout(timer);
-  }, []);
+    // Si el usuario ya está autenticado, redirige directamente a LoginSuccessful
+    if (isAuthenticated) {
+      setCurrentScreen('loginSuccessful');
+    } else {
+      const timer = setTimeout(() => {
+        setCurrentScreen('info');  
+      }, 3000);  
+      return () => clearTimeout(timer);
+    }
+  }, [isAuthenticated]);
 
   // Manejadores de flujo de pantallas
   const handleFinishInfoDigui = () => {
@@ -71,11 +74,14 @@ function App() {
     setCurrentScreen('childSelector');
   };
 
+  // Manejador para seleccionar el juego
   const handleGameSelect = (game) => {
     if (game === 'ABC Piensa') {
       setCurrentScreen('difficultyMenu');  
     } else if (game === 'Domino') {
       setCurrentScreen('domino');  
+    } else if (game === 'RuletaSuerte') {
+      setCurrentScreen('ruletaSuerte');  // Añadimos la nueva pantalla del juego de la ruleta
     }
   };
 
@@ -110,7 +116,22 @@ function App() {
   };
 
   const handleLogout = () => {
-    logout({logoutParams: {returnTo: window.location.origin + '/Digui'}});
+    logout({ logoutParams: { returnTo: window.location.origin + '/Digui' } });
+  };
+
+  // Manejador para la selección de la opción "Inicio" en la barra de navegación
+  const handleHomeSelect = () => {
+    setCurrentScreen('home');
+  };
+
+  const handleEducationSelect = () => {
+    console.log('Educación seleccionada');
+    // Añadir aquí la lógica para la pantalla de educación cuando esté disponible
+  };
+
+  const handleNotificationsSelect = () => {
+    console.log('Notificaciones seleccionadas');
+    // Añadir aquí la lógica para las notificaciones cuando esté disponible
   };
 
   return (
@@ -132,6 +153,7 @@ function App() {
         <MainMenu
           onGameSelect={handleGameSelect}
           onSettingsSelect={handleSettingsSelect}
+          onHomeSelect={handleHomeSelect}
         />
       )}
       
@@ -140,6 +162,7 @@ function App() {
           onBack={handleBackFromSettings}
           onGameSelect={handleExitToMenu}
           onLogout={handleLogout}
+          onHomeSelect={handleHomeSelect}
         />
       )}
       
@@ -168,9 +191,23 @@ function App() {
       )}
       
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
-      
+
       {/* Pantalla del juego de Dominó */}
       {currentScreen === 'domino' && <Domino onExitToMenu={handleExitToMenu} />} {/* Renderizamos el componente del juego de dominó */}
+
+      {/* Pantalla del juego de la Ruleta de la Suerte */}
+      {currentScreen === 'ruletaSuerte' && <RuletaSuerte onExitToMenu={handleExitToMenu} />} {/* Renderizamos el componente del juego de la ruleta */}
+
+      {/* Pantalla de Inicio */}
+      {currentScreen === 'home' && (
+        <Home 
+          onGameSelect={() => setCurrentScreen('mainMenu')}
+          onEducationSelect={handleEducationSelect}
+          onHomeSelect={handleHomeSelect}
+          onSettingsSelect={handleSettingsSelect}
+          onNotificationsSelect={handleNotificationsSelect}
+        />
+      )}
     </>
   );
 }

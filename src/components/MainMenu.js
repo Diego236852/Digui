@@ -4,11 +4,10 @@ import Cookies from 'js-cookie';
 import TopBar from './TopBar';
 import BottomNavBar from './BottomNavBar';
 import ABCPiensa_icon from './../images/MainMenu/ABCicon.svg';
-import Domino_icon from './../images/MainMenu/ABCicon.svg';  // Actualizado con el ícono correcto
+import Domino_icon from './../images/MainMenu/ABCicon.svg';
 import LanzayDiviertete_icon from './../images/MainMenu/ABCicon.svg';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
 import welcomeAudio from './../audios/MainMenu/welcome.mp3';
-
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`
@@ -118,8 +117,7 @@ const GameTitle = styled.h3`
   margin: 0;
 `;
 
-
-const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
+const MainMenu = ({ onGameSelect, onSettingsSelect, onHomeSelect }) => {
   useEffect(() => {
     const hasPlayedAudio = Cookies.get('hasPlayedAudio');
 
@@ -159,10 +157,12 @@ const MainMenu = ({ onGameSelect, onSettingsSelect }) => {
           </GameCard>
         </GameGrid>
       </GameContent>
-      <FixedBottomNavBar onSettingsSelect={onSettingsSelect} />
+      <FixedBottomNavBar 
+        onSettingsSelect={onSettingsSelect} 
+        onHomeSelect={onHomeSelect} // Aseguramos que onHomeSelect esté disponible
+      />
     </MainContainer>
   );
 };
-
 
 export default MainMenu;
