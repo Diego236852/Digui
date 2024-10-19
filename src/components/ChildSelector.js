@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import avatar1 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
-
 import { useAuth0 } from '@auth0/auth0-react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import AysDelete from './AysDelete'; // Importar AysDelete para confirmación
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
@@ -15,11 +15,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: #f3e5f5;
     user-select: none;
-    overflow: hidden; /* Evita el scroll */
+    overflow: hidden;
   }
 `;
 
-// Contenedor principal
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,55 +115,90 @@ const CreateButton = styled.button`
   }
 `;
 
-const ChildSelector = ({ onChildSelected, onCreateChild, onDeleteChild }) => {
+const ChildSelector = ({ onChildSelected, onCreateChild }) => {
   const { user } = useAuth0();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [childToDelete, setChildToDelete] = useState(null);
 
   // Realiza la consulta para obtener los hijos
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["childrenData"],
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['childrenData'],
     queryFn: async () => {
       const response = await axios.get("http://3.134.98.2:3000/database/getparentschildren", {
         params: {
-          email_padre: user.email // Asegúrate de que sea dinámico según el email del padre
-        }
+          email_padre: user.email, // Asegúrate de que sea dinámico según el email del padre
+        },
       });
       return response.data;
-    }
+    },
   });
+
+  // Definimos la mutación para eliminar el niño
+  const deleteChildMutation = useMutation({
+    mutationFn: async (childId) => {
+      await axios.post('http://3.134.98.2:3000/database/deletechild', {
+        child_id: childId
+      });
+    },
+    onSuccess: () => {
+      refetch(); // Refresca la lista de hijos después de eliminar
+    },
+  });
+
+  // Confirmar la eliminación de un niño
+  const confirmDelete = (childId) => {
+    setShowDeleteConfirm(true);
+    setChildToDelete(childId);
+  };
+
+  // Maneja la confirmación de eliminación del niño
+  const handleDeleteConfirmed = async () => {
+    if (childToDelete) {
+      await deleteChildMutation.mutate(childToDelete); // Llama a la mutación para eliminar
+      setShowDeleteConfirm(false); // Cierra el menú de confirmación
+    }
+  };
+
+  // Verifica que 'data' sea un array antes de usar .map()
+  const childrenList = Array.isArray(data) ? data : [];
 
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Ocurrió un error: {error.message}</div>;
-
-  // Maneja el clic en el niño seleccionado
-  const handleChildClick = (child) => {
-    onChildSelected(child); // Pasa el objeto del niño completo
-  };
-
-  // Maneja la eliminación del niño
-  const handleDeleteChild = (childId) => {
-    onDeleteChild(childId); // Llama la función de eliminación con el ID del niño
-  };
 
   return (
     <>
       <GlobalStyle />
       <Container>
         <Title>Digui</Title>
-        {/* Muestra una lista de los hijos obtenidos desde la base de datos */}
-        {data?.map((kid) => (
-          <ChildCard key={kid.id}>
-            <div onClick={() => handleChildClick(kid)} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-              <Avatar src={avatar1} alt={`Avatar de ${kid.Nombre}`} />
-              <ChildInfo>
-                <ChildName>{`${kid.Nombre} ${kid.Apellido}`}</ChildName>
-                <StatusIndicator />
-              </ChildInfo>
-            </div>
-            <DeleteButton onClick={() => handleDeleteChild(kid.id)}>Eliminar</DeleteButton>
-          </ChildCard>
-        ))}
+        {childrenList.length > 0 ? (
+          childrenList.map((kid) => (
+            <ChildCard key={kid.id}>
+              <div
+                onClick={() => onChildSelected(kid)}
+                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+              >
+                <Avatar src={avatar1} alt={`Avatar de ${kid.Nombre}`} />
+                <ChildInfo>
+                  <ChildName>{`${kid.Nombre} ${kid.Apellido}`}</ChildName>
+                  <StatusIndicator />
+                </ChildInfo>
+              </div>
+              <DeleteButton onClick={() => confirmDelete(kid.id)}>Eliminar</DeleteButton>
+            </ChildCard>
+          ))
+        ) : (
+          <p>No hay niños disponibles</p>
+        )}
         <CreateButton onClick={onCreateChild}>Crear niño</CreateButton>
+        <button onClick={onLogout}>cerrar sesion</button>
       </Container>
+
+      {showDeleteConfirm && (
+        <AysDelete
+          onCancel={() => setShowDeleteConfirm(false)} // Cierra el menú sin eliminar
+          onConfirm={handleDeleteConfirmed} // Confirma la eliminación
+        />
+      )}
     </>
   );
 };

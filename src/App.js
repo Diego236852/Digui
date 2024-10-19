@@ -15,15 +15,16 @@ import CreateChildForm from './components/CreateChildForm';
 import RuletaSuerte from './components/RuletaSuerte'; 
 import Home from './components/Home'; 
 import WordDecoder from './components/WordDecoder'; // Importamos el nuevo componente WordDecoder
+import axios from 'axios'; // Importar axios para manejar las peticiones HTTP
 
-//Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado de sesión del usuario
+// Se carga Auth0 para hacer uso del hook 'isAuthenticated' para verificar el estado de sesión del usuario
 import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');  
   const [difficulty, setDifficulty] = useState(null);  
   const [score, setScore] = useState(null);  
-  const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
+  //const [numberOfPlayers, setNumberOfPlayers] = useState(2); // Estado para almacenar el número de jugadores
   const [selectedChild, setSelectedChild] = useState(null); // Estado para el niño seleccionado
   const [isCreatingChild, setIsCreatingChild] = useState(false); // Nuevo estado para crear un niño
 
@@ -41,10 +42,23 @@ function App() {
     }
   }, [isAuthenticated]);
 
+  // Función para eliminar un niño
+  const handleDeleteChild = async (childId) => {
+    try {
+      await axios.post('http://3.134.98.2:3000/database/deletechild', {
+        child_id: childId
+      }); // Reemplaza con la URL correcta
+      console.log(`Niño con ID ${childId} eliminado exitosamente`);
+      setCurrentScreen('childSelector'); // Actualiza la pantalla para volver a ChildSelector
+    } catch (error) {
+      console.error("Error eliminando el niño:", error);
+    }
+  };
+
   // Manejadores de flujo de pantallas
   const handleFinishInfoDigui = () => {
     if (!isAuthenticated) setCurrentScreen('login');
-    else setCurrentScreen('loginSuccessful')
+    else setCurrentScreen('loginSuccessful');
   };
 
   const handleLoginSuccess = () => {
@@ -82,9 +96,9 @@ function App() {
     } else if (game === 'Domino') {
       setCurrentScreen('domino');  
     } else if (game === 'RuletaSuerte') {
-      setCurrentScreen('ruletaSuerte');  // Añadimos la nueva pantalla del juego de la ruleta
+      setCurrentScreen('ruletaSuerte');  
     } else if (game === 'WordDecoder') {
-      setCurrentScreen('wordDecoder');  // Cambiamos la pantalla a WordDecoder
+      setCurrentScreen('wordDecoder');  
     }
   };
 
@@ -129,12 +143,14 @@ function App() {
 
   const handleEducationSelect = () => {
     console.log('Educación seleccionada');
-    // Añadir aquí la lógica para la pantalla de educación cuando esté disponible
   };
 
   const handleNotificationsSelect = () => {
     console.log('Notificaciones seleccionadas');
-    // Añadir aquí la lógica para las notificaciones cuando esté disponible
+  };
+
+  const handleChangeChild = () => {
+    setCurrentScreen('childSelector'); // Permite cambiar el niño seleccionado
   };
 
   return (
@@ -145,7 +161,12 @@ function App() {
       {currentScreen === 'loginSuccessful' && <LoginSuccessful onContinue={handleLoginAnimationEnd} />}
       
       {currentScreen === 'childSelector' && !isCreatingChild && (
-        <ChildSelector onChildSelected={handleChildSelected} onCreateChild={handleCreateChildClick} />
+        <ChildSelector 
+          onChildSelected={handleChildSelected} 
+          onCreateChild={handleCreateChildClick}
+          onDeleteChild={handleDeleteChild} // Pasamos la función de eliminar al ChildSelector
+          
+        />
       )}
       
       {isCreatingChild && (
@@ -162,10 +183,13 @@ function App() {
       
       {currentScreen === 'settings' && (
         <Settings
+          selectedChild={selectedChild}  
+          parentEmail={user?.email}     
           onBack={handleBackFromSettings}
           onGameSelect={handleExitToMenu}
           onLogout={handleLogout}
           onHomeSelect={handleHomeSelect}
+          onChangeChild={handleChangeChild}
         />
       )}
       
@@ -195,16 +219,12 @@ function App() {
       
       {currentScreen === 'gameover' && <ABCloserMenu onRetry={handleRestartGame} />}
 
-      {/* Pantalla del juego de Dominó */}
       {currentScreen === 'domino' && <Domino onExitToMenu={handleExitToMenu} />}
 
-      {/* Pantalla del juego de la Ruleta de la Suerte */}
       {currentScreen === 'ruletaSuerte' && <RuletaSuerte onExitToMenu={handleExitToMenu} />}
 
-      {/* Pantalla de Word Decoder */}
       {currentScreen === 'wordDecoder' && <WordDecoder onExitToMenu={handleExitToMenu} />}
 
-      {/* Pantalla de Inicio */}
       {currentScreen === 'home' && (
         <Home 
           onGameSelect={() => setCurrentScreen('mainMenu')}

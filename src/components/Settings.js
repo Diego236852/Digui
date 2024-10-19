@@ -37,6 +37,26 @@ const LogoutButton = styled.button`
   }
 `;
 
+const ChangeChildButton = styled.button`
+  background-color: #6b21a8;
+  color: white;
+  padding: 12px;
+  border-radius: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #5a189a;
+  }
+`;
+
 const AvatarContainer = styled.div`
   margin: 20px 0;
   width: 160px;
@@ -83,10 +103,10 @@ const SettingsItem = styled.div`
   }
 `;
 
-const SmallLabel = styled.p`
+/*const SmallLabel = styled.p`
   font-size: 14px;
   color: #b8a9d2;
-`;
+`;*/
 
 const FixedTopBarContainer = styled.div`
   position: fixed;
@@ -106,7 +126,7 @@ const BottomNavBarContainer = styled.div`
   z-index: 10;
 `;
 
-const Settings = ({ onBack, onGameSelect, onLogout, onHomeSelect }) => {
+const Settings = ({ selectedChild, parentEmail, onLogout, onGameSelect, onHomeSelect, onChangeChild }) => {
   return (
     <>
       <FixedTopBarContainer>
@@ -118,33 +138,27 @@ const Settings = ({ onBack, onGameSelect, onLogout, onHomeSelect }) => {
           <img src={profile_temp_image} alt="Avatar" style={{ width: '100%', borderRadius: '50%' }} />
         </AvatarContainer>
 
-        <Username>Nombre de Usuario</Username>
+        {/* Mostrar el nombre del niño */}
+        <Username>{selectedChild ? `${selectedChild.Nombre} ${selectedChild.Apellido}` : 'Nombre de Usuario'}</Username>
 
         <SettingsList>
           <SettingsItem>
-            <span>Tipo de cuenta</span>
-            <span>→</span>
-          </SettingsItem>
-          <SettingsItem>
             <span>Nombre</span>
-            <span>→</span>
+            <span>{selectedChild ? selectedChild.Nombre : 'No disponible'}</span>
           </SettingsItem>
           <SettingsItem>
             <span>Apellido(s)</span>
-            <SmallLabel>Sólo para docentes y padres de familia</SmallLabel>
-            <span>→</span>
+            <span>{selectedChild ? selectedChild.Apellido : 'No disponible'}</span>
           </SettingsItem>
           <SettingsItem>
-            <span>Nombre de Usuario</span>
-            <span>→</span>
-          </SettingsItem>
-          <SettingsItem>
-            <span>Número de teléfono</span>
-            <span>→</span>
+            <span>Correo</span>
+            <span>{parentEmail ? parentEmail : 'No disponible'}</span>
           </SettingsItem>
         </SettingsList>
 
+        <ChangeChildButton onClick={onChangeChild}>Cambiar Niño</ChangeChildButton>
         <LogoutButton onClick={onLogout}>Cerrar sesión</LogoutButton>
+        
       </SettingsContainer>
 
       <BottomNavBarContainer>
