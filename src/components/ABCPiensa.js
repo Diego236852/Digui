@@ -472,7 +472,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
 
   return (
     <GameContainer onClick={randomizeLetters}>
-      <BackButton onClick={handleBackClick}>Regresar</BackButton>
+      <BackButton onClick={handleBackClick}>←</BackButton>
 
       {showModal && (
         <AreYouSure onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
@@ -480,7 +480,7 @@ const ABCPiensa = ({ difficulty, onGameEnd, onGameLost, onExitToMenu }) => {
 
       {showParticles && <SuccessParticles />}
 
-      <Timer>Tiempo: {Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Timer>
+      <Timer>{Math.floor(timeLeft / 60)}:{('0' + (timeLeft % 60)).slice(-2)}</Timer>
 
       <LettersGrid initialRender={initialRender}>
         {letters.map((letter, index) => (

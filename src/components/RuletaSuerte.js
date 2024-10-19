@@ -39,20 +39,21 @@ const highlight = keyframes`
 `;
 
 // Contenedor principal
+// Contenedor principal con un nuevo fondo de gradiente suave
 const RuletaContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  height: 100vh; /* Ocupa toda la pantalla para evitar scroll */
-  background: linear-gradient(135deg, #f0eaff, #f7f3ff);
-  padding: 10px;
+  height: 100vh;
+  background: linear-gradient(135deg, #d8b4fe, #f3e5f5, #ffe39f); /* Gradiente personalizado */
+  padding: 20px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 5px;
+    padding: 10px;
   }
 
   @media (max-width: 480px) {
@@ -60,36 +61,37 @@ const RuletaContainer = styled.div`
   }
 `;
 
+
 // Estilos para el botón de girar
 const SpinButton = styled.button`
-  padding: 12px 25px;
-  font-size: 18px;
-  background: linear-gradient(135deg, #6b21a8, #9f5dc4);
+  padding: 14px 28px;
+  font-size: 20px;
+  background: linear-gradient(135deg, #d8b4fe, #b39ddb); /* Colores púrpuras */
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background-color: #8f4fc3;
-    transform: scale(1.05);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #b39ddb;
+    transform: scale(1.08);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
   }
 
   &:active {
-    background-color: #4e1573;
-    transform: scale(0.98);
+    background-color: #9575cd;
+    transform: scale(0.95);
   }
 
   @media (max-width: 768px) {
-    font-size: 16px;
-    padding: 10px 20px;
+    font-size: 18px;
+    padding: 12px 24px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
-    padding: 8px 16px;
+    font-size: 16px;
+    padding: 10px 20px;
   }
 `;
 
@@ -101,7 +103,7 @@ const ParticipantsContainer = styled.div`
   gap: 20px;
   width: 100%;
   max-width: 600px;
-  transition: all 0.3s ease;
+  margin-bottom: 30px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -113,15 +115,15 @@ const ParticipantsContainer = styled.div`
 // Estilos para cada participante
 const Participant = styled.div`
   flex: 1;
-  padding: 12px;
+  padding: 20px;
   font-size: 18px;
   color: #333;
   text-align: center;
   background-color: ${({ isActive }) => (isActive ? '#ffe39f' : '#fff')};
   border: 3px solid #6b21a8;
-  border-radius: 20px;
+  border-radius: 50%; /* Redondeado como fichas de casino */
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
   ${({ isActive }) =>
     isActive &&
@@ -137,19 +139,19 @@ const Participant = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 10px;
+    padding: 16px;
     font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    padding: 8px;
+    padding: 12px;
     font-size: 14px;
   }
 `;
 
 // Contenedor del mazo de cartas
 const DeckContainer = styled.div`
-  perspective: 1000px; /* Necesario para el efecto de flip 3D */
+  perspective: 1000px;
   margin-top: 20px;
 `;
 
@@ -172,29 +174,28 @@ const CardFace = styled.div`
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   font-weight: bold;
+  color: #fff;
 `;
 
 // Cara frontal de la carta (antes de voltear)
 const CardFront = styled(CardFace)`
   background-color: #6b21a8;
-  color: white;
 `;
 
 // Cara trasera de la carta (cuando se voltea)
 const CardBack = styled(CardFace)`
   background-color: #ffe39f;
   color: #333;
-  transform: rotateY(180deg); /* Se voltea en 180 grados */
+  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  padding: 10px;
 `;
 
 // Contenedor para el texto de la carta
@@ -212,7 +213,7 @@ const RuletaSuerte = ({ onExitToMenu }) => {
   const [selectedTask, setSelectedTask] = useState('');
   const [isSpinning, setIsSpinning] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [isFlipped, setIsFlipped] = useState(false); // Estado para manejar el flip de la carta
+  const [isFlipped, setIsFlipped] = useState(false);
 
   // Función que inicia la ruleta
   const spinWheel = () => {
@@ -220,30 +221,24 @@ const RuletaSuerte = ({ onExitToMenu }) => {
     setIsFlipped(false); // Reseteamos la carta al estado original
 
     let currentIndex = 0;
-    const rounds = 15; // El número de "vueltas" que dará la ruleta
-    const totalIterations = rounds + Math.floor(Math.random() * participants.length); // Asegura que termina en un participante aleatorio
+    const rounds = 15;
+    const totalIterations = rounds + Math.floor(Math.random() * participants.length);
 
     const interval = setInterval(() => {
       setActiveIndex(currentIndex % participants.length);
       currentIndex += 1;
 
-      // Cuando termina el número de vueltas, seleccionamos al participante final y paramos la animación
       if (currentIndex >= totalIterations) {
         clearInterval(interval);
 
-        const finalIndex = currentIndex % participants.length;
-        const finalParticipant = participants[finalIndex];
         const finalTask = tasks[Math.floor(Math.random() * tasks.length)];
-
-        setActiveIndex(finalIndex); // Aseguramos que el índice final sea correcto
-        setSelectedParticipant(finalParticipant);
         setSelectedTask(finalTask);
         setIsSpinning(false);
 
         // Volteamos la carta después de que se elija al participante
         setTimeout(() => setIsFlipped(true), 500);
       }
-    }, 200); // El tiempo entre cada cambio de participante
+    }, 200);
   };
 
   return (
@@ -259,14 +254,12 @@ const RuletaSuerte = ({ onExitToMenu }) => {
         ))}
       </ParticipantsContainer>
 
-      {/* Mazo de cartas */} 
+      {/* Mazo de cartas */}
       <DeckContainer>
         <Card isFlipped={isFlipped}>
           <CardFront>Ruleta</CardFront>
           <CardBack>
             <TextWrapper>
-              {/*<strong>{selectedParticipant}</strong>*/}
-              <div></div>
               <div>{selectedTask}</div>
             </TextWrapper>
           </CardBack>
