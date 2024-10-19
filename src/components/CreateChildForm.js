@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
+import { use } from 'bcrypt/promises';
 
 // Contenedor principal
 const FormContainer = styled.div`
@@ -74,12 +75,14 @@ const CreateChildForm = ({ onChildCreated, onCancel }) => {
 
   const { user } = useAuth0();
 
+  console.log(user.email);
+
   const handleSubmit = () => {
     if (name && lastName) {
       axios.post('http://3.134.98.2:3000/database/addchild', {
         email_padre: user.email,
-	      nombre: name,
-	      apellido: lastName
+        nombre: name,
+        apellido: lastName
       })
       .catch((err) => {
         console.log(err);

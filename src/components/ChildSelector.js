@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import avatar1 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
 import avatar2 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
 
 import { useAuth0 } from '@auth0/auth0-react';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
@@ -103,7 +105,20 @@ const CreateButton = styled.button`
 const ChildSelector = ({ onChildSelected, onCreateChild }) => {
   const { user } = useAuth0();
 
-  
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["data"],
+    queryFn: async () => {
+      const response = await axios.get("http://3.134.98.2:3000/database/getparentschildren", {
+        params:{
+          email_padre: 'josiasjsosas@gmail.com'
+        }
+      });
+      return response.data;
+    }
+  })
+
+  if (isLoading) return "Loading...";
+  if (error) return "An error has ocurred: " + error.message;
 
   const handleChildClick = (child) => {
     onChildSelected(child); // Redirecciona a MainMenu pasando el niño seleccionado
@@ -114,20 +129,15 @@ const ChildSelector = ({ onChildSelected, onCreateChild }) => {
       <GlobalStyle />
       <Container>
         <Title>Digui</Title>
-        <ChildCard onClick={() => handleChildClick({ name: 'Niño 1' })}>
+        {<ul>{data.data?.map((kid) => <li key={kid.id}>
+        <ChildCard onClick={() => handleChildClick({ id: kid.id })}>
           <Avatar src={avatar1} alt="Avatar niño 1" />
           <ChildInfo>
-            <ChildName>Niño 1</ChildName>
+            <ChildName>{kid.Nombre + ' ' + kid.Apellido}</ChildName>
             <StatusIndicator />
           </ChildInfo>
         </ChildCard>
-        <ChildCard onClick={() => handleChildClick({ name: 'Niño 2' })}>
-          <Avatar src={avatar2} alt="Avatar niño 2" />
-          <ChildInfo>
-            <ChildName>Niño 2</ChildName>
-            <StatusIndicator />
-          </ChildInfo>
-        </ChildCard>
+        </li>)}</ul>}
         <CreateButton onClick={onCreateChild}>Crear niño</CreateButton>
       </Container>
     </>
