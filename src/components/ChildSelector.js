@@ -115,7 +115,7 @@ const CreateButton = styled.button`
   }
 `;
 
-const ChildSelector = ({ onChildSelected, onCreateChild }) => {
+const ChildSelector = ({ onChildSelected, onCreateChild, onLogout }) => {
   const { user } = useAuth0();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [childToDelete, setChildToDelete] = useState(null);

@@ -8,7 +8,7 @@ import Domino_icon from './../images/MainMenu/DominoIcon.png';
 import LanzayDiviertete_icon from './../images/MainMenu/LanzaIcon.png';
 import RuletaSuerte_icon from './../images/MainMenu/ABCicon.svg';
 import WordDecoder_icon from './../images/MainMenu/WordDecoderIcon.png'; // Ícono para Word Decoder
-import welcomeAudio from './../audios/MainMenu/Welcome.mp3';
+import welcomeAudio from './../audios/MainMenu/welcome.mp3';
 
 // Animación para hacer que el menú principal aparezca deslizando desde abajo
 const slideIn = keyframes`

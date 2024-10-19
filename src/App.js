@@ -165,7 +165,7 @@ function App() {
           onChildSelected={handleChildSelected} 
           onCreateChild={handleCreateChildClick}
           onDeleteChild={handleDeleteChild} // Pasamos la función de eliminar al ChildSelector
-          
+          onLogout={handleLogout}
         />
       )}
       
