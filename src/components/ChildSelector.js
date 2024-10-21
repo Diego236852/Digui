@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import avatar1 from './../images/Settings/profile.jpeg'; // Reemplaza con la ruta correcta de la imagen
+import avatar1 from './../images/Settings/Profile.png'; // Reemplaza con la ruta correcta de la imagen
 import { useAuth0 } from '@auth0/auth0-react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import AysDelete from './AysDelete'; // Importar AysDelete para confirmación
+import { TbBackground } from 'react-icons/tb';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@700&family=Quicksand:wght@400&display=swap');
@@ -13,85 +14,126 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3e5f5;
+    background: linear-gradient(135deg, #6b21a8, #f3e5f5);
     user-select: none;
     overflow: hidden;
   }
-`;
+  `;  
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
-  background-color: #f3e5f5;
   padding: 20px;
 `;
 
 const Title = styled.h1`
   font-family: 'Baloo 2', sans-serif;
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 30px;
+  font-size: 34px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 `;
+
+const ChildListContainer = styled.div`
+  width: 100%;
+  max-width: 450px;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  /* Estilos para el scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(107, 33, 168);  /* Track del scrollbar */
+    border-radius: 10px;
+
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #6b21a8;  /* Color del pulgar del scrollbar */
+    border-radius: 100px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);  /* Sombra interna */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5a189a;
+    border-radius: 20px;  /* Color cuando se hace hover en el scrollbar */
+  }
+
+  /* Estilos para otros navegadores (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: #6b21a8 rgba(107, 33, 168, 0.2);
+`;
+
 
 const ChildCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
   padding: 15px;
-  margin-bottom: 20px;
-  background-color: white;
-  border: 2px solid #ccc;
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
   &:hover {
-    background-color: #f3f3f3;
+    background-color: #ece7f5;
+    transform: scale(1.02);
   }
 `;
 
 const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 15px;
+  border: 2px solid #6b21a8;
 `;
 
 const ChildInfo = styled.div`
   display: flex;
   flex-direction: column;
+  color: #6b21a8;
 `;
 
 const ChildName = styled.p`
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  color: #333;
+  font-size: 18px;
+  color: #6b21a8;
+  margin: 0;
 `;
 
 const StatusIndicator = styled.span`
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: green;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-top: 5px;
 `;
 
 const DeleteButton = styled.button`
-  background-color: #ff4d4d;
+  background-color: #ff5c5c;
   color: white;
   border: none;
   border-radius: 10px;
-  padding: 8px 15px;
-  cursor: pointer;
+  padding: 8px 20px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
   &:hover {
     background-color: #ff1a1a;
   }
@@ -101,17 +143,38 @@ const CreateButton = styled.button`
   width: 100%;
   max-width: 400px;
   padding: 15px;
-  background-color: white;
-  color: #333;
-  border: 2px solid #333;
+  background-color: #6b21a8;
+  color: #ffffff;
+  border: none;
   border-radius: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #5a189a;
+    transform: scale(1.05);
+  }
+`;
+
+const LogoutButton = styled.button`
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 25px;
+  margin-top: 15px;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   cursor: pointer;
-  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #f3f3f3;
+    background-color: #e04a4a;
   }
 `;
 
@@ -120,46 +183,41 @@ const ChildSelector = ({ onChildSelected, onCreateChild, onLogout }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [childToDelete, setChildToDelete] = useState(null);
 
-  // Realiza la consulta para obtener los hijos
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['childrenData'],
     queryFn: async () => {
       const response = await axios.get("http://3.134.98.2:3000/database/getparentschildren", {
         params: {
-          email_padre: user.email, // Asegúrate de que sea dinámico según el email del padre
+          email_padre: user.email,
         },
       });
       return response.data;
     },
   });
 
-  // Definimos la mutación para eliminar el niño
   const deleteChildMutation = useMutation({
     mutationFn: async (childId) => {
       await axios.post('http://3.134.98.2:3000/database/deletechild', {
-        child_id: childId
+        child_id: childId,
       });
     },
     onSuccess: () => {
-      refetch(); // Refresca la lista de hijos después de eliminar
+      refetch();
     },
   });
 
-  // Confirmar la eliminación de un niño
   const confirmDelete = (childId) => {
     setShowDeleteConfirm(true);
     setChildToDelete(childId);
   };
 
-  // Maneja la confirmación de eliminación del niño
   const handleDeleteConfirmed = async () => {
     if (childToDelete) {
-      await deleteChildMutation.mutate(childToDelete); // Llama a la mutación para eliminar
-      setShowDeleteConfirm(false); // Cierra el menú de confirmación
+      await deleteChildMutation.mutate(childToDelete);
+      setShowDeleteConfirm(false);
     }
   };
 
-  // Verifica que 'data' sea un array antes de usar .map()
   const childrenList = Array.isArray(data) ? data : [];
 
   if (isLoading) return <div>Cargando...</div>;
@@ -170,33 +228,35 @@ const ChildSelector = ({ onChildSelected, onCreateChild, onLogout }) => {
       <GlobalStyle />
       <Container>
         <Title>Digui</Title>
-        {childrenList.length > 0 ? (
-          childrenList.map((kid) => (
-            <ChildCard key={kid.id}>
-              <div
-                onClick={() => onChildSelected(kid)}
-                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-              >
-                <Avatar src={avatar1} alt={`Avatar de ${kid.Nombre}`} />
-                <ChildInfo>
-                  <ChildName>{`${kid.Nombre} ${kid.Apellido}`}</ChildName>
-                  <StatusIndicator />
-                </ChildInfo>
-              </div>
-              <DeleteButton onClick={() => confirmDelete(kid.id)}>Eliminar</DeleteButton>
-            </ChildCard>
-          ))
-        ) : (
-          <p>No hay niños disponibles</p>
-        )}
+        <ChildListContainer>
+          {childrenList.length > 0 ? (
+            childrenList.map((kid) => (
+              <ChildCard key={kid.id}>
+                <div
+                  onClick={() => onChildSelected(kid)}
+                  style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                >
+                  <Avatar src={avatar1} alt={`Avatar de ${kid.Nombre}`} />
+                  <ChildInfo>
+                    <ChildName>{`${kid.Nombre} ${kid.Apellido}`}</ChildName>
+                    <StatusIndicator />
+                  </ChildInfo>
+                </div>
+                <DeleteButton onClick={() => confirmDelete(kid.id)}>Eliminar</DeleteButton>
+              </ChildCard>
+            ))
+          ) : (
+            <p>No hay niños disponibles</p>
+          )}
+        </ChildListContainer>
         <CreateButton onClick={onCreateChild}>Crear niño</CreateButton>
-        <button onClick={onLogout}>cerrar sesion</button>
+        <LogoutButton onClick={onLogout}>Cerrar sesión</LogoutButton>
       </Container>
 
       {showDeleteConfirm && (
         <AysDelete
-          onCancel={() => setShowDeleteConfirm(false)} // Cierra el menú sin eliminar
-          onConfirm={handleDeleteConfirmed} // Confirma la eliminación
+          onCancel={() => setShowDeleteConfirm(false)}
+          onConfirm={handleDeleteConfirmed}
         />
       )}
     </>

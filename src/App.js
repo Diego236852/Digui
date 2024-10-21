@@ -80,7 +80,7 @@ function App() {
 
   const handleChildCreated = (child) => {
     setSelectedChild(child);
-    setIsCreatingChild(false); // Después de crear el niño, volvemos al menú principal
+    //setIsCreatingChild(false); // Después de crear el niño, volvemos al menú principal
     setCurrentScreen('mainMenu');
   };
 

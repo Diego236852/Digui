@@ -41,20 +41,22 @@ const float = keyframes`
 // Contenedor principal que divide la pantalla en dos
 const Background = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex: 1;  /* Ocupa el espacio restante en el flexbox principal */
+  justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #f3e5f5, #ffffff);
+  background: #f3e5f5;
   padding: 0 60px;
   position: relative;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-  }
 `;
+
+  //@media (max-width: 768px) {
+   // padding: 20px;
+    //flex-direction: column;
+    //justify-content: center;
+  //}
+//`;
 
 // Formas geométricas en colores pastel
 const GeometricShape = styled.div`
